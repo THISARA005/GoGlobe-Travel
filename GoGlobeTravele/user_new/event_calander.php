@@ -29,7 +29,7 @@
      if(title)
      {
       var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
-      var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm:ss");
+      //var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm:ss");
       var user_id = <?php echo $_GET['user_id']; ?>; 
 
       $.ajax({
