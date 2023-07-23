@@ -10,14 +10,17 @@
   <script>
    
   $(document).ready(function() {
+    var user_id = <?php echo $_GET['user_id']; ?>; 
    var calendar = $('#calendar').fullCalendar({
+    // Get user_id from URL parameter
+
     editable:true,
     header:{
      left:'prev,next today',
      center:'title',
      right:'month,agendaWeek,agendaDay'
     },
-    events: 'load_Event.php',
+    events: 'load_Event.php?user_id=' + user_id, 
     selectable:true,
     selectHelper:true,
     select: function(start, end, allDay)
