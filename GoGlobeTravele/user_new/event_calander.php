@@ -27,10 +27,12 @@
      {
       var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
       var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm:ss");
+      var user_id = <?php echo $_GET['user_id']; ?>; 
+
       $.ajax({
        url:"insert_Event.php",
        type:"POST",
-       data:{title:title, start:start, end:end},
+       data:{title:title, start:start, end:end,         user_id: user_id },
        success:function()
        {
         calendar.fullCalendar('refetchEvents');
