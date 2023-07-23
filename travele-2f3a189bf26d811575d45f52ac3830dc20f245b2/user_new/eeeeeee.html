@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            display: none;
+        }
+
+        .popup-content {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            z-index: 10000;
+            display: none;
+        }
+
+        .popup-content h3 {
+            margin-top: 0;
+        }
+
+        .popup-content textarea {
+            width: 100%;
+            height: 100px;
+            resize: vertical;
+            margin-top: 10px;
+            padding: 5px;
+        }
+
+        .popup-content input[type="file"] {
+            margin-top: 10px;
+        }
+
+        .popup-content button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .popup-content button.close-button {
+            background-color: #ff5252;
+            margin-left: 10px;
+        }
+        .popup-overlay {
+            /* Styles for the overlay */
+        }
+
+        .popup-content {
+            /* Styles for the popup content */
+        }
+
+        .popup-content h3 {
+            /* Styles for the heading */
+            color: #333;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .popup-content form {
+            /* Styles for the form */
+            margin-bottom: 20px;
+        }
+
+        .popup-content label {
+            /* Styles for the labels */
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .popup-content input[type="file"] {
+            /* Styles for the file input field */
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .popup-content textarea {
+            /* Styles for the textarea */
+            width: 100%;
+            height: 100px;
+            margin-bottom: 10px;
+        }
+
+        .popup-content button {
+            /* Styles for the buttons */
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .popup-content button:hover {
+            /* Styles for the button hover state */
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="openPopup()">Open Popup</button>
+
+    <div id="popupOverlay" class="popup-overlay"></div>
+
+    <div id="popupContent" class="popup-content">
+        <h3>Upload Images and Description</h3>
+        <form>
+            <div>
+                <label for="imageUpload">Upload Images:</label>
+                <input type="file" id="imageUpload" name="images" multiple>
+            </div>
+            <div>
+                <label for="description">Description:</label>
+                <textarea id="description" name="description"></textarea>
+            </div>
+            <button type="submit" onclick="submitForm()">Submit</button>
+            <button type="button" class="close-button" onclick="closePopup()">Close</button>
+        </form>
+    </div>
+
+    <script>
+        function openPopup() {
+            document.getElementById('popupOverlay').style.display = 'block';
+            document.getElementById('popupContent').style.display = 'block';
+        }
+
+        function closePopup() {
+            document.getElementById('popupOverlay').style.display = 'none';
+            document.getElementById('popupContent').style.display = 'none';
+        }
+
+        function submitForm() {
+            var images = document.getElementById('imageUpload').files;
+            var description = document.getElementById('description').value;
+
+            // Perform the necessary actions with the uploaded images and description
+            console.log('Uploaded Images:', images);
+            console.log('Description:', description);
+
+            // Close the popup after submitting the form
+            closePopup();
+        }
+    </script>
+</body>
+</html>
