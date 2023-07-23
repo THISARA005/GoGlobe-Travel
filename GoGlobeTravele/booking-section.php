@@ -39,15 +39,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    $name = $_POST['name_booking'];
    $email = $_POST['email_booking'];
    $phone = $_POST['phone_booking'];
-   $dateold = $_POST['date']; // Assuming the input field name is 's'
+   $dateold = $_POST['date'];
+   $note= $_POST['note'];
+    // Assuming the input field name is 's'
    $tourGuide = isset($_POST['tour_guide']) ? '1' : '0';
    $insurance = isset($_POST['insurance']) ? '1' : '0';
    $dinner = isset($_POST['dinner']) ? '1' : '0';
    $bikeRent = isset($_POST['bike_rent']) ? '1' : '0';
    $date = date('Y-m-d', strtotime($dateold));
 
-   $sql = "INSERT INTO pack_booking (user_ID, pack_ID, booking_person, billing_email, phone,billing_date, check_in_date	, tourGuide, insurance, dinner, bikeRent,to_pay_amount)
-   VALUES ($userId, $packId, '$name', '$email', '$phone','$billing_date', '$date', $tourGuide, $insurance, $dinner, $bikeRent,$price)";
+   $sql = "INSERT INTO pack_booking (user_ID, pack_ID, booking_person, billing_email, phone,billing_date, check_in_date	, tourGuide, insurance, dinner, bikeRent,to_pay_amount,note)
+   VALUES ($userId, $packId, '$name', '$email', '$phone','$billing_date', '$date', $tourGuide, $insurance, $dinner, $bikeRent,$price,$note)";
 
 
    

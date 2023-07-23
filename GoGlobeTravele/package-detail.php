@@ -76,6 +76,11 @@
                                     </div>
                                     <div class="col-sm-12">
                                        <div class="form-group">
+                                          <input name="note" type="text" placeholder="Note to calander" >
+                                       </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                       <div class="form-group">
                                           <input class="input-date-picker" type="text" name="date" autocomplete="off" readonly="readonly" placeholder="Check in Date" >
                                        </div>
                                     </div>
