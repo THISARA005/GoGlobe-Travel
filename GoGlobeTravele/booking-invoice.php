@@ -47,7 +47,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $updateBookingQuery = " UPDATE packages SET status = '1' WHERE pack_ID = $packId  ";
     mysqli_query($mysqli, $updateBookingQuery);
 
-   
+   $deletecartQuery = " DELETE FROM cart WHERE pack_ID = $packId AND user_ID = $userId ";
+    mysqli_query($mysqli, $deletecartQuery);
     
     if (mysqli_query($mysqli, $insertInvoiceQuery)) {
         

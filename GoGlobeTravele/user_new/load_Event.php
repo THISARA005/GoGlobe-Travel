@@ -6,8 +6,10 @@ $connect = new PDO('mysql:host=localhost;dbname=goglobetravel', 'root', '');
 
 
 $data = array();
+$user_id = isset($_GET['user_id']) ? $_GET['user_id'] : null;
 
-$query = "SELECT * FROM events ORDER BY id";
+
+$query = "SELECT * FROM events WHERE user_id = $user_id ORDER BY id";
 
 $statement = $connect->prepare($query);
 
