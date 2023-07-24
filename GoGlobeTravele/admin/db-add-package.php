@@ -237,7 +237,7 @@
                                                     <option>Camp fire</option>
                                                     <option>Off road</option>
                                                     <option>Wild life</option>
-                                                    <option>Exploring</option>
+                                                    <option>Off road</option>
                                                 </select>
                                             </div>
                                         </div>
