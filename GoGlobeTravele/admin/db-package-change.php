@@ -27,11 +27,25 @@
                 <div class="row">
                     <!-- Listings -->
                     <div class="col-lg-8 col-xl-9">
+
+                        <div class="dashboard-box">  
+                            <div class="custom-field-wrap">
+                                <div class="form-group">
+                                    <label>Enter Package ID</label>
+                                    <input type="number" id="packIdInput" placeholder="Package ID">
+                                </div>
+                                <div class="form-group">
+                                    <button onclick="getPackageData()">Fill Package Details</button>
+                                </div>
+                            </div>
+                        </div>
+    
+
                         <div class="dashboard-box">
                             <div class="custom-field-wrap">
                                 <div class="form-group">
                                     <label>Title</label>
-                                    <input type="text" name="name">
+                                    <input type="text" name="title">
                                 </div>
                                 <div class="form-group">
                                     <label>Description</label>
@@ -77,19 +91,19 @@
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label>Sale Price</label>
-                                            <input type="text" name="name">
+                                            <input type="text" name="salePrice">
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label>Regular Price</label>
-                                            <input type="text" name="name">
+                                            <input type="text" name="regPrice">
                                         </div>
                                     </div>
                                     <div class="col-sm-2">
                                         <div class="form-group">
                                             <label>Discount</label>
-                                            <input type="text" name="name">
+                                            <input type="text" name="disPrice">
                                         </div>
                                     </div>
                                 </div>
@@ -164,7 +178,7 @@
                                     <a href="#">Edit</a>
                                 </div>
                                 <div class="publish-action">
-                                    <input type="submit" name="publish" value="Publish">
+                                    <input type="submit" name="publish" value="Publish" onclick="publishPackage()">
                                 </div>
                             </div>
                         </div>
@@ -197,8 +211,7 @@
                                         <span class="custom-input-field"></span>
                                         Walking
                                     </label>
-                                </div>
-                                
+                                </div> 
                             </div>
                             <div class="custom-field-wrap db-media-field-wrap">
                                 <h4>Add image</h4>
@@ -216,7 +229,7 @@
                                 <span class="custom-input-field"></span>
                                 Active Status
                             </label>
-        </div>
+                            </div>
                             </div>
 
                         </div>
@@ -231,6 +244,50 @@
         </div>
         <!-- Dashboard / End -->
     </div>
+
+// JavaScript code to auto-fill input fields and handle form submission
+<script>
+function getPackageData() {
+    const packId = document.getElementById("packIdInput").value;
+
+    // Make an AJAX request to fetch the package data
+    $.ajax({
+        url: 'get_package_data.php', // Replace with the URL of your server-side script to fetch package data
+        method: 'GET',
+        data: { pack_id: packId }, // Send the pack_id as a parameter to the server
+        dataType: 'json',
+        success: function(response) {
+            // Assuming the server returns JSON data, update the form fields with the fetched data
+            if (response) {
+                // Assuming your server returns an object with package data
+                const packageData = response;
+
+                // Fill the form fields with the fetched data
+                document.getElementsByName('name')[0].value = packageData.title;
+                document.querySelector('textarea').value = packageData.pack_description;
+                document.getElementsByName('grpSize')[0].value = packageData.grp_size;
+                document.getElementsByName('days')[0].value = packageData.duration_days;
+                document.getElementsByName('nights')[0].value = packageData.duration_nights;
+                document.getElementsByName('title')[0].value = packageData.title;
+                document.getElementsByName('title')[0].value = packageData.title;
+                document.getElementsByName('title')[0].value = packageData.title;
+                document.getElementsByName('title')[0].value = packageData.title;
+                // ... fill other form fields with the relevant package data ...
+            } else {
+                // Handle the case where no package data was found
+                alert('Package data not found.');
+            }
+        },
+        error: function(xhr, status, error) {
+            // Handle the AJAX request error
+            alert('Error fetching package data. Please try again.');
+            console.error(error);
+        }
+    });
+}
+</script>
+
+<!-- ... Your existing HTML/PHP code ... -->
     <!-- end Container Wrapper -->
     <!-- end Container Wrapper -->
     <script src="assets/js/jquery-3.2.1.min.js"></script>
