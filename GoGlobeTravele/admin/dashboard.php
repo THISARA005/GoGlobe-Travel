@@ -164,7 +164,7 @@ ob_end_clean();
                 </div>
             </div>
             <div class="dashboard-navigation">
-                <!-- Responsive Navigation Trigger -->
+                
                 <div id="dashboard-Navigation" class="slick-nav"></div>
                 <div id="navigation" class="navigation-container">
                     <ul>

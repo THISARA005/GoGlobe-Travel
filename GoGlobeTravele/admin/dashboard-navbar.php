@@ -164,12 +164,13 @@
                                 </li>
                             </ul>
                         </li>
-                        <li><a href="db-add-package.html"><i class="fas fa-umbrella-beach"></i>Add Package</a></li>
+                        <li><a href="db-add-package.php"><i class="fas fa-umbrella-beach"></i>Add Package</a></li>
                         <li class="active-menu">
                             <a><i class="fas fa-hotel"></i></i>packages</a>
                             <ul>
                                 <li><a href="db-package-active.php">Active</a></li>
                                 <li><a href="db-package-pending.php">Pending</a></li>
+                                <li><a href="db-package-change.php">Change package details</a></li>
                                
                             </ul>   
                         </li>
