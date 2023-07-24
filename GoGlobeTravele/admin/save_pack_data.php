@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $pack_description = $_POST['pack_description'];
     $grpSize = $_POST['grpSize'];
     $duration_days = $_POST['duration_days'];
-    $duration_nights = $_POST['duration_nights'];
+    //$duration_nights = $_POST['duration_nights'];
     $pack_category = $_POST['pack_category'];
 
     $reg_price = $_POST['regPrice'];
@@ -16,6 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Calculate the sales price
     $sale_price = $reg_price - ($reg_price * $discount) * 0.01;
+    $duration_nights= $duration_days - 1;
 
     $populer = isset($_POST['populer']) ? 1 : 0;
     $keyword = $_POST['keyword'];
