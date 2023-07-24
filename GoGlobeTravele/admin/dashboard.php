@@ -182,7 +182,7 @@ ob_end_clean();
                                 </li>
                             </ul>
                         </li>
-                        <li><a href="db-add-package.html"><i class="fas fa-umbrella-beach"></i>Add Package</a></li>
+                        <li><a href="db-add-package.php"><i class="fas fa-umbrella-beach"></i>Add Package</a></li>
                         <li class="active-menu">
                             <a><i class="fas fa-hotel"></i></i>packages</a>
                             <ul>
