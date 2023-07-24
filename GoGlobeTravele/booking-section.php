@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    $date = date('Y-m-d', strtotime($dateold));
 
    $sql = "INSERT INTO pack_booking (user_ID, pack_ID, booking_person, billing_email, phone,billing_date, check_in_date	, tourGuide, insurance, dinner, bikeRent,to_pay_amount,note)
-   VALUES ($userId, $packId, '$name', '$email', '$phone','$billing_date', '$date', $tourGuide, $insurance, $dinner, $bikeRent,$price,$note)";
+   VALUES ($userId, $packId, '$name', '$email', '$phone','$billing_date', '$date', $tourGuide, $insurance, $dinner, $bikeRent,$price,'$note')";
 
 
    
