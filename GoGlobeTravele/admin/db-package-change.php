@@ -182,7 +182,7 @@
                     </ul>
                 </div>
             </div>
-            <form action="save_pack_data.php" method="POST" enctype="multipart/form-data">
+            <form action="change_pack_data.php" method="POST" enctype="multipart/form-data">
                 
                 <div class="db-info-wrap db-add-tour-wrap">
                     <div class="row">
@@ -195,6 +195,7 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Package ID</label>
+
                                     <input type="text" name="pack_id_input" placeholder="Enter Package ID" required>
                                 </div>
                             </div>
