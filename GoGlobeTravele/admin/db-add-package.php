@@ -197,6 +197,10 @@
                                         <label>Description</label>
                                         <textarea name="pack_description"></textarea>
                                     </div>
+                                    <div class="form-group">
+                                        <label>Programm details</label>
+                                        <textarea name="programm"></textarea>
+                                    </div>
                                 </div>
                             </div>
                             <div class="dashboard-box">

@@ -10,6 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $duration_days = $_POST['duration_days'];
     //$duration_nights = $_POST['duration_nights'];
     $pack_category = $_POST['pack_category'];
+    $programm= $_POST['programm'];
 
     $reg_price = $_POST['regPrice'];
     $discount = $_POST['disPrice'];
@@ -31,8 +32,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     move_uploaded_file($pack_image_tmp, 'uploads/' . $pack_image);
 
     // Prepare the insert query with prepared statements
-    $stmt = $conn->prepare("INSERT INTO packages (title, pack_description, grp_size, duration_days, duration_nights, category, sale_price, reg_price, discount, populer, keywords, thumb_image, ratings, location) 
-                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO packages (title, pack_description, grp_size, duration_days, duration_nights, category, sale_price, reg_price, discount, populer, keywords, thumb_image, ratings, location,promgramm) 
+                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)");
 
     // Bind the parameters to the prepared statement
     $stmt->bind_param(
@@ -50,7 +51,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $keyword,
         $pack_image,
         $rating,
-        $location
+        $location,
+        $programm
     );
 
     // Execute the prepared statement
