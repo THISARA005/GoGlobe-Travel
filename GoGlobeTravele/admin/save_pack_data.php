@@ -16,6 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $populer = isset($_POST['populer']) ? 1 : 0;
     $keyword = $_POST['keyword'];
     $rating = $_POST['rating'];
+    $location = $_POST['location'];
 
     // File upload handling
     $pack_image = $_FILES['pack_image']['name'];
@@ -25,8 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     move_uploaded_file($pack_image_tmp, 'uploads/' . $pack_image);
 
     // Insert data into database
-    $sql = "INSERT INTO packages (title, pack_description, grp_size, duration_days, duration_nights, category, sale_price, reg_price, discount, populer, keywords, thumb_image,ratings) 
-            VALUES ('$title', '$pack_description', $grpSize, $duration_days, $duration_nights, '$pack_category', $sale_price, $reg_price, $discount, $populer, '$keyword', '$pack_image','$rating')";
+    $sql = "INSERT INTO packages (title, pack_description, grp_size, duration_days, duration_nights, category, sale_price, reg_price, discount, populer, keywords, thumb_image,ratings,location) 
+            VALUES ('$title', '$pack_description', $grpSize, $duration_days, $duration_nights, '$pack_category', $sale_price, $reg_price, $discount, $populer, '$keyword', '$pack_image','$rating','$location')";
     
     if (mysqli_query($conn, $sql)) {
         echo "<script>  window.location.href = 'dashboard.php'; </script>";
