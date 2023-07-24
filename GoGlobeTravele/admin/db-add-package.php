@@ -232,10 +232,12 @@
                                             <div class="form-group">
                                                 <label>Category</label>
                                                 <select name="pack_category" required>
-                                                    <option>Vacation package</option>
-                                                    <option>Honeymoon package</option>
-                                                    <option>Holiday package</option>
-                                                    <option>Weekend package</option>
+                                                    <option>Adventure</option>
+                                                    <option>Beach</option>
+                                                    <option>Camp fire</option>
+                                                    <option>Off road</option>
+                                                    <option>Wild life</option>
+                                                    <option>Exploring</option>
                                                 </select>
                                             </div>
                                         </div>
