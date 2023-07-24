@@ -53,7 +53,7 @@
                         </li>
                         
                         <li><a href="db-booking.html"><i class="fas fa-ticket-alt"></i> Booking History</a></li>
-                        <li><a href="user-edit.html"><i class="fas fa-sign-out-alt"></i> Change Profile</a></li>
+                        <li><a href="user-edit.php?user_id=<?php echo $_GET['user_id']; ?>"><i class="fas fa-sign-out-alt"></i> Change Profile</a></li>
                         <li><a href="db-wishlist.html"><i class="far fa-heart"></i>Enquiry</a></li>
                         <li><a href="db-comment.html"><i class="fas fa-comments"></i>Badges</a></li>        
                         <li><a href="login.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>

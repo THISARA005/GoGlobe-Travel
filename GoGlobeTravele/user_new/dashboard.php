@@ -32,7 +32,7 @@
                 <img src="assets/images/loader1.gif" alt="">
             </div>
         </div>
-    <div id="page" class="full-page">
+        <div id="page" class="full-page">
         <main id="content" class="site-main">
             <!-- Inner Banner html start-->
             
