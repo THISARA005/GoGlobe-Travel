@@ -2,72 +2,46 @@
 // Include the database connection file
 require_once 'db_connection.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Retrieve form data
-    $title = $_POST['title'];
-    $pack_description = $_POST['pack_description'];
-    $grpSize = $_POST['grpSize'];
-    $duration_days = $_POST['duration_days'];
-    //$duration_nights = $_POST['duration_nights'];
-    $pack_category = $_POST['pack_category'];
-    $programm= $_POST['programm'];
+if (isset($_GET['pack_id'])) {
+    $packId = $_GET['pack_id'];
 
-    $reg_price = $_POST['regPrice'];
-    $discount = $_POST['disPrice'];
+    // Create a connection to the database
+    $conn = new mysqli($servername, $username, $password, $dbname);
 
-    // Calculate the sales price
-    $sale_price = $reg_price - ($reg_price * $discount) * 0.01;
-    $duration_nights= $duration_days - 1;
-
-    $populer = isset($_POST['populer']) ? 1 : 0;
-    $keyword = $_POST['keyword'];
-    $rating = $_POST['rating'];
-    $location = $_POST['location'];
-
-    // File upload handling
-    $pack_image = $_FILES['pack_image']['name'];
-    $pack_image_tmp = $_FILES['pack_image']['tmp_name'];
-
-    // Move uploaded file to desired directory
-    move_uploaded_file($pack_image_tmp, 'uploads/' . $pack_image);
-
-    // Prepare the insert query with prepared statements
-    $stmt = $conn->prepare("INSERT INTO packages (title, pack_description, grp_size, duration_days, duration_nights, category, sale_price, reg_price, discount, populer, keywords, thumb_image, ratings, location,program) 
-                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)");
-
-    
-
-    // Bind the parameters to the prepared statement
-    $stmt->bind_param(
-        "ssiiisdddiissss",
-        $title,
-        $pack_description,
-        $grpSize,
-        $duration_days,
-        $duration_nights,
-        $pack_category,
-        $sale_price,
-        $reg_price,
-        $discount,
-        $populer,
-        $keyword,
-        $pack_image,
-        $rating,
-        $location,
-        $programm
-    );
-
-    // Execute the prepared statement
-    if ($stmt->execute()) {
-        echo "<script>  window.location.href = 'dashboard.php'; </script>";
-    } else {
-        echo "Error: " . $stmt->error;
+    // Check the connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
     }
 
-    // Close the prepared statement
-    $stmt->close();
-}
+    // Prepare and execute the query to fetch data based on pack_id
+    $sql = "SELECT * FROM packages WHERE pack_ID = '$packId'";
+    $result = $conn->query($sql);
 
-// Close the database connection
-mysqli_close($conn);
+    if ($result->num_rows > 0) {
+        // Fetch the data and send it back as JSON
+        $row = $result->fetch_assoc();
+        $data = array(
+            'success' => true,
+            'package' => $row
+        );
+        echo json_encode($data);
+    } else {
+        // Package with the given pack_id not found
+        $data = array(
+            'success' => false,
+            'message' => 'Package not found.'
+        );
+        echo json_encode($data);
+    }
+
+    // Close the database connection
+    $conn->close();
+} else {
+    // Invalid request, pack_id not provided
+    $data = array(
+        'success' => false,
+        'message' => 'Invalid request.'
+    );
+    echo json_encode($data);
+}
 ?>

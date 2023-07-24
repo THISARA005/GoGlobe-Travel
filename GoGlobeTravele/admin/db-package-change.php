@@ -182,30 +182,29 @@
                     </ul>
                 </div>
             </div>
-            <form action="change_pack_data.php" method="POST" enctype="multipart/form-data">
+            <form action="save_pack_data.php" method="POST" enctype="multipart/form-data">
                 
                 <div class="db-info-wrap db-add-tour-wrap">
                     <div class="row">
                         <!-- Listings -->
                         <div class="col-lg-8 col-xl-9">
                             <!-- ... Rest of your HTML code ... -->
-                    <div class="custom-field-wrap">
-                        <h4>Get Package Details</h4>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label>Package ID</label>
-
-                                    <input type="text" name="pack_id_input" placeholder="Enter Package ID" required>
+                            <div class="custom-field-wrap">
+                                <h4>Get Package Details</h4>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Package ID</label>
+                                            <input type="text" name="pack_id_input" placeholder="Enter Package ID" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <button type="button" onclick="getPackageDetails()">Get Pack Details</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <button type="button" onclick="getPackageDetails()">Get Pack Details</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 <!-- ... Rest of your HTML code ... -->
 
                             <div class="dashboard-box">
@@ -431,49 +430,52 @@ function calculatenightDays() {
 
     nightsInput.value = nights;
 }
-    </script>
 
-    <!-- ... Rest of your HTML code ... -->
-<script>
-    function getPackageDetails() {
-        const packIdInput = document.querySelector('input[name="pack_id_input"]');
-        const packId = packIdInput.value.trim(); // Get the inputted pack_id
-
-        // Make an AJAX request to fetch data from the server
-        fetch(`get_package_details.php?pack_id=${packId}`)
-            .then(response => response.json())
-            .then(data => {
-                // Populate the input fields with the fetched data
-                if (data.success) {
-                    const titleInput = document.querySelector('input[name="title"]');
-                    const packDescriptionInput = document.querySelector('textarea[name="pack_description"]');
-                    const programmInput = document.querySelector('textarea[name="programm"]');
-                    const grpSizeInput = document.querySelector('input[name="grpSize"]');
-                    const durationDaysInput = document.querySelector('input[name="duration_days"]');
-                    const packCategorySelect = document.querySelector('select[name="pack_category"]');
-                    const regPriceInput = document.querySelector('input[name="regPrice"]');
-                    const disPriceInput = document.querySelector('input[name="disPrice"]');
-
-                    titleInput.value = data.package.title;
-                    packDescriptionInput.value = data.package.pack_description;
-                    programmInput.value = data.package.programm;
-                    grpSizeInput.value = data.package.grpSize;
-                    durationDaysInput.value = data.package.duration_days;
-                    packCategorySelect.value = data.package.pack_category;
-                    regPriceInput.value = data.package.regPrice;
-                    disPriceInput.value = data.package.disPrice;
-
-                    calculateSalePrice(); // Recalculate sale price if needed
-                } else {
-                    // Handle error, for example, display a message to the user
-                    console.error(data.message);
-                }
-            })
-            .catch(error => console.error(error));
-    }
 </script>
-<!-- ... Rest of your HTML code ... -->
 
+<!-- ... Rest of your HTML code ... -->
+<script>
+function getPackageDetails() {
+    const packIdInput = document.querySelector('input[name="pack_id_input"]');
+    const packId = packIdInput.value.trim(); // Get the inputted pack_id
+
+    // Make an AJAX request to fetch data from the server
+    fetch(`get_package_details.php?pack_id=${packId}`)
+        .then(response => response.json())
+        .then(data => {
+            // Populate the input fields with the fetched data
+            if (data.success) {
+                const titleInput = document.querySelector('input[name="title"]');
+                const packDescriptionInput = document.querySelector('textarea[name="pack_description"]');
+                const programmInput = document.querySelector('textarea[name="programm"]');
+                const grpSizeInput = document.querySelector('input[name="grpSize"]');
+                const durationDaysInput = document.querySelector('input[name="duration_days"]');
+                const packCategorySelect = document.querySelector('select[name="pack_category"]');
+                const regPriceInput = document.querySelector('input[name="regPrice"]');
+                const disPriceInput = document.querySelector('input[name="disPrice"]');
+
+                titleInput.value = data.package.title;
+                packDescriptionInput.value = data.package.pack_description;
+                programmInput.value = data.package.programm;
+                grpSizeInput.value = data.package.grpSize;
+                durationDaysInput.value = data.package.duration_days;
+                packCategorySelect.value = data.package.pack_category;
+                regPriceInput.value = data.package.regPrice;
+                disPriceInput.value = data.package.disPrice;
+
+                calculateSalePrice(); // Recalculate sale price if needed
+            } else {
+                // Handle error, for example, display a message to the user
+                console.error(data.message);
+            }
+        })
+        .catch(error => console.error(error));
+}
+</script>
+
+
+
+    </script>
     <!-- end Container Wrapper -->
     <!-- end Container Wrapper -->
     <script src="assets/js/jquery-3.2.1.min.js"></script>
