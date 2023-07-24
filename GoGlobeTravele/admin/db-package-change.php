@@ -457,11 +457,11 @@ function getPackageDetails() {
                 titleInput.value = data.package.title;
                 packDescriptionInput.value = data.package.pack_description;
                 programmInput.value = data.package.programm;
-                grpSizeInput.value = data.package.grpSize;
+                grpSizeInput.value = data.package.grp_size;
                 durationDaysInput.value = data.package.duration_days;
-                packCategorySelect.value = data.package.pack_category;
-                regPriceInput.value = data.package.regPrice;
-                disPriceInput.value = data.package.disPrice;
+                packCategorySelect.value = data.package.category;
+                regPriceInput.value = data.package.reg_price;
+                disPriceInput.value = data.package.discount;
 
                 calculateSalePrice(); // Recalculate sale price if needed
             } else {
