@@ -91,19 +91,20 @@
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label>Sale Price</label>
-                                            <input type="text" name="salePrice">
+                                            <input type="text" name="salePrice" id="salePrice" disabled>
                                         </div>
                                     </div>
+
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label>Regular Price</label>
-                                            <input type="text" name="regPrice">
+                                            <input type="text" name="regPrice" onchange="calculateSalePrice()">
                                         </div>
                                     </div>
                                     <div class="col-sm-2">
                                         <div class="form-group">
                                             <label>Discount</label>
-                                            <input type="text" name="disPrice">
+                                            <input type="text" name="disPrice" onchange="calculateSalePrice()">
                                         </div>
                                     </div>
                                 </div>
@@ -285,6 +286,24 @@ function getPackageData() {
         }
     });
 }
+
+function calculateSalePrice() {
+    // Get the values of the regular price and discount input fields
+    const regPriceInput = document.querySelector('input[name="regPrice"]');
+    const disPriceInput = document.querySelector('input[name="disPrice"]');
+    const salePriceInput = document.getElementById('salePrice'); // Use the id attribute to select the input
+
+    // Parse the values as numbers
+    const regPrice = parseFloat(regPriceInput.value);
+    const discount = parseFloat(disPriceInput.value);
+
+    // Calculate the sale price
+    const salePrice = regPrice - (regPrice * discount)*0.01;
+
+    // Update the sale price input field with the calculated value
+    salePriceInput.value = salePrice.toFixed(2); // Keep only two decimal places
+}
+
 </script>
 
 <!-- ... Your existing HTML/PHP code ... -->
