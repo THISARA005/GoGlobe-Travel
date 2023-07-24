@@ -219,7 +219,7 @@
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="form-group">
-                                                        <input type="number" placeholder="Nights" name="duration_nights">
+                                                        <input type="number" placeholder="Nights" name="duration_nights" disabled>
                                                     </div>
                                                 </div>
                                             </div>
@@ -398,21 +398,19 @@
     salePriceInput.value = salePrice.toFixed(2); // Keep only two decimal places
 }
 
+
+
 function calculatenightDays() {
-    // Get the values of the regular price and discount input fields
     const daysInput = document.querySelector('input[name="duration_days"]');
-    //const disPriceInput = document.querySelector('input[name="duration_nights"]');
-    const nightsInput = document.getElementById('duration_nights'); // Use the id attribute to select the input
+    const nightsInput = document.querySelector('input[name="duration_nights"]');
 
-   
+    const days = daysInput.valueAsNumber;
+    const nights = days - 1;
 
-    // Calculate the sale price
-    const nightsInputValue = daysInput - 1;
-
-    // Update the sale price input field with the calculated value
-    daysInput.value = nightsInputValue; // Keep only two decimal places
+    nightsInput.value = nights;
 }
-</script>
+
+
 
 
 
