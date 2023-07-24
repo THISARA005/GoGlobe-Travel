@@ -210,7 +210,7 @@
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>Group Size</label>
-                                                <input type="number" name="grpSize" placeholder="No of Peoples">
+                                                <input type="number" name="grpSize" placeholder="No of Peoples" required>
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
@@ -218,7 +218,7 @@
                                             <div class="row">
                                                 <div class="col-6">
                                                     <div class="form-group">
-                                                        <input type="number" placeholder="Days" name="duration_days" onchange="calculatenightDays()">
+                                                        <input type="number" placeholder="Days" name="duration_days" onchange="calculatenightDays()" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
@@ -231,7 +231,7 @@
                                         <div class="col-sm-4">
                                             <div class="form-group">
                                                 <label>Category</label>
-                                                <select name="pack_category">
+                                                <select name="pack_category" required>
                                                     <option>Vacation package</option>
                                                     <option>Honeymoon package</option>
                                                     <option>Holiday package</option>
@@ -249,13 +249,13 @@
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label>Regular Price</label>
-                                            <input type="text" name="regPrice" onchange="calculateSalePrice()">
+                                            <input type="text" name="regPrice" onchange="calculateSalePrice()" required>
                                         </div>
                                     </div>
                                     <div class="col-sm-2">
                                         <div class="form-group">
                                             <label>Discount</label>
-                                            <input type="text" name="disPrice" onchange="calculateSalePrice()">
+                                            <input type="text" name="disPrice" onchange="calculateSalePrice()" required>
                                         </div>
                                     </div>
                                     </div>
@@ -266,12 +266,12 @@
                            <div class="custom-field-wrap">
                               <div class="dragable-field">
                                  <div class="dragable-field-inner">
-                                    <p class="drag-drop-info">Drop Files To Upload</p>
+                                    <p class="drag-drop-info" >Drop Files To Upload</p>
                                     <p>or</p>
                                     <div class="upload-input">
                                        <div class="form-group">
                                           <span class="upload-btn">Upload Images</span>
-                                          <input type="file" name="pack_img_gallery[]" multiple>
+                                          <input type="file" name="pack_img_gallery[]" multiple >
                                        </div>
                                     </div>
                                  </div>
@@ -329,18 +329,13 @@
                                         </label>
                                     </div>
                                 </div>
-                                <div class="custom-field-wrap db-pop-field-wrap">
-                                    <h4>Keywords</h4>
-                                    <div class="form-group">
-                                        <input type="text" name="keyword" placeholder="Keywords">
-                                    </div>
-                                </div>
+                                
                                 <div class="custom-field-wrap db-pop-field-wrap">
                                     
                                     <div class="form-group">
                                       
                                             <label for="rating">Rating:</label>
-                                            <input type="number" id="rating" name="rating" min="0" max="5" step="0.1">
+                                            <input type="number" id="rating" name="rating" min="0" max="5" step="0.1" required>
                                                     
                                     </div>
                                 </div>
@@ -350,7 +345,7 @@
                                     <div class="upload-input">
                                         <div class="form-group">
                                           <span class="upload-btn">Upload a image</span>
-                                          <input type="file" name="pack_image">
+                                          <input type="file" name="pack_image" required>
                                         </div>
                                     </div>
                                 </div>
@@ -365,7 +360,7 @@
                                 <div class="form-group">
                                     <label>Select Map</label>
                                     <!-- Change the <select> element to a <input> element with type="text" -->
-                                    <input type="text" name="location" placeholder="Enter Location">
+                                    <input type="text" name="location" placeholder="Enter Location" required>
                                 </div>
                             </div>
                         </div>
