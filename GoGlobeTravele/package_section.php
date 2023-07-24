@@ -18,7 +18,7 @@ if ($mysqli->connect_errno) {
     exit();
 }
 
-$user_id = $_GET['user_id'];
+
 $query = "SELECT * FROM packages ORDER BY ratings DESC LIMIT 3";
 $result = mysqli_query($mysqli, $query);
 
@@ -82,7 +82,7 @@ if ($result && mysqli_num_rows($result) > 0) {
                  <div class='btn-wrap'>
                  <a href='#' class='button-text width-6' onclick='checkLogin($pack_id)'>Read more<i class='fas fa-arrow-right'></i></a>
 
-                 <a href='#' class='button-text width-6' onclick='addToWishlist($pack_id,$user_id)'>Wishlist<i class='far fa-heart'></i></a>
+                 <a href='#' class='button-text width-6' onclick='addToWishlist($pack_id)'>Wishlist<i class='far fa-heart'></i></a>
                  </div>
               </div>
            </div>

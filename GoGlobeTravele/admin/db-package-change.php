@@ -211,11 +211,11 @@
                             </div>
                             <div class="custom-field-wrap db-media-field-wrap">
                             <div class="form-group">
-            <label class="custom-input">
-                <input type="checkbox" name="active_status" value="1">
-                <span class="custom-input-field"></span>
-                Active Status
-            </label>
+                            <label class="custom-input">
+                                <input type="checkbox" name="active_status" value="1">
+                                <span class="custom-input-field"></span>
+                                Active Status
+                            </label>
         </div>
                             </div>
 
