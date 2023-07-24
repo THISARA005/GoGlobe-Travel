@@ -32,12 +32,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     move_uploaded_file($pack_image_tmp, 'uploads/' . $pack_image);
 
     // Prepare the insert query with prepared statements
-    $stmt = $conn->prepare("INSERT INTO packages (title, pack_description, grp_size, duration_days, duration_nights, category, sale_price, reg_price, discount, populer, keywords, thumb_image, ratings, location,promgramm) 
+    $stmt = $conn->prepare("INSERT INTO packages (title, pack_description, grp_size, duration_days, duration_nights, category, sale_price, reg_price, discount, populer, keywords, thumb_image, ratings, location,program) 
                             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)");
 
     // Bind the parameters to the prepared statement
     $stmt->bind_param(
-        "ssiiisdddiisss",
+        "ssiiisdddiissss",
         $title,
         $pack_description,
         $grpSize,

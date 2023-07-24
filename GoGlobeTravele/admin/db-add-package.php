@@ -191,15 +191,15 @@
                                 <div class="custom-field-wrap">
                                     <div class="form-group">
                                         <label>Title</label>
-                                        <input type="text" name="title">
+                                        <input type="text" name="title" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Description</label>
-                                        <textarea name="pack_description"></textarea>
+                                        <textarea name="pack_description" required></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label>Programm details</label>
-                                        <textarea name="programm"></textarea>
+                                        <textarea name="programm" required></textarea>
                                     </div>
                                 </div>
                             </div>
