@@ -236,23 +236,25 @@
                                             </div>
                                         </div>
                                         <div class="col-sm-3">
-                                            <div class="form-group">
-                                                <label>Sale Price</label>
-                                                <input type="text" name="sale_price">
-                                            </div>
+                                        <div class="form-group">
+                                            <label>Sale Price</label>
+                                            <input type="text" name="sale_price" disabled>
+                                            <input type="hidden" name="salePrice" id="hiddenSalePrice">
                                         </div>
-                                        <div class="col-sm-3">
-                                            <div class="form-group">
-                                                <label>Regular Price</label>
-                                                <input type="text" name="reg_price">
-                                            </div>
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>Regular Price</label>
+                                            <input type="text" name="reg_price" onchange="calculateSalePrice()">
                                         </div>
-                                        <div class="col-sm-2">
-                                            <div class="form-group">
-                                                <label>Discount</label>
-                                                <input type="text" name="discount">
-                                            </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="form-group">
+                                            <label>Discount</label>
+                                            <input type="text" name="discount" onchange="calculateSalePrice()">
                                         </div>
+                                    </div>
                                     </div>
                                 </div>
                             </div>
@@ -273,27 +275,7 @@
                               </div>
                            </div>
                         </div>
-                            <!--<div class="dashboard-box">
-                                <h4>Location</h4>
-                                <div class="custom-field-wrap">
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label>Select Map</label>
-                                                <select>
-                                                    <option>Google Map</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label>API key</label>
-                                                <input type="text" name="apikey">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>-->
+                           
                         </div>
                         <div class="col-lg-4 col-xl-3">
                             <div class="dashboard-box">
@@ -379,18 +361,16 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Select Map</label>
-                                        <select>
+                                        <select name="location">
                                             <option>Google Map</option>
                                             <option> Map</option>
                                         </select>
                                     </div>
                                 </div>
-                               
                             </div>
                         </div>
                     </div>    
                 </div>
-
 
             </form>
             <!-- Content / End -->
@@ -401,6 +381,33 @@
         </div>
         <!-- Dashboard / End -->
     </div>
+
+    
+<script>
+function calculateSalePrice() {
+    // Get the values of the regular price and discount input fields
+    const regPriceInput = document.querySelector('input[name="reg_price"]');
+    const disPriceInput = document.querySelector('input[name="discount"]');
+    const salePriceInput = document.getElementById('salePrice'); // Use the id attribute to select the input
+    const hiddenSalePriceInput = document.getElementById('hiddenSalePrice'); // Hidden input field
+
+    // Parse the values as numbers
+    const regPrice = parseFloat(regPriceInput.value);
+    const discount = parseFloat(disPriceInput.value);
+
+    // Calculate the sale price
+    const salePrice = regPrice - (regPrice * discount) * 0.01;
+
+    // Update the sale price input field with the calculated value
+    salePriceInput.value = salePrice.toFixed(2); // Keep only two decimal places
+
+    // Set the calculated sale price to the hidden input field
+    hiddenSalePriceInput.value = salePrice.toFixed(2); // Keep only two decimal places
+}
+</script>
+
+
+    </script>
     <!-- end Container Wrapper -->
     <!-- end Container Wrapper -->
     <script src="assets/js/jquery-3.2.1.min.js"></script>
