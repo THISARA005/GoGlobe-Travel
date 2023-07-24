@@ -21,74 +21,227 @@
     <div id="container-wrapper">
         <!-- Dashboard -->
         <div id="dashboard" class="dashboard-container">
-           
-            <?php include 'dashboard-navbar.php'; ?>
-            <div class="db-info-wrap db-add-tour-wrap">
-                <div class="row">
-                    <!-- Listings -->
-                    <div class="col-lg-8 col-xl-9">
-
-                        <div class="dashboard-box">  
-                            <div class="custom-field-wrap">
-                                <div class="form-group">
-                                    <label>Enter Package ID</label>
-                                    <input type="number" id="packIdInput" placeholder="Package ID">
-                                </div>
-                                <div class="form-group">
-                                    <button onclick="getPackageData()">Fill Package Details</button>
+            <div class="dashboard-header sticky-header">
+                <div class="content-left  logo-section pull-left">
+                    <h1><a href="../index.html"><img src="assets/images/logo.png" alt=""></a></h1>
+                </div>
+                <div class="heaer-content-right pull-right">
+                    <div class="search-field">
+                        <form>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="search" placeholder="Search Now">
+                                <a href="#"><span class="search_btn"><i class="fa fa-search" aria-hidden="true"></i></span></a>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle" id="notifyDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <div class="dropdown-item">
+                                <i class="far fa-envelope"></i>
+                                <span class="notify">3</span>
+                            </div>
+                        </a>
+                        <div class="dropdown-menu notification-menu" aria-labelledby="notifyDropdown">
+                            <h4> 3 Notifications</h4>
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        <div class="list-img">
+                                            <img src="assets/images/comment.jpg" alt="">
+                                        </div>
+                                        <div class="notification-content">
+                                            <p>You have a notification.</p>
+                                            <small>2 hours ago</small>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="list-img">
+                                            <img src="assets/images/comment2.jpg" alt="">
+                                        </div>
+                                        <div class="notification-content">
+                                            <p>You have a notification.</p>
+                                            <small>2 hours ago</small>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="list-img">
+                                            <img src="assets/images/comment3.jpg" alt="">
+                                        </div>
+                                        <div class="notification-content">
+                                            <p>You have a notification.</p>
+                                            <small>2 hours ago</small>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                            <a href="#" class="all-button">See all messages</a>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown">
+                            <div class="dropdown-item">
+                                <i class="far fa-bell"></i>
+                                <span class="notify">3</span>
+                            </div>
+                        </a>
+                        <div class="dropdown-menu notification-menu">
+                            <h4> 3 Messages</h4>
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        <div class="list-img">
+                                            <img src="assets/images/comment4.jpg" alt="">
+                                        </div>
+                                        <div class="notification-content">
+                                            <p>You have a notification.</p>
+                                            <small>2 hours ago</small>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="list-img">
+                                            <img src="assets/images/comment5.jpg" alt="">
+                                        </div>
+                                        <div class="notification-content">
+                                            <p>You have a notification.</p>
+                                            <small>2 hours ago</small>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="list-img">
+                                            <img src="assets/images/comment6.jpg" alt="">
+                                        </div>
+                                        <div class="notification-content">
+                                            <p>You have a notification.</p>
+                                            <small>2 hours ago</small>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                            <a href="#" class="all-button">See all messages</a>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown">
+                            <div class="dropdown-item profile-sec">
+                                <img src="assets/images/comment.jpg" alt="">
+                                <span>My Account </span>
+                                <i class="fas fa-caret-down"></i>
+                            </div>
+                        </a>
+                        <div class="dropdown-menu account-menu">
+                            <ul>
+                                <li><a href="#"><i class="fas fa-cog"></i>Settings</a></li>
+                                <li><a href="#"><i class="fas fa-user-tie"></i>Profile</a></li>
+                                <li><a href="#"><i class="fas fa-key"></i>Password</a></li>
+                                <li><a href="#"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="dashboard-navigation">
+                <!-- Responsive Navigation Trigger -->
+                <div id="dashboard-Navigation" class="slick-nav"></div>
+                <div id="navigation" class="navigation-container">
+                    <ul>
+                        <li><a href="dashboard.html"><i class="far fa-chart-bar"></i> Dashboard</a></li>
+                        <li><a><i class="fas fa-user"></i>Users</a>
+                            <ul>
+                                <li>
+                                    <a href="user.html">User</a>
+                                </li>
+                                <li>
+                                    <a href="user-edit.html">User edit</a>
+                                </li>
+                                <li>
+                                    <a href="new-user.html">New user</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="active-menu"><a href="db-add-package.html"><i class="fas fa-umbrella-beach"></i>Add Package</a></li>
+                        <li>
+                            <a><i class="fas fa-hotel"></i></i>packages</a>
+                            <ul>
+                                <li><a href="db-package-active.php">Active</a></li>
+                                <li><a href="db-package-pending.php">Pending</a></li>
+                                
+                            </ul>   
+                        </li>
+                        <li><a href="db-booking.html"><i class="fas fa-ticket-alt"></i> Booking & Enquiry</a></li>
+                        <li><a href="db-wishlist.html"><i class="far fa-heart"></i>Wishlist</a></li>
+                        <li><a href="db-comment.html"><i class="fas fa-comments"></i>Comments</a></li>
+                        <li><a href="login.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+            <form action="change_pack_data.php" method="POST" enctype="multipart/form-data">
+                <div class="db-info-wrap db-add-tour-wrap">
+                    <div class="row">
+                        <!-- Listings -->
+                        <div class="col-lg-8 col-xl-9">
+                            <div class="dashboard-box">
+                                <div class="custom-field-wrap">
+                                    <div class="form-group">
+                                        <label>Title</label>
+                                        <input type="text" name="title" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Description</label>
+                                        <textarea name="pack_description" required></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Programm details</label>
+                                        <textarea name="programm" required></textarea>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-    
-
-                        <div class="dashboard-box">
-                            <div class="custom-field-wrap">
-                                <div class="form-group">
-                                    <label>Title</label>
-                                    <input type="text" name="title">
-                                </div>
-                                <div class="form-group">
-                                    <label>Description</label>
-                                    <textarea></textarea>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="dashboard-box">
-                            <div class="custom-field-wrap">
-                                <h4>Dates and Prices</h4>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label>Group Size</label>
-                                            <input type="number" name="grpSize" placeholder="No of Peoples">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <label>Trip Duration</label>
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <div class="form-group">
-                                                    <input type="number" placeholder="Days">
-                                                </div>
+                            <div class="dashboard-box">
+                                <div class="custom-field-wrap">
+                                    <h4>Dates and Prices</h4>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Group Size</label>
+                                                <input type="number" name="grpSize" placeholder="No of Peoples" required>
                                             </div>
-                                            <div class="col-6">
-                                                <div class="form-group">
-                                                    <input type="number" placeholder="Nights">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label>Trip Duration</label>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <input type="number" placeholder="Days" name="duration_days" onchange="calculatenightDays()" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <input type="number" placeholder="Nights" name="duration_nights" disabled>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <label>Category</label>
-                                            <select>
-                                                <option>Adult</option>
-                                                <option>Child</option>
-                                                <option>Couple</option>
-                                            </select>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label>Category</label>
+                                                <select name="pack_category" required>
+                                                    <option>Adventure</option>
+                                                    <option>Beach</option>
+                                                    <option>Camp fire</option>
+                                                    <option>Off road</option>
+                                                    <option>Wild life</option>
+                                                    <option>Exploring</option>
+                                                </select>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-sm-3">
+                                        <div class="col-sm-3">
                                         <div class="form-group">
                                             <label>Sale Price</label>
                                             <input type="text" name="salePrice" id="salePrice" disabled>
@@ -98,145 +251,127 @@
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label>Regular Price</label>
-                                            <input type="text" name="regPrice" onchange="calculateSalePrice()">
+                                            <input type="text" name="regPrice" onchange="calculateSalePrice()" required>
                                         </div>
                                     </div>
                                     <div class="col-sm-2">
                                         <div class="form-group">
                                             <label>Discount</label>
-                                            <input type="text" name="disPrice" onchange="calculateSalePrice()">
+                                            <input type="text" name="disPrice" onchange="calculateSalePrice()" required>
                                         </div>
+                                    </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="dashboard-box">
-                            <h4>Gallery</h4>
-                            <div class="custom-field-wrap">
-                                <div class="dragable-field">
-                                    <div class="dragable-field-inner">
-                                        <p class="drag-drop-info">Drop Files To Upload</p>
-                                        <p>or</p>
-                                        <div class="upload-input">
-                                            <div class="form-group">
-                                              <span class="upload-btn">Upload a image</span>
-                                              <input type="file" name="myfile">
-                                            </div>
-                                        </div>
+                            <div class="dashboard-box">
+                           <h4>Gallery</h4>
+                           <div class="custom-field-wrap">
+                              <div class="dragable-field">
+                                 <div class="dragable-field-inner">
+                                    <p class="drag-drop-info" >Drop Files To Upload</p>
+                                    <p>or</p>
+                                    <div class="upload-input">
+                                       <div class="form-group">
+                                          <span class="upload-btn">Upload Images</span>
+                                          <input type="file" name="pack_img_gallery[]" multiple >
+                                       </div>
                                     </div>
-                                </div>
-                            </div>
+                                 </div>
+                              </div>
+                           </div>
                         </div>
-                        <div class="dashboard-box">
-                            <h4>Location</h4>
-                            <div class="custom-field-wrap">
-                                <div class="row">
-                                    <div class="col-sm-6">
+                           
+                        </div>
+                        <div class="col-lg-4 col-xl-3">
+                            <div class="dashboard-box">
+                                <div class="custom-field-wrap">
+                                    <h4>Publish</h4>
+                                    <div class="publish-btn">
                                         <div class="form-group">
-                                            <label>Select Map</label>
-                                            <select>
-                                                <option>Google Map</option>
-                                                <option> Galle</option>
-                                            </select>
+                                            <input type="submit" name="draft" value="Save Draft">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="submit" name="preview" value="Preview">
                                         </div>
                                     </div>
+                                    <div class="publish-status">
+                                        <span>
+                                            <strong>Status:</strong>
+                                            Draft
+                                        </span>
+                                        <a href="#">Edit</a>
+                                    </div>
+                                    <div class="publish-status">
+                                        <span>
+                                            <strong>Visibility:</strong>
+                                            Public
+                                        </span>
+                                        <a href="#">Edit</a>
+                                    </div>
+                                    <div class="publish-status">
+                                        <span>
+                                            <strong>Visibility:</strong>
+                                            Public
+                                        </span>
+                                        <a href="#">Edit</a>
+                                    </div>
+                                    <div class="publish-action">
+                                        <input type="submit" name="publish" value="Publish">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dashboard-box">
+                                <div class="custom-field-wrap db-pop-field-wrap">
+                                 
+                                    <div class="form-group">
+                                        <label class="custom-input">
+                                            <input type="checkbox" name="active_status" value="1">
+                                            <span class="custom-input-field"></span>
+                                            Active Status
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <div class="custom-field-wrap db-pop-field-wrap">
                                     
+                                    <div class="form-group">
+                                      
+                                            <label for="rating">Rating:</label>
+                                            <input type="number" id="rating" name="rating" min="0" max="5" step="0.1" required>
+                                                    
+                                    </div>
+                                </div>
+                                
+                                <div class="custom-field-wrap db-media-field-wrap">
+                                    <h4>Add image</h4>
+                                    <div class="upload-input">
+                                        <div class="form-group">
+                                          <span class="upload-btn">Upload a image</span>
+                                          <input type="file" name="pack_image" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
+                    <!-- ... Rest of your HTML code ... -->
+                    <div class="custom-field-wrap">
+                        <h4>Location</h4>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Select Map</label>
+                                    <!-- Change the <select> element to a <input> element with type="text" -->
+                                    <input type="text" name="location" placeholder="Enter Location" required>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-xl-3">
-                        <div class="dashboard-box">
-                            <div class="custom-field-wrap">
-                                <h4>Publish</h4>
-                                <div class="publish-btn">
-                                    <div class="form-group">
-                                        <input type="submit" name="draft" value="Save Draft">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="submit" name="preview" value="Preview">
-                                    </div>
-                                </div>
-                                <div class="publish-status">
-                                    <span>
-                                        <strong>Status:</strong>
-                                        Draft
-                                    </span>
-                                    <a href="#">Edit</a>
-                                </div>
-                                <div class="publish-status">
-                                    <span>
-                                        <strong>Visibility:</strong>
-                                        Poblic
-                                    </span>
-                                    <a href="#">Edit</a>
-                                </div>
-                                <div class="publish-status">
-                                    <span>
-                                        <strong>Visibility:</strong>
-                                        Poblic
-                                    </span>
-                                    <a href="#">Edit</a>
-                                </div>
-                                <div class="publish-action">
-                                    <input type="submit" name="publish" value="Publish" onclick="publishPackage()">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="dashboard-box">
-                            <div class="custom-field-wrap db-pop-field-wrap">
-                                <h4>Popular</h4>
-                                <div class="form-group">
-                                    <label class="custom-input"><input type="checkbox">
-                                        <span class="custom-input-field"></span>
-                                        Use Polpular
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="custom-field-wrap db-pop-field-wrap">
-                                <h4>Keywords</h4>
-                                <div class="form-group">
-                                    <input type="text" name="keyword" placeholder="Keywords">
-                                </div>
-                            </div>
-                            <div class="custom-field-wrap db-cat-field-wrap">
-                                <h4>Category</h4>
-                                <div class="form-group">
-                                    <label class="custom-input"><input type="checkbox">
-                                        <span class="custom-input-field"></span>
-                                        Hotel
-                                    </label>
-                                </div>
-                                <div class="form-group">
-                                    <label class="custom-input"><input type="checkbox" checked="checked">
-                                        <span class="custom-input-field"></span>
-                                        Walking
-                                    </label>
-                                </div> 
-                            </div>
-                            <div class="custom-field-wrap db-media-field-wrap">
-                                <h4>Add image</h4>
-                                <div class="upload-input">
-                                    <div class="form-group">
-                                      <span class="upload-btn">Upload a image</span>
-                                      <input type="file" name="myfile">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="custom-field-wrap db-media-field-wrap">
-                            <div class="form-group">
-                            <label class="custom-input">
-                                <input type="checkbox" name="active_status" value="1">
-                                <span class="custom-input-field"></span>
-                                Active Status
-                            </label>
-                            </div>
-                            </div>
+<!-- ... Rest of your HTML code ... -->
 
-                        </div>
-                    </div>
-                </div>      
-            </div>
+                </div>
+
+            </form>
             <!-- Content / End -->
             <!-- Copyrights -->
             <div class="copyrights">
@@ -246,48 +381,8 @@
         <!-- Dashboard / End -->
     </div>
 
-// JavaScript code to auto-fill input fields and handle form submission
-<script>
-function getPackageData() {
-    const packId = document.getElementById("packIdInput").value;
-
-    // Make an AJAX request to fetch the package data
-    $.ajax({
-        url: 'get_package_data.php', // Replace with the URL of your server-side script to fetch package data
-        method: 'GET',
-        data: { pack_id: packId }, // Send the pack_id as a parameter to the server
-        dataType: 'json',
-        success: function(response) {
-            // Assuming the server returns JSON data, update the form fields with the fetched data
-            if (response) {
-                // Assuming your server returns an object with package data
-                const packageData = response;
-
-                // Fill the form fields with the fetched data
-                document.getElementsByName('name')[0].value = packageData.title;
-                document.querySelector('textarea').value = packageData.pack_description;
-                document.getElementsByName('grpSize')[0].value = packageData.grp_size;
-                document.getElementsByName('days')[0].value = packageData.duration_days;
-                document.getElementsByName('nights')[0].value = packageData.duration_nights;
-                document.getElementsByName('title')[0].value = packageData.title;
-                document.getElementsByName('title')[0].value = packageData.title;
-                document.getElementsByName('title')[0].value = packageData.title;
-                document.getElementsByName('title')[0].value = packageData.title;
-                // ... fill other form fields with the relevant package data ...
-            } else {
-                // Handle the case where no package data was found
-                alert('Package data not found.');
-            }
-        },
-        error: function(xhr, status, error) {
-            // Handle the AJAX request error
-            alert('Error fetching package data. Please try again.');
-            console.error(error);
-        }
-    });
-}
-
-function calculateSalePrice() {
+    <script>
+   function calculateSalePrice() {
     // Get the values of the regular price and discount input fields
     const regPriceInput = document.querySelector('input[name="regPrice"]');
     const disPriceInput = document.querySelector('input[name="disPrice"]');
@@ -304,9 +399,23 @@ function calculateSalePrice() {
     salePriceInput.value = salePrice.toFixed(2); // Keep only two decimal places
 }
 
-</script>
 
-<!-- ... Your existing HTML/PHP code ... -->
+
+function calculatenightDays() {
+    const daysInput = document.querySelector('input[name="duration_days"]');
+    const nightsInput = document.querySelector('input[name="duration_nights"]');
+
+    const days = daysInput.valueAsNumber;
+    const nights = days - 1;
+
+    nightsInput.value = nights;
+}
+
+
+
+
+
+    </script>
     <!-- end Container Wrapper -->
     <!-- end Container Wrapper -->
     <script src="assets/js/jquery-3.2.1.min.js"></script>
