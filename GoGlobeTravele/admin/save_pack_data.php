@@ -11,8 +11,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $duration_nights = $_POST['duration_nights'];
     $pack_category = $_POST['pack_category'];
 
-    $reg_price = $_POST['reg_price'];
-    $discount = $_POST['discount'];
+    $reg_price = $_POST['regPrice'];
+    $discount = $_POST['disPrice'];
 
     // Calculate the sales price
     $sale_price = $reg_price - ($reg_price * $discount) * 0.01;

@@ -214,7 +214,7 @@
                                             <div class="row">
                                                 <div class="col-6">
                                                     <div class="form-group">
-                                                        <input type="number" placeholder="Days" name="duration_days">
+                                                        <input type="number" placeholder="Days" name="duration_days" onchange="calculatenightDays()">
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
@@ -381,7 +381,7 @@
     </div>
 
     <script>
-    function calculateSalePrice() {
+   function calculateSalePrice() {
     // Get the values of the regular price and discount input fields
     const regPriceInput = document.querySelector('input[name="regPrice"]');
     const disPriceInput = document.querySelector('input[name="disPrice"]');
@@ -396,6 +396,21 @@
 
     // Update the sale price input field with the calculated value
     salePriceInput.value = salePrice.toFixed(2); // Keep only two decimal places
+}
+
+function calculatenightDays() {
+    // Get the values of the regular price and discount input fields
+    const daysInput = document.querySelector('input[name="duration_days"]');
+    //const disPriceInput = document.querySelector('input[name="duration_nights"]');
+    const nightsInput = document.getElementById('duration_nights'); // Use the id attribute to select the input
+
+   
+
+    // Calculate the sale price
+    const nightsInputValue = daysInput - 1;
+
+    // Update the sale price input field with the calculated value
+    daysInput.value = nightsInputValue; // Keep only two decimal places
 }
 </script>
 
