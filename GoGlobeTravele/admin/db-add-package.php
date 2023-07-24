@@ -353,22 +353,21 @@
                             </div>
                         </div>
                     </div>  
-                    <div class="dashboard-box">
+                    <!-- ... Rest of your HTML code ... -->
+                    <div class="custom-field-wrap">
                         <h4>Location</h4>
-                        <div class="custom-field-wrap">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>Select Map</label>
-                                        <select name="location">
-                                            <option>Google Map</option>
-                                            <option> Map</option>
-                                        </select>
-                                    </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Select Map</label>
+                                    <!-- Change the <select> element to a <input> element with type="text" -->
+                                    <input type="text" name="location" placeholder="Enter Location">
                                 </div>
                             </div>
                         </div>
-                    </div>    
+                    </div>
+<!-- ... Rest of your HTML code ... -->
+
                 </div>
 
             </form>
