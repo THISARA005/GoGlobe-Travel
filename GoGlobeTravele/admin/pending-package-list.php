@@ -4,20 +4,25 @@ require_once "db_connection.php";
 
 
 $query = "SELECT * FROM packages WHERE status = '0' ";
+
 $result = mysqli_query($conn, $query);
 if(mysqli_num_rows($result) > 0)
 {
+
     while($row = mysqli_fetch_array($result))
     {
+     
         $packId = $row['pack_ID'];
         $title = $row['title'];
+       
 
-        $query2=" SELECT * FROM pack_booking WHERE pack_ID=$packId";
+        $query2=" SELECT * FROM pack_booking WHERE pack_ID= '$packId'";
         $result2 = mysqli_query($conn, $query2);
         //$row2 = mysqli_fetch_assoc($result2);
         while($row2=mysqli_fetch_array($result2)){
+           
             $chekin = $row2['check_in_date'];
-            $city = $row2['city'];
+            $city = $row['location'];
 
             echo"
 

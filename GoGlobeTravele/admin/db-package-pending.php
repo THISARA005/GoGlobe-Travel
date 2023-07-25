@@ -272,7 +272,7 @@
                                     </td>
                                 </tr>
                             </tbody> -->
-                            <?php require_once 'pending-package-list.php'; ?>
+                            <?php include 'pending-package-list.php'; ?>
                         </table>
                     </div>
                 </div>
