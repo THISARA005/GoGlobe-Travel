@@ -75,7 +75,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         // Execute the statement
         if ($stmt->execute()) {
             // Data updated successfully
-            echo "Data updated successfully!";
+            //echo "Data updated successfully!";
+            echo "<script>  window.location.href = 'dashboard.php'; </script>";
 
             // Check if there are any changes in sales price, regular price, or discount
             if ($sales_price_changed || $reg_price_changed || $discount_changed) {
@@ -93,7 +94,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 
                 if($stmt_insert->execute()){
                     // Price change data inserted successfully
-                    echo "Price change data inserted successfully!";
+                    //echo "Price change data inserted successfully!";
+                    echo "<script>  window.location.href = 'dashboard.php'; </script>";
                 } else {
                     // Handle the error
                     echo "Error inserting price change data: " . $stmt_insert->error;
