@@ -198,80 +198,7 @@
                                     <th>action</th>
                                 </tr>
                             </thead>
-                            <!-- <tbody>
-                                <tr>
-                                    <td>
-                                        </span><span class="package-name">Singapore Holiday Tour</span>
-                                    </td>
-                                    <td>12 may</td>
-                                    <td>Japan</td>
-                                    <td><span class="badge badge-primary">Pending</span></td>
-                                    <td>
-                                        <span class="badge badge-success"><i class="far fa-edit"></i></span>
-                                        <span class="badge badge-danger"><i class="far fa-trash-alt"></i></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        </span><span class="package-name">New Year‘s Eve in Paris</span>
-                                    </td>
-                                    <td>12 may</td>
-                                    <td>Japan</td>
-                                    <td><span class="badge badge-primary">Pending</span></td>
-                                    <td>
-                                        <span class="badge badge-success"><i class="far fa-edit"></i></span>
-                                        <span class="badge badge-danger"><i class="far fa-trash-alt"></i></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        </span><span class="package-name">Paris Honeymoon Tour</span>
-                                    </td>
-                                    <td>12 may</td>
-                                    <td>Japan</td>
-                                    <td><span class="badge badge-primary">Pending</span></td>
-                                    <td>
-                                        <span class="badge badge-success"><i class="far fa-edit"></i></span>
-                                        <span class="badge badge-danger"><i class="far fa-trash-alt"></i></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        </span><span class="package-name">Japan Holiday Tour</span>
-                                    </td>
-                                    <td>12 may</td>
-                                    <td>Japan</td>
-                                    <td><span class="badge badge-primary">Pending</span></td>
-                                    <td>
-                                        <span class="badge badge-success"><i class="far fa-edit"></i></span>
-                                        <span class="badge badge-danger"><i class="far fa-trash-alt"></i></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        </span><span class="package-name">California Trip</span>
-                                    </td>
-                                    <td>12 may</td>
-                                    <td>Japan</td>
-                                    <td><span class="badge badge-primary">Pending</span></td>
-                                    <td>
-                                        <span class="badge badge-success"><i class="far fa-edit"></i></span>
-                                        <span class="badge badge-danger"><i class="far fa-trash-alt"></i></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        </span><span class="package-name">Dubai Tour</span>
-                                    </td>
-                                    <td>12 may</td>
-                                    <td>Japan</td>
-                                    <td><span class="badge badge-primary">Pending</span></td>
-                                    <td>
-                                        <span class="badge badge-success"><i class="far fa-edit"></i></span>
-                                        <span class="badge badge-danger"><i class="far fa-trash-alt"></i></span>
-                                    </td>
-                                </tr>
-                            </tbody> -->
+                           
                             <?php include 'pending-package-list.php'; ?>
                         </table>
                     </div>
@@ -296,6 +223,30 @@
         </div>
         <!-- Dashboard / End -->
     </div>
+    <!-- ... Rest of the HTML content ... -->
+
+<script>
+    // Function to handle the AJAX request for deleting a package record
+    function deleteRecord(packId) {
+        if (confirm("Are you sure you want to delete this package?")) {
+            // Send the AJAX request to delete_package.php with the packId parameter
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    // The request is successful, remove the row from the table
+                    var row = document.querySelector("tr[data-packid='" + packId + "']");
+                    if (row) {
+                        row.parentNode.removeChild(row);
+                        alert ("sessssssssss");
+                    }
+                }
+            };
+            xhttp.open("GET", "delete_package.php?pack_id=" + packId, true);
+            xhttp.send();
+        }
+    }
+</script>
+
     <!-- end Container Wrapper -->
     <!-- *Scripts* -->
     <script src="assets/js/jquery-3.2.1.min.js"></script>
