@@ -43,7 +43,7 @@ if ($result && mysqli_num_rows($result) > 0) {
         <div class='package-wrap'>
            <figure class='feature-image'>
               <a href='package-detail.php'>
-                <img src= $thumbnail>
+                <img src= 'uploads/$thumbnail'>
               </a>
            </figure>
            <div class='package-price'>
