@@ -327,6 +327,40 @@ function clearCart() {
         
     }
 
+   
+    // Function to remove a package from the cart and UI
+    function removeFromCart(packId) {
+        if (confirm("Are you sure you want to remove this package from the cart?")) {
+            // Send an AJAX request to delete the package from the cart
+            $.ajax({
+                type: "GET",
+                url: "remove_from_cart.php",
+                data: { pack_id: packId },
+                success: function (response) {
+                    if (response === "success") {
+                        // If removal is successful, remove the row from the UI
+                        var rowToRemove = document.getElementById("cart_item_" + packId);
+                        if (rowToRemove) {
+                            rowToRemove.remove();
+                        } else {
+                            alert("Row not found. Removal may not have been successful.");
+                        }
+                    } else {
+                        alert("Error removing package from the cart. Please try again laterrrr.");
+                    }
+                },
+                error: function () {
+                    alert("Error removing package from the cart. Please try again later.");
+                }
+            });
+        }
+    }
+
+    // Bind click event to the 'Remove' buttons
+    $(document).on("click", ".close", function () {
+        var packId = $(this).data("pack-id");
+        removeFromCart(packId);
+    });
 
    
 

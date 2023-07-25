@@ -51,23 +51,22 @@ if ($result && mysqli_num_rows($result) > 0) {
 
         $totalPrice += $price;
       
-      
+        $row_id = "cart_item_" . $row['pack_ID'];
+
         
-        echo "<tbody>
+        echo "<tbody id='$row_id'>
         <tr>
-          <td class=''>
-            <button class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>×</span></button>
-            <span class='cartImage'><img src=$thumbnail alt='image'></span>
+        <td data-column='Actions'>
+        <!-- Set pack ID as a data attribute for the 'Remove' button -->
+        <button class='close' data-dismiss='alert' aria-label='Close' data-pack-id='$pack_id'>
+            <span aria-hidden='true'>×</span>
+        </button>
+  
+            <span class='cartImage'><img src='uploads/$thumbnail' alt='image'></span>
           </td>
           <td data-column='Product Name'>$description</td>
           <td data-column='Price'>$ $price</td>
-          <td data-column='Quantity' class='count-input'>
-              <div>
-                 <a class='minus-btn' href='#'><i class='fa fa-minus'></i></a>
-                 <input class='quantity' type='text' value='1'>
-                 <a class='plus-btn' href='#'><i class='fa fa-plus'></i></a>
-              </div>
-          </td>
+          
           <td data-column='Sub Total'>$ $price</td>
         </tr>
       </tbody>";
