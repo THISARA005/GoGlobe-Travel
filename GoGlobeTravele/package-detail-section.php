@@ -49,7 +49,7 @@ if ($result && mysqli_num_rows($result) > 0) {
         <div class='single-tour-inner'>
            <h2>$title</h2>
            <figure class='feature-image'>
-              <img src=$thumbnail>
+              <img src='uploads/'.$thumbnail>
               <div class='package-meta text-center'>
                  <ul>
                     <li>
