@@ -17,7 +17,7 @@ if(mysqli_num_rows($result) > 0)
         //$row2 = mysqli_fetch_assoc($result2);
         while($row2=mysqli_fetch_array($result2)){
             $chekin = $row2['check_in_date'];
-            $city = $row['city'];
+            $city = $row2['city'];
 
             echo"
 
