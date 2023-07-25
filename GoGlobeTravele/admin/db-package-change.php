@@ -182,7 +182,7 @@
                     </ul>
                 </div>
             </div>
-            <form action="save_pack_data.php" method="POST" enctype="multipart/form-data">
+            <form action="change_pack_data.php" method="POST" enctype="multipart/form-data">
                 
                 <div class="db-info-wrap db-add-tour-wrap">
                     <div class="row">
@@ -453,17 +453,23 @@ function getPackageDetails() {
                 const packCategorySelect = document.querySelector('select[name="pack_category"]');
                 const regPriceInput = document.querySelector('input[name="regPrice"]');
                 const disPriceInput = document.querySelector('input[name="disPrice"]');
+                const locationInput = document.querySelector('input[name="location"]');
+                const rateInput = document.querySelector('input[name="rating"]');
+                
 
                 titleInput.value = data.package.title;
                 packDescriptionInput.value = data.package.pack_description;
-                programmInput.value = data.package.programm;
+                programmInput.value = data.package.program;
                 grpSizeInput.value = data.package.grp_size;
                 durationDaysInput.value = data.package.duration_days;
                 packCategorySelect.value = data.package.category;
                 regPriceInput.value = data.package.reg_price;
                 disPriceInput.value = data.package.discount;
+                locationInput.value = data.package.location;
+                rateInput.value = data.package.ratings;
 
-                calculateSalePrice(); // Recalculate sale price if needed
+                calculateSalePrice();
+                calculatenightDays();  // Recalculate sale price if needed
             } else {
                 // Handle error, for example, display a message to the user
                 console.error(data.message);
