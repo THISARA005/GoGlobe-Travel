@@ -22,7 +22,7 @@
     <div id="container-wrapper">
         <!-- Dashboard -->
         <div id="dashboard" class="dashboard-container">
-            <div class="dashboard-header sticky-header">
+        <div class="dashboard-header sticky-header">
                 <div class="content-left  logo-section pull-left">
                     <h1><a href="../index.html"><img src="assets/images/logo.png" alt=""></a></h1>
                 </div>
@@ -149,11 +149,11 @@
                 </div>
             </div>
             <div class="dashboard-navigation">
-                <!-- Responsive Navigation Trigger -->
+                
                 <div id="dashboard-Navigation" class="slick-nav"></div>
                 <div id="navigation" class="navigation-container">
                     <ul>
-                        <li><a href="dashboard.html"><i class="far fa-chart-bar"></i> Dashboard</a></li>
+                        <li><a href="dashboard.php"><i class="far fa-chart-bar"></i> Dashboard</a></li>
                         <li><a><i class="fas fa-user"></i>Users</a>
                             <ul>
                                 <li>
@@ -167,13 +167,13 @@
                                 </li>
                             </ul>
                         </li>
-                        <li><a href="db-add-package.html"><i class="fas fa-umbrella-beach"></i>Add Package</a></li>
+                        <li><a href="db-add-package.php"><i class="fas fa-umbrella-beach"></i>Add Package</a></li>
                         <li class="active-menu">
                             <a><i class="fas fa-hotel"></i></i>packages</a>
                             <ul>
-                                <li><a href="db-package-active.html">Active</a></li>
-                                <li><a href="db-package-pending.html">Pending</a></li>
-                                <li><a href="db-package-expired.html">Expired</a></li>
+                                <li><a href="db-package-active.php">Active</a></li>
+                                <li><a href="db-package-pending.php">Pending</a></li>
+                                <li><a href="db-package-change.php">Change package details</a></li>
                             </ul>   
                         </li>
                         <li><a href="db-booking.html"><i class="fas fa-ticket-alt"></i> Booking & Enquiry</a></li>
