@@ -225,27 +225,35 @@
     </div>
     <!-- ... Rest of the HTML content ... -->
 
-<script>
-    // Function to handle the AJAX request for deleting a package record
+    <script>
     function deleteRecord(packId) {
-        if (confirm("Are you sure you want to delete this package?")) {
-            // Send the AJAX request to delete_package.php with the packId parameter
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
-                    // The request is successful, remove the row from the table
-                    var row = document.querySelector("tr[data-packid='" + packId + "']");
-                    if (row) {
-                        row.parentNode.removeChild(row);
-                        alert ("sessssssssss");
+        if (confirm("Are you sure you want to delete this record?")) {
+            // Send an AJAX request to delete_package.php with the pack ID
+            $.ajax({
+                type: "POST",
+                url: "delete_package.php",
+                data: { pack_id: packId },
+                success: function (response) {
+                    if (response === "success") {
+                        // If deletion is successful, remove the row from the UI
+                        var rowToRemove = document.getElementById("row_" + packId);
+                        if (rowToRemove) {
+                            rowToRemove.remove();
+                        } else {
+                            alert("Row not found. Deletion may not have been successful.");
+                        }
+                    } else {
+                        alert("Error deleting record. Please try again later.");
                     }
+                },
+                error: function () {
+                    alert("Error deleting record. Please try again later.");
                 }
-            };
-            xhttp.open("GET", "delete_package.php?pack_id=" + packId, true);
-            xhttp.send();
+            });
         }
     }
 </script>
+
 
     <!-- end Container Wrapper -->
     <!-- *Scripts* -->

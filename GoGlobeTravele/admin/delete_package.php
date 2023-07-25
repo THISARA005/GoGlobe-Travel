@@ -1,25 +1,23 @@
 <?php
 require_once "db_connection.php";
 
-if (isset($_GET['pack_id'])) {
-    $packId = $_GET['pack_id'];
+if (isset($_POST["pack_id"])) {
+    $pack_id = $_POST["pack_id"];
+    
 
-    // Prepare the DELETE query
-    $deleteQuery = "DELETE FROM packages WHERE pack_ID = ?";
-    $stmt = $conn->prepare($deleteQuery);
-    $stmt->bind_param("i", $packId);
+    // Prepare the delete query
+    $delete_query = "DELETE FROM packages WHERE pack_ID = ?";
+    $stmt = $conn->prepare($delete_query);
+    $stmt->bind_param("i", $pack_id);
 
-    // Execute the DELETE query
+    // Execute the delete query
     if ($stmt->execute()) {
-        // The record is successfully deleted from the database.
-        // You can send a response message if needed.
-        echo "Record deleted successfully!";
+        // Deletion successful
+        echo "success";
     } else {
-        // Handle the error, if any.
-        echo "Error deleting record: " . $stmt->error;
+        // Deletion failed
+        echo "error";
     }
-
-    // Close the statement and connection
     $stmt->close();
     $conn->close();
 }
