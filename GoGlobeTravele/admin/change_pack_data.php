@@ -34,23 +34,28 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $location = $_POST["location"];
         $active_status = isset($_POST["active_status"]) ? 1 : 0; // Convert checkbox value to 1 or 0
 
-        // Get the old sales price from the database
+        // Get the old sales price, regular price, and discount from the database
         $old_sales_price = 0;
+        $old_reg_price = 0;
+        $old_discount = 0;
 
-        $select_old_values_query = "SELECT sale_price FROM packages WHERE pack_id=?";
+        $select_old_values_query = "SELECT sale_price, reg_price, discount FROM packages WHERE pack_id=?";
         $stmt_select = $conn->prepare($select_old_values_query);
         $stmt_select->bind_param("i", $pack_id);
         $stmt_select->execute();
         $stmt_select->store_result();
         if ($stmt_select->num_rows > 0) {
-            $stmt_select->bind_result($old_sales_price);
+            $stmt_select->bind_result($old_sales_price, $old_reg_price, $old_discount);
             $stmt_select->fetch();
         }
         $stmt_select->close();
 
-        // Calculate the new sale price
+        // Calculate the new sale price, duration nights, and check if any changes occurred
         $sale_price = $regPrice - ($regPrice * $disPrice) * 0.01;
         $duration_nights = $duration_days - 1;
+        $sales_price_changed = ($old_sales_price != $sale_price);
+        $reg_price_changed = ($old_reg_price != $regPrice);
+        $discount_changed = ($old_discount != $disPrice);
 
         // Prepare the SQL statement to update the row in the database
         $sql = "UPDATE packages SET title=?, pack_description=?, program=?, grp_size=?, 
@@ -72,16 +77,27 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             // Data updated successfully
             echo "Data updated successfully!";
 
-            // Compare old sale price with the new sale price
-            if ($old_sales_price != $sale_price) {
-                // If the sale price has changed, store the change in the change_pack_price table
+            // Check if there are any changes in sales price, regular price, or discount
+            if ($sales_price_changed || $reg_price_changed || $discount_changed) {
+                // If any changes occurred, store the change in the change_pack_price table
                 $change_date = date("Y-m-d H:i:s");
-                $insert_change_query = "INSERT INTO change_pack_price (pack_id, oldPrice, newPrice, date) VALUES (?, ?, ?, ?)";
+
+                // Prepare the SQL statement to insert the change into the change_pack_price table
+                $insert_change_query = "INSERT INTO change_pack_price (pack_id, oldPrice, oldRegPrice, oldDiscount, newPrice, newRegPrice, newDiscount, date) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
                 $stmt_insert = $conn->prepare($insert_change_query);
+
+                // Bind the parameters and execute the statement
                 $stmt_insert->bind_param(
-                    "idds", $pack_id, $old_sales_price, $sale_price, $change_date
+                    "idddddds", $pack_id, $old_sales_price, $old_reg_price, $old_discount, $sale_price, $regPrice, $disPrice, $change_date
                 );
-                $stmt_insert->execute();
+                
+                if($stmt_insert->execute()){
+                    // Price change data inserted successfully
+                    echo "Price change data inserted successfully!";
+                } else {
+                    // Handle the error
+                    echo "Error inserting price change data: " . $stmt_insert->error;
+                }
                 $stmt_insert->close();
             }
         } else {
