@@ -37,18 +37,35 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $sale_price = $regPrice - ($regPrice * $disPrice) * 0.01;
         $duration_nights= $duration_days - 1;
 
+        if (isset($_FILES["thumb_image"]) && $_FILES["thumb_image"]["error"] === UPLOAD_ERR_OK) {
+            $target_directory = "uploads/";
+            $thumbnail_name = basename($_FILES["thumb_image"]["name"]);
+            $thumbnail_path = $target_directory . $thumbnail_name;
+
+            // Move the uploaded file to the target directory
+            if (move_uploaded_file($_FILES["thumb_image"]["tmp_name"], $thumbnail_path)) {
+                // Thumbnail image upload successful
+            } else {
+                echo "Error uploading thumbnail image.";
+                exit;
+            }
+        } else {
+            echo "Error uploading thumbnail image.";
+            exit;
+        }
+
         // Prepare the SQL statement to update the row in the database
         $sql = "UPDATE packages SET title=?, pack_description=?, program=?, grp_size=?, 
-                duration_days=?, category=?, reg_price=?, discount=?, location=?, status=?,sale_price=?,duration_nights=?
+                duration_days=?, category=?, reg_price=?, discount=?, location=?, status=?,sale_price=?,duration_nights=?,thumb_image=?
                 WHERE pack_id=?";
 
         // Prepare the statement
         $stmt = $conn->prepare($sql);
 
         // Bind the parameters and execute the statement
-        $stmt->bind_param("sssiisddsidii", $title, $pack_description, $programm, $grpSize, $duration_days,
+        $stmt->bind_param("sssiisddsidisi", $title, $pack_description, $programm, $grpSize, $duration_days,
                   $pack_category, $regPrice, $disPrice, $location, $active_status, $sale_price,
-                  $duration_nights, $pack_id);
+                  $duration_nights, $thumbnail_path ,$pack_id);
         
         // Execute the statement
         if ($stmt->execute()) {

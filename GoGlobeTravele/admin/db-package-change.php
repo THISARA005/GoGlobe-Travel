@@ -367,7 +367,7 @@
                                     <div class="upload-input">
                                         <div class="form-group">
                                           <span class="upload-btn">Upload a image</span>
-                                          <input type="file" name="pack_image" required>
+                                          <input type="file" name="thumb_image" required>
                                         </div>
                                     </div>
                                 </div>
@@ -455,6 +455,9 @@ function getPackageDetails() {
                 const disPriceInput = document.querySelector('input[name="disPrice"]');
                 const locationInput = document.querySelector('input[name="location"]');
                 const rateInput = document.querySelector('input[name="rating"]');
+                const thumImageInput = document.querySelector('input[name="thumb_image"]');
+
+
                 
 
                 titleInput.value = data.package.title;
@@ -467,6 +470,7 @@ function getPackageDetails() {
                 disPriceInput.value = data.package.discount;
                 locationInput.value = data.package.location;
                 rateInput.value = data.package.ratings;
+                //thumImageInput.value = data.package.thumb_image;
 
                 calculateSalePrice();
                 calculatenightDays();  // Recalculate sale price if needed
