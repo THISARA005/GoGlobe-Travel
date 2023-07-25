@@ -34,21 +34,22 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $location = $_POST["location"];
         $active_status = isset($_POST["active_status"]) ? 1 : 0; // Convert checkbox value to 1 or 0
 
-        $sale_price = $reg_price - ($reg_price * $discount) * 0.01;
+        $sale_price = $regPrice - ($regPrice * $disPrice) * 0.01;
         $duration_nights= $duration_days - 1;
 
         // Prepare the SQL statement to update the row in the database
-        $sql = "UPDATE your_table_name SET title=?, pack_description=?, programm=?, grp_size=?, 
-                duration_days=?, pack_category=?, reg_price=?, discount=?, location=?, active_status=?,sale_price=?,duration_nights=?
+        $sql = "UPDATE packages SET title=?, pack_description=?, program=?, grp_size=?, 
+                duration_days=?, category=?, reg_price=?, discount=?, location=?, status=?,sale_price=?,duration_nights=?
                 WHERE pack_id=?";
 
         // Prepare the statement
         $stmt = $conn->prepare($sql);
 
         // Bind the parameters and execute the statement
-        $stmt->bind_param("sssiisdssidii", $title, $pack_description, $programm, $grpSize, $duration_days,
-                          $pack_category, $regPrice, $disPrice, $location, $active_status,$sale_price,$duration_nights, $pack_id);
-
+        $stmt->bind_param("sssiisddsidii", $title, $pack_description, $programm, $grpSize, $duration_days,
+                  $pack_category, $regPrice, $disPrice, $location, $active_status, $sale_price,
+                  $duration_nights, $pack_id);
+        
         // Execute the statement
         if ($stmt->execute()) {
             // Data updated successfully
