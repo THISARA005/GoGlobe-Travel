@@ -153,32 +153,34 @@
                 <div id="dashboard-Navigation" class="slick-nav"></div>
                 <div id="navigation" class="navigation-container">
                     <ul>
-                        <li><a href="dashboard.html"><i class="far fa-chart-bar"></i> Dashboard</a></li>
-                        <li><a><i class="fas fa-user"></i>Users</a>
+                        <li class="active-menu"><a href="dashboard.php?user_id=<?php echo $_GET['user_id']; ?>"><i class="far fa-chart-bar"></i> Dashboard</a></li>
+                        <li><a><i class="fas fa-user"></i>Blog</a>
                             <ul>
                                 <li>
-                                    <a href="user.html">User</a>
+                                    <a href="blog-archive.php?user_id=<?php echo $_GET['user_id']; ?>">Blog List</a>
                                 </li>
                                 <li>
-                                    <a href="user-edit.html">User edit</a>
+                                    <a href="create_blog.php?user_id=<?php echo $_GET['user_id']; ?>"> Write a blog</a>
                                 </li>
                                 <li>
-                                    <a href="new-user.html">New user</a>
+                                    <a href="blog-personal-list.html?user_id=<?php echo $_GET['user_id']; ?>">See review</a>
                                 </li>
                             </ul>
                         </li>
-                        <li><a href="db-add-package.html"><i class="fas fa-umbrella-beach"></i>Add Package</a></li>
+                        
                         <li>
-                            <a><i class="fas fa-hotel"></i></i>packages</a>
+                            <a><i class="fas fa-hotel"></i></i>Gallery</a>
                             <ul>
-                                <li><a href="db-package-active.html">Active</a></li>
-                                <li><a href="db-package-pending.html">Pending</a></li>
+                                <li><a href="db-package-active.html">View Gallery</a></li>
+                                <li><a href="db-package-pending.html">Add images</a></li>
                                 <li><a href="db-package-expired.html">Expired</a></li>
                             </ul>   
                         </li>
-                        <li class="active-menu"><a href="db-booking.html"><i class="fas fa-ticket-alt"></i> Booking & Enquiry</a></li>
-                        <li><a href="db-wishlist.html"><i class="far fa-heart"></i>Wishlist</a></li>
-                        <li><a href="db-comment.html"><i class="fas fa-comments"></i>Comments</a></li>
+                        
+                        <li><a href="db-booking.php?user_id=<?php echo $_GET['user_id']; ?>"><i class="fas fa-ticket-alt"></i> Booking History</a></li>
+                        <li><a href="user-edit.php?user_id=<?php echo $_GET['user_id']; ?>"><i class="fas fa-sign-out-alt"></i> Change Profile</a></li>
+                        <li><a href="db-wishlist.html"><i class="far fa-heart"></i>Enquiry</a></li>
+                        <li><a href="db-comment.html"><i class="fas fa-comments"></i>Badges</a></li>        
                         <li><a href="login.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
                     </ul>
                 </div>
@@ -202,114 +204,74 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>
-                                        <span class="list-img"><img src="assets/images/comment.jpg" alt="">
-                                        </span><span class="list-enq-name">John Doe</span>
-                                    </td>
-                                    <td>12 may</td>
-                                    <td>Japan</td>
-                                    <td>755</td>
-                                    <td><span class="badge badge-success">Approve</span></td>
-                                    <td>
-                                        <span class="badge badge-success">15</span>
-                                    </td>
-                                    <td><span class="badge badge-success">9</span></td>
-                                    <td>
-                                        <span class="badge badge-success"><i class="far fa-edit"></i></span>
-                                        <span class="badge badge-danger"><i class="far fa-trash-alt"></i></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="list-img"><img src="assets/images/comment2.jpg" alt="">
-                                        </span><span class="list-enq-name">John Doe</span>
-                                    </td>
-                                    <td>12 may</td>
-                                    <td>Japan</td>
-                                    <td>755</td>
-                                    <td><span class="badge badge-primary">Pending</span></td>
-                                    <td>
-                                        <span class="badge badge-success">15</span>
-                                    </td>
-                                    <td><span class="badge badge-success">9</span></td>
-                                    <td>
-                                        <span class="badge badge-success"><i class="far fa-edit"></i></span>
-                                        <span class="badge badge-danger"><i class="far fa-trash-alt"></i></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="list-img"><img src="assets/images/comment3.jpg" alt="">
-                                        </span><span class="list-enq-name">John Doe</span>
-                                    </td>
-                                    <td>12 may</td>
-                                    <td>Japan</td>
-                                    <td>755</td>
-                                    <td><span class="badge badge-danger">Reject</span></td>
-                                    <td>
-                                        <span class="badge badge-success">15</span>
-                                    </td>
-                                    <td><span class="badge badge-success">9</span></td>
-                                    <td>
-                                        <span class="badge badge-success"><i class="far fa-edit"></i></span>
-                                        <span class="badge badge-danger"><i class="far fa-trash-alt"></i></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="list-img"><img src="assets/images/comment4.jpg" alt="">
-                                        </span><span class="list-enq-name">John Doe</span>
-                                    </td>
-                                    <td>12 may</td>
-                                    <td>Japan</td>
-                                    <td>755</td>
-                                    <td><span class="badge badge-primary">Pendding</span></td>
-                                    <td>
-                                        <span class="badge badge-success">15</span>
-                                    </td>
-                                    <td><span class="badge badge-success">9</span></td>
-                                    <td>
-                                        <span class="badge badge-success"><i class="far fa-edit"></i></span>
-                                        <span class="badge badge-danger"><i class="far fa-trash-alt"></i></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="list-img"><img src="assets/images/comment5.jpg" alt="">
-                                        </span><span class="list-enq-name">John Doe</span>
-                                    </td>
-                                    <td>12 may</td>
-                                    <td>Japan</td>
-                                    <td>755</td>
-                                    <td><span class="badge badge-danger">Reject</span></td>
-                                    <td>
-                                        <span class="badge badge-success">15</span>
-                                    </td>
-                                    <td><span class="badge badge-success">9</span></td>
-                                    <td>
-                                        <span class="badge badge-success"><i class="far fa-edit"></i></span>
-                                        <span class="badge badge-danger"><i class="far fa-trash-alt"></i></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="list-img"><img src="assets/images/comment6.jpg" alt="">
-                                        </span><span class="list-enq-name">John Doe</span>
-                                    </td>
-                                    <td>12 may</td>
-                                    <td>Japan</td>
-                                    <td>755</td>
-                                    <td><span class="badge badge-success">approve</span></td>
-                                    <td>
-                                        <span class="badge badge-success">15</span>
-                                    </td>
-                                    <td><span class="badge badge-success">9</span></td>
-                                    <td>
-                                        <span class="badge badge-success"><i class="far fa-edit"></i></span>
-                                        <span class="badge badge-danger"><i class="far fa-trash-alt"></i></span>
-                                    </td>
-                                </tr>
+                                <?php
+                                // Assuming you have established a database connection ($mysqli)
+                                include 'db_connection.php';
+                                // Get the user_id from the URL
+                                $user_id = $_GET['user_id'];
+
+                                // Query the pack_booking table to get relevant booking details for the user
+                                $query = "SELECT pb.*, p.*
+                                        FROM pack_booking pb
+                                        JOIN packages p ON pb.pack_ID = p.pack_ID
+                                        WHERE pb.user_ID = $user_id";
+
+                                $result = mysqli_query($conn, $query);
+
+                                if ($result && mysqli_num_rows($result) > 0) {
+                                    while ($row = mysqli_fetch_assoc($result)) {
+                                        $user_name = "John Doe"; // You can replace this with the actual user name if available
+                                        $date = $row['check_in_date']; // Change this to the appropriate column name from the pack_booking table
+                                        $destination = $row['location'];
+                                        $booking_id = $row['booking_ID'];
+                                        $status = ($row['status'] == 1) ? "Approve" : "Pending"; // Assuming status values are 0 or 1
+                                        $duration = $row['duration_days'];
+                                         // Change this to the appropriate column name from the pack_booking table
+                                        $people = $row['grp_size']; // Change this to the appropriate column name from the pack_booking table
+                                        $price = $row['sale_price']; // Assuming this is the package price from the packages table
+
+                                        $travel_status = "";
+                                        switch ($row['travel_status']) {
+                                            case 0:
+                                                $travel_status = "Upcoming";
+                                                break;
+                                            case 1:
+                                                $travel_status = "Ongoing";
+                                                break;
+                                            case -1:
+                                                $travel_status = "Expired";
+                                                break;
+                                            default:
+                                                $travel_status = "Unknown";
+                                        }
+
+                                        echo "
+                                            <tr>
+                                                <td>
+                                                    <span class='list-img'><img src='assets/images/comment.jpg' alt=''>
+                                                    </span><span class='list-enq-name'>$user_name</span>
+                                                </td>
+                                                <td>$date</td>
+                                                <td>$destination</td>
+                                                <td>$booking_id</td>
+                                                <td><span class='badge badge-success'>$travel_status</span></td>
+                                                <td>
+                                                    <span class='badge badge-success'>$duration</span>
+                                                </td>
+                                                <td><span class='badge badge-success'>$people</span></td>
+                                                <td>
+                                                    <span class='badge badge-success'><i class='far fa-edit'></i></span>
+                                                    <span class='badge badge-danger' onclick='deleteRecord($booking_id)'><i class='far fa-trash-alt'></i></span>
+                                                </td>
+                                            </tr>";
+                                    }
+                                } else {
+                                    echo "<tr><td colspan='8'>No bookings found.</td></tr>";
+                                }
+
+                                // Remember to close the database connection
+                                mysqli_close($conn);
+                                ?>
                             </tbody>
                         </table>
                     </div>
