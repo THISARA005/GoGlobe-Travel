@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $pack_id = $row['pack_ID'];
             $user_id = $row['user_ID'];
 
-            $query1 = "SELECT * FROM PACKAGES WHERE pack_ID=$pack_id";
+            $query1 = "SELECT * FROM packages WHERE pack_ID=$pack_id";
             $result1 = mysqli_query($conn, $query1);
             $row1 = mysqli_fetch_assoc($result1);
             $pack_name = $row1['title'];
