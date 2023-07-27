@@ -574,24 +574,21 @@ ob_end_clean();
                         </div>
                     </div>
 
-                    <div class="col-lg-4">
-                    <div class="dashboard-box chart-box">
-                        <?php include 'stacked_coluumn.php'; ?>
-                        <div id="columnchart" style="height: 290px; width: 100%; margin-top: 0px;"></div>
-
-</div>
                         
               
 
                     <div class="col-lg-4 ">        
                         <?php include 'country_analysis.php'; ?>
                            <div id="piechart" style="height: 290px; width: 300px; margin-top: 50px; margin-left: 100px;"></div>
-                        
-       
+                        </div>
+                    </div>
+                <!-- Show the chart of last 3 months revenue generated. Chart is generated in the chart_salary-line-chart.php file.-->
+                <div class="col-lg-4 ">        
+                        <?php include 'chart_salary-line-chart.php'; ?>
+                           <div id="piechart" style="height: 290px; width: 300px; margin-top: 50px; margin-left: 100px;"></div>
                         </div>
                     </div>
                 </div>
-            </div>
             <!-- Content / End -->
             <!-- Copyrights -->
             <div class="copyrights">

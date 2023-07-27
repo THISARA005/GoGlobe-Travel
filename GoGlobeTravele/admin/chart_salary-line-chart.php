@@ -1,3 +1,5 @@
+<!-- Show the chart of last 3 months revenue generated. -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

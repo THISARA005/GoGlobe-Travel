@@ -203,6 +203,12 @@
                                             <button type="button" onclick="getPackageDetails()">Get Pack Details</button>
                                         </div>
                                     </div>
+                                    <!-- Button to delete a package from the db. -->
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <button type="button" onclick="deletePackageDetails()">Delete Pack Details</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 <!-- ... Rest of your HTML code ... -->
@@ -482,10 +488,31 @@ function getPackageDetails() {
         .catch(error => console.error(error));
 }
 </script>
+<script>
+function deletePackageDetails() {
+    const packIdInput = document.querySelector('input[name="pack_id_input"]');
+    const packId = packIdInput.value.trim(); // Get the inputted pack_id
 
+    // Make an AJAX request to delete the package from the server
+    fetch(`delete_package.php?pack_id=${packId}`)
+        .then(response => response.json())
+        .then(data => {
+            // Handle the response from the server
+            if (data.success) {
+                // Package deleted successfully
+                alert("Package deleted successfully!");
+                // You can also refresh the page or redirect to another page after deletion
+                window.location.reload(); // Refresh the page
+            } else {
+                // Handle error, for example, display a message to the user
+                console.error(data.message);
+                alert("Failed to delete the package. Please try again.");
+            }
+        })
+        .catch(error => console.error(error));
+}
+</script>
 
-
-    </script>
     <!-- end Container Wrapper -->
     <!-- end Container Wrapper -->
     <script src="assets/js/jquery-3.2.1.min.js"></script>
