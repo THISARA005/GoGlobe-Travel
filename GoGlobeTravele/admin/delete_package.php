@@ -22,6 +22,7 @@ if (isset($_GET['pack_id'])) {
     mysqli_stmt_close($stmt);
 } else {
     // Invalid request, pack_id not provided
+    
     $response = array('success' => false, 'message' => 'Invalid request');
 }
 
