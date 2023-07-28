@@ -385,7 +385,7 @@ ob_end_clean();
                         </div>
                     </div> 
                 </div>
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-lg-12">
                         <div class="dashboard-box">
                             <h4>User Details</h4>
@@ -495,7 +495,7 @@ ob_end_clean();
                             </div>
                         </div>
                     </div>  
-                </div>
+                </div> -->
                 <div class="row">      
                     <!-- Recent Activity -->
                     <div class="col-lg-7 col-12">

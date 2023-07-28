@@ -188,7 +188,7 @@
             <div class="db-info-wrap db-booking">
                 <div class="dashboard-box table-opp-color-box">
                     <h4>Recent Booking</h4>
-                    <p>Airtport Hotels The Right Way To Start A Short Break Holiday</p>
+                    <p>This is your recent bookings made by you.</p>
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
@@ -211,16 +211,20 @@
                                 $user_id = $_GET['user_id'];
 
                                 // Query the pack_booking table to get relevant booking details for the user
-                                $query = "SELECT pb.*, p.*
-                                        FROM pack_booking pb
-                                        JOIN packages p ON pb.pack_ID = p.pack_ID
-                                        WHERE pb.user_ID = $user_id";
+                                $query = "SELECT pb.*, p.*, u.*
+          FROM pack_booking pb
+          JOIN packages p ON pb.pack_ID = p.pack_ID
+          JOIN users u ON pb.user_ID = u.user_ID
+          WHERE pb.user_ID = $user_id";
+
 
                                 $result = mysqli_query($conn, $query);
 
                                 if ($result && mysqli_num_rows($result) > 0) {
                                     while ($row = mysqli_fetch_assoc($result)) {
-                                        $user_name = "John Doe"; // You can replace this with the actual user name if available
+                                        $fName=$row['fName']; // You can replace this with the actual user name if available
+                                        $Lname=$row['Lname']; // You can replace this with the actual user name if available
+                                        $profile_pic=$row['profile_pic']; // You can replace this with the actual user name if available
                                         $date = $row['check_in_date']; // Change this to the appropriate column name from the pack_booking table
                                         $destination = $row['location'];
                                         $booking_id = $row['booking_ID'];
@@ -248,8 +252,8 @@
                                         echo "
                                             <tr>
                                                 <td>
-                                                    <span class='list-img'><img src='assets/images/comment.jpg' alt=''>
-                                                    </span><span class='list-enq-name'>$user_name</span>
+                                                    <span class='list-img'><img src='uploads/$profile_pic' alt=''>
+                                                    </span><span class='list-enq-name'>$fName $Lname</span>
                                                 </td>
                                                 <td>$date</td>
                                                 <td>$destination</td>
@@ -260,9 +264,8 @@
                                                 </td>
                                                 <td><span class='badge badge-success'>$people</span></td>
                                                 <td>
-                                                    <span class='badge badge-success'><i class='far fa-edit'></i></span>
-                                                    <span class='badge badge-danger' onclick='deleteRecord($booking_id)'><i class='far fa-trash-alt'></i></span>
-                                                </td>
+                                                <span class='badge badge-danger' onclick='deleteRecord($booking_id)'><i class='far fa-trash-alt'></i></span>
+                                            </td>
                                             </tr>";
                                     }
                                 } else {
@@ -285,6 +288,33 @@
         </div>
         <!-- Dashboard / End -->
     </div>
+    <!-- Add this inside the <head> section or before the closing </body> tag -->
+    <script>
+function deleteRecord(bookingId) {
+    // Show a confirmation dialog to the user
+    if (confirm("Are you sure you want to delete this booking?")) {
+        // If the user confirms, send an AJAX request to delete_booking.php
+        $.ajax({
+            type: "POST",
+            url: "delete_booking.php",
+            data: { booking_id: bookingId },
+            success: function (response) {
+                if (response === "success") {
+                    // If the deletion is successful, remove the corresponding row from the UI
+                    const rowToDelete = $("td:contains(" + bookingId + ")").closest("tr");
+                    rowToDelete.remove();
+                } else {
+                    alert("Error deleting the booking.");
+                }
+            },
+            error: function () {
+                alert("Error occurred while deleting the booking.");
+            },
+        });
+    }
+}
+</script>
+
     <!-- end Container Wrapper -->
     <script src="assets/js/jquery-3.2.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
