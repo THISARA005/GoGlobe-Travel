@@ -62,6 +62,7 @@ require_once 'db_connection.php';
            </div>
            <div class='inner-shape'></div>
         </section>");
+        echo("<div class='row package-list'>");
         while ($row = mysqli_fetch_assoc($result)) {
             $thumb_image=$row['thumb_image'];
             $sale_price=$row['sale_price'];
@@ -137,6 +138,7 @@ require_once 'db_connection.php';
                  </div>");
         }
         ?>
+        </div>
         </main>
         
          <footer id="colophon" class="site-footer footer-primary">
