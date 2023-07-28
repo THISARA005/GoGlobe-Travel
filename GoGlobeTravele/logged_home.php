@@ -892,7 +892,7 @@ session_start();
             if (loginStatus === 'success' && userId) {
                // User is logged in and has a user_id, proceed with booking
                // Pass the user_id and pack_id to the booking.html page if needed
-               window.location.href = 'tour-packages.php?user_id=' + userId + 'category=' + category;
+               window.location.href = 'tour-packages.php?user_id=' + userId + '&category=' + category;
             } else {
                // User is not logged in or user_id is missing, display error message
                alert('You need to log in to book.');
