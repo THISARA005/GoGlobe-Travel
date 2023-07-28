@@ -567,12 +567,7 @@ ob_end_clean();
                 </div>
                 <div class="row">
                     <!-- site traffic -->
-                    <div class="col-lg-4">
-                        <div class="dashboard-box chart-box">
-                           <h4>Site Traffic</h4>
-                           <div id="chartContainer" style="height: 250px; width: 100%;"></div>
-                        </div>
-                    </div>
+                    
 
                         
               

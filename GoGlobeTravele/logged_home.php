@@ -343,8 +343,10 @@ session_start();
                         </div>
                      </div>
                   </div>
+                  <!-- when i click one category page should redirect to the page where tour package details included page by the selected category. -->
                   <div class="activity-inner row">
-                     <div class="col-lg-2 col-md-4 col-sm-6">
+                     
+                     <div class="col-lg-2 col-md-4 col-sm-6 category-item" data-category="Adventure">
                         <div class="activity-item">
                            <div class="activity-icon">
                               <a href="#">
@@ -353,13 +355,13 @@ session_start();
                            </div>
                            <div class="activity-content">
                               <h4>
-                                 <a href="#">Adventure</a>
+                                 <a href="#" >Adventure</a>
                               </h4>
                               <p>15 Destination</p>
                            </div>
                         </div>
                      </div>
-                     <div class="col-lg-2 col-md-4 col-sm-6">
+                     <div class="col-lg-2 col-md-4 col-sm-6 category-item" data-category="Beach">
                         <div class="activity-item">
                            <div class="activity-icon">
                               <a href="#">
@@ -368,13 +370,13 @@ session_start();
                            </div>
                            <div class="activity-content">
                               <h4>
-                                 <a href="#">Trekking</a>
+                                 <a href="#">Beach</a>
                               </h4>
                               <p>12 Destination</p>
                            </div>
                         </div>
                      </div>
-                     <div class="col-lg-2 col-md-4 col-sm-6">
+                     <div class="col-lg-2 col-md-4 col-sm-6 category-item" data-category="Camping">
                         <div class="activity-item">
                            <div class="activity-icon">
                               <a href="#">
@@ -389,7 +391,7 @@ session_start();
                            </div>
                         </div>
                      </div>
-                     <div class="col-lg-2 col-md-4 col-sm-6">
+                     <div class="col-lg-2 col-md-4 col-sm-6 category-item" data-category="Hiking">
                         <div class="activity-item">
                            <div class="activity-icon">
                               <a href="#">
@@ -398,13 +400,13 @@ session_start();
                            </div>
                            <div class="activity-content">
                               <h4>
-                                 <a href="#">Off Road</a>
+                                 <a href="#">Hiking</a>
                               </h4>
                               <p>15 Destination</p>
                            </div>
                         </div>
                      </div>
-                     <div class="col-lg-2 col-md-4 col-sm-6">
+                     <div class="col-lg-2 col-md-4 col-sm-6 category-item" data-category="Wildlife">
                         <div class="activity-item">
                            <div class="activity-icon">
                               <a href="#">
@@ -413,13 +415,13 @@ session_start();
                            </div>
                            <div class="activity-content">
                               <h4>
-                                 <a href="#">Camping</a>
+                                 <a href="#">wild life</a>
                               </h4>
                               <p>13 Destination</p>
                            </div>
                         </div>
                      </div>
-                     <div class="col-lg-2 col-md-4 col-sm-6">
+                     <div class="col-lg-2 col-md-4 col-sm-6 category-item" data-category="Exploring">
                         <div class="activity-item">
                            <div class="activity-icon">
                               <a href="#">
@@ -859,18 +861,8 @@ session_start();
          </main>
          <?php include 'footer.php'; ?>
       <!-- JavaScript -->
-      <script src="assets/js/jquery.js"></script>
-      <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
-      <script src="assets/vendors/bootstrap/js/bootstrap.min.js"></script>
-      <script src="assets/vendors/jquery-ui/jquery-ui.min.js"></script>
-      <script src="assets/vendors/countdown-date-loop-counter/loopcounter.js"></script>
-      <script src="assets/js/jquery.counterup.js"></script>
-      <script src="assets/vendors/modal-video/jquery-modal-video.min.js"></script>
-      <script src="assets/vendors/masonry/masonry.pkgd.min.js"></script>
-      <script src="assets/vendors/lightbox/dist/js/lightbox.min.js"></script>
-      <script src="assets/vendors/slick/slick.min.js"></script>
-      <script src="assets/js/jquery.slicknav.js"></script>
-      <script src="assets/js/custom.min.js"></script>
+    
+
       <script>
    function checkLogin(pack_ID) {
     const urlParams = new URLSearchParams(window.location.search);
@@ -887,6 +879,42 @@ session_start();
     }
    }
 </script>
+<script>
+      // jQuery click event handler
+      $(document).ready(function () {
+         $('.category-item').click(function () {
+            // Get the category name from the data-category attribute
+            var category = $(this).data('category');
+            const urlParams = new URLSearchParams(window.location.search);
+            const loginStatus = urlParams.get('login');
+            const userId = urlParams.get('user_id');
+            //const packId = pack_ID;
+            if (loginStatus === 'success' && userId) {
+               // User is logged in and has a user_id, proceed with booking
+               // Pass the user_id and pack_id to the booking.html page if needed
+               window.location.href = 'tour-packages.php?user_id=' + userId + 'category=' + category;
+            } else {
+               // User is not logged in or user_id is missing, display error message
+               alert('You need to log in to book.');
+            }
+            // Redirect to the tour-packages.php page with the selected category as a parameter
+            //window.location.href = 'tour-packages.php?category=' + category;
+         });
+      });
+   </script>
 
    </body>
+   <script src="assets/js/jquery.js"></script>
+      <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+      <script src="assets/vendors/bootstrap/js/bootstrap.min.js"></script>
+      <script src="assets/vendors/jquery-ui/jquery-ui.min.js"></script>
+      <script src="assets/vendors/countdown-date-loop-counter/loopcounter.js"></script>
+      <script src="assets/js/jquery.counterup.js"></script>
+      <script src="assets/vendors/modal-video/jquery-modal-video.min.js"></script>
+      <script src="assets/vendors/masonry/masonry.pkgd.min.js"></script>
+      <script src="assets/vendors/lightbox/dist/js/lightbox.min.js"></script>
+      <script src="assets/vendors/slick/slick.min.js"></script>
+      <script src="assets/js/jquery.slicknav.js"></script>
+      <script src="assets/js/custom.min.js"></script>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-3edrmyuag1v2jz1gmfpk3z2aukff8k5a6e1g9f9e3cq=" crossorigin="anonymous"></script>
 </html>
