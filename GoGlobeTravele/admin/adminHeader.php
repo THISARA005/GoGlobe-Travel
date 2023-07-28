@@ -31,7 +31,7 @@
                             </div>
                         </form>
                     </div>
-                    <div class="dropdown">
+                    <!-- <div class="dropdown">
                         <a class="dropdown-toggle" id="notifyDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <div class="dropdown-item">
                                 <i class="far fa-envelope"></i>
@@ -77,8 +77,8 @@
                             </ul>
                             <a href="#" class="all-button">See all messages</a>
                         </div>
-                    </div>
-                    <div class="dropdown">
+                    </div> -->
+                    <!-- <div class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown">
                             <div class="dropdown-item">
                                 <i class="far fa-bell"></i>
@@ -124,7 +124,56 @@
                             </ul>
                             <a href="#" class="all-button">See all messages</a>
                         </div>
+                    </div> -->
+                    <!-- ... Your existing HTML code ... -->
+
+                <?php
+                require_once('db_connection.php');
+                // Fetch count of unread notifications from the database
+                $unreadNotificationsQuery = "SELECT COUNT(*) AS unread_count FROM notification WHERE is_read = 0";
+                $unreadNotificationsResult = mysqli_query($conn, $unreadNotificationsQuery);
+                $unreadCount = 0;
+                if ($unreadNotificationsResult) {
+                    $unreadRow = mysqli_fetch_assoc($unreadNotificationsResult);
+                    $unreadCount = $unreadRow['unread_count'];
+                }
+                ?>
+
+                <div class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown">
+                        <div class="dropdown-item">
+                            <i class="far fa-envelope"></i>
+                            <span class="notify"><?php echo $unreadCount; ?></span>
+                        </div>
+                    </a>
+                    <div class="dropdown-menu notification-menu" aria-labelledby="notifyDropdown">
+                        <h4><?php echo $unreadCount; ?> Unread Notifications</h4>
+                        <ul>
+                            <?php
+                            // Fetch notifications from the database
+                            $notificationsQuery = "SELECT * FROM notification ORDER BY timestamp DESC LIMIT 5";
+                            $notificationsResult = mysqli_query($conn, $notificationsQuery);
+
+                            // Display the notifications
+                            while ($row = mysqli_fetch_assoc($notificationsResult)) {
+                                echo '<li>';
+                                echo '<a href="#">';
+                                echo '<div class="notification-content">';
+                                echo '<p>' . htmlspecialchars($row['message']) . '</p>';
+                                echo '<small>' . date("M j, Y g:i A", strtotime($row['timestamp'])) . '</small>';
+                                echo '</div>';
+                                echo '</a>';
+                                echo '</li>';
+                            }
+                            ?>
+                        </ul>
+                        <a href="#" class="all-button">See all notifications</a>
                     </div>
+                </div>
+
+<!-- ... Your existing HTML code ... -->
+
+
                     <div class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown">
                             <div class="dropdown-item profile-sec">
