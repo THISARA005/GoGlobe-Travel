@@ -167,7 +167,7 @@
                             }
                             ?>
                         </ul>
-                        <a href="#" class="all-button">See all notifications</a>
+                        <a href="all-notifications.php" class="all-button">See all notifications</a>
                     </div>
                 </div>
 
