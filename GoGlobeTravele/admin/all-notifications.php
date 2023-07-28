@@ -16,7 +16,7 @@ if ($mysqli->connect_errno) {
 }
 
 // Mark all notifications as read when admin views all notifications
-$markAllReadQuery = "UPDATE notifications SET is_read = 1";
+$markAllReadQuery = "UPDATE notification SET is_read = 1";
 mysqli_query($mysqli, $markAllReadQuery);
 
 // Fetch all notifications from the database

@@ -130,34 +130,36 @@
                 <?php
                 require_once('db_connection.php');
                 // Fetch count of unread notifications from the database
-                $unreadNotificationsQuery = "SELECT COUNT(*) AS unread_count FROM notification WHERE is_read = 0";
+                $unreadNotificationsQuery = "SELECT * FROM notification WHERE is_read = 0 ORDER BY timestamp DESC";
                 $unreadNotificationsResult = mysqli_query($conn, $unreadNotificationsQuery);
-                $unreadCount = 0;
-                if ($unreadNotificationsResult) {
-                    $unreadRow = mysqli_fetch_assoc($unreadNotificationsResult);
-                    $unreadCount = $unreadRow['unread_count'];
-                }
                 ?>
-
+                
+                <!-- ... Your existing HTML code ... -->
+                
                 <div class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown">
                         <div class="dropdown-item">
                             <i class="far fa-envelope"></i>
-                            <span class="notify"><?php echo $unreadCount; ?></span>
+                            <?php
+                            // Display the count of unread notifications
+                            $unreadNotificationCount = mysqli_num_rows($unreadNotificationsResult);
+                            if ($unreadNotificationCount > 0) {
+                                echo '<span class="notify">' . $unreadNotificationCount . '</span>';
+                            }
+                            ?>
                         </div>
                     </a>
-                    <div class="dropdown-menu notification-menu" aria-labelledby="notifyDropdown">
-                        <h4><?php echo $unreadCount; ?> Unread Notifications</h4>
+                    <div class="dropdown-menu notification-menu">
+                        <h4><?php echo $unreadNotificationCount; ?> Unread Notifications</h4>
                         <ul>
                             <?php
-                            // Fetch notifications from the database
-                            $notificationsQuery = "SELECT * FROM notification ORDER BY timestamp DESC LIMIT 5";
-                            $notificationsResult = mysqli_query($conn, $notificationsQuery);
-
-                            // Display the notifications
-                            while ($row = mysqli_fetch_assoc($notificationsResult)) {
+                            // Display unread notifications in the admin header
+                            while ($row = mysqli_fetch_assoc($unreadNotificationsResult)) {
                                 echo '<li>';
                                 echo '<a href="#">';
+                                echo '<div class="list-img">';
+                                echo '<img src="assets/images/comment4.jpg" alt="">';
+                                echo '</div>';
                                 echo '<div class="notification-content">';
                                 echo '<p>' . htmlspecialchars($row['message']) . '</p>';
                                 echo '<small>' . date("M j, Y g:i A", strtotime($row['timestamp'])) . '</small>';
@@ -170,7 +172,7 @@
                         <a href="all-notifications.php" class="all-button">See all notifications</a>
                     </div>
                 </div>
-
+                
 <!-- ... Your existing HTML code ... -->
 
 
