@@ -1,3 +1,7 @@
+<?php
+require_once 'db_connection.php';
+?>
+
 <!doctype html>
 <html lang="en">
    <head>
@@ -102,7 +106,7 @@
                               </div>
                            </div>
                         </div>
-                        <div class="col-lg-4 col-md-6">
+                        <!-- <div class="col-lg-4 col-md-6">
                            <div class="package-wrap">
                               <figure class="feature-image">
                                  <a href="#">
@@ -341,7 +345,7 @@
                                  </div>
                               </div>
                            </div>
-                        </div>
+                        </div> -->
                      </div>
                   </div>
                </div>
