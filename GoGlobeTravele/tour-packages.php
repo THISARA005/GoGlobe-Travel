@@ -64,6 +64,7 @@ require_once 'db_connection.php';
         </section>");
         echo("<div class='row package-list'>");
         while ($row = mysqli_fetch_assoc($result)) {
+            $pack_id=$row['pack_ID'];
             $thumb_image=$row['thumb_image'];
             $sale_price=$row['sale_price'];
             $title=$row['title'];
@@ -116,7 +117,7 @@ require_once 'db_connection.php';
                      </div>
                      <p>$description.</p>
                      <div class='btn-wrap'>
-                        <a href='#' class='button-text width-6'>Book Now<i class='fas fa-arrow-right'></i></a>
+                     <a href='#' class='button-text width-6' onclick='checkLogin($pack_id)'>Read more<i class='fas fa-arrow-right'></i></a>
                         <a href='#' class='button-text width-6'>Wish List<i class='far fa-heart'></i></a>
                      </div>
                   </div>
@@ -281,7 +282,22 @@ require_once 'db_connection.php';
          </div>
          <!-- header html end -->
       </div>
-
+        <Script>
+  function checkLogin(pack_ID) {
+    const urlParams = new URLSearchParams(window.location.search);
+    const loginStatus = urlParams.get('login');
+    const userId = urlParams.get('user_id');
+    const packId = pack_ID;
+    if (userId) {
+        // User is logged in and has a user_id, proceed with booking
+        // Pass the user_id and pack_id to the booking.html page if needed
+        window.location.href = 'package-detail.php?user_id=' + userId + '&pack_id=' + packId;
+    } else {
+        // User is not logged in or user_id is missing, display error message
+        alert('You need to log in to book.');
+    }
+   }
+        </script>
       <!-- JavaScript -->
       <script src="assets/js/jquery.js"></script>
       <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
