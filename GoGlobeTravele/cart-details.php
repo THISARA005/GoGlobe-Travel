@@ -43,7 +43,7 @@ if ($result && mysqli_num_rows($result) > 0) {
         $duration_day = $row['duration_days'];
         $duration_night = $row['duration_nights'];
         $people = $row['grp_size'];
-    
+        
         $title = $row['title'];
         $ratings = $row['ratings'];
         $review=$row['reviews'];
@@ -53,6 +53,10 @@ if ($result && mysqli_num_rows($result) > 0) {
       
         $row_id = "cart_item_" . $row['pack_ID'];
 
+        $query2="SELECT * FROM pack_booking WHERE pack_ID=$pack_id";
+        $result2 = mysqli_query($mysqli, $query2);
+        $row2 = mysqli_fetch_assoc($result2);
+        $chekin_date=$row2['check_in_date'];
         
         echo "<tbody id='$row_id'>
         <tr>
@@ -64,8 +68,9 @@ if ($result && mysqli_num_rows($result) > 0) {
   
             <span class='cartImage'><img src='uploads/$thumbnail' alt='image'></span>
           </td>
-          <td data-column='Product Name'>$description</td>
+          <td data-column='Product Name'>$title</td>
           <td data-column='Price'>$ $price</td>
+          <td data-column='Check In Date'> $chekin_date</td>
           
           <td data-column='Sub Total'>$ $price</td>
         </tr>
