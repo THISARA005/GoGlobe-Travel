@@ -345,7 +345,7 @@ function clearCart() {
                         if (rowToRemove) {
                             rowToRemove.remove();
                         } else {
-                            alert("Row not found. Removal may not have been successful.");
+                            //alert("Row not found. Removal may not have been successful.");
                         }
                     } else {
                         alert("Error removing package from the cart. Please try again later.");
