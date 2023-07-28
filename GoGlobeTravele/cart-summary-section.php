@@ -132,28 +132,6 @@ else {
     echo "No packages found.";
 }
 
-// if ($result && mysqli_num_rows($result) > 0) {
-//     while ($row = mysqli_fetch_assoc($result)) {
-//        $thumbnail = $row['thumb_image'];
-//         $pack_id = $row['pack_ID'];
-//         // Create a base64 encoded string from the image data
-//         $programm=$row['program'];
-//         $price = $row['reg_price'];
-//         $duration_day = $row['duration_days'];
-//         $duration_night = $row['duration_nights'];
-//         $people = $row['grp_size'];
-    
-//         $title = $row['title'];
-//         $ratings = $row['ratings'];
-//         $review=$row['reviews'];
-//         $description = $row['pack_description'];
-
-        
-
-        
-        // Start package section
-    
-        // End package section
  
 
 // Remember to close the database connection

@@ -1,9 +1,8 @@
 <?php
-
 // Database connection configuration
-$host = 'localhost';     // MySQL server hostname
-$username = 'root';  // MySQL username
-$password = '';  // MySQL password
+$host = 'localhost';       // MySQL server hostname
+$username = 'root';        // MySQL username
+$password = '';            // MySQL password
 $database = 'goglobetravel';  // MySQL database name
 
 // Create a new MySQLi object
@@ -15,52 +14,54 @@ if ($mysqli->connect_errno) {
     // You can handle the connection error gracefully based on your requirements
     exit();
 }
-// Include the database connection file
+
+// Get pack_id and user_id from the query string
 $packId = $_GET['pack_id'];
 $userId = $_GET['user_id'];
 
+// Retrieve booking details from the database
+$sql1 = "SELECT * FROM pack_booking WHERE pack_ID = $packId AND user_ID = $userId";
+$bookingResult = mysqli_query($mysqli, $sql1);
+$row = mysqli_fetch_assoc($bookingResult);
 
-
-// $query=" SELECT * FROM PACKAGES WHERE pack_ID=$pack_id";
-
-
-$billing_date = date("Y-m-d");
-$sql1=" SELECT distinct * from pack_booking where pack_ID=$packId AND user_ID=$userId";
-$Bookingresult = mysqli_query($mysqli, $sql1);
-$row = mysqli_fetch_assoc($Bookingresult);
-$check_in_date=$row['check_in_date'];
-$fName=$row['booking_person'];
-$email=$row['billing_email'];
-$phone=$row['phone'];
+// Extract relevant booking information
+$check_in_date = $row['check_in_date'];
+$fName = $row['booking_person'];
+$email = $row['billing_email'];
+$phone = $row['phone'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-   // Get the form data
-   
-   $card_name = $_POST['card_Name'];
-   $card_number = $_POST['card_number'];
-   $policy = isset($_POST['acceptCheckbox']) ? 1 : 0;
+    // Get the form data
+    $card_name = $_POST['card_Name'];
+    $card_number = $_POST['card_number'];
+    $policy = isset($_POST['acceptCheckbox']) ? 1 : 0;
 
-   $insertInvoiceQuery = " INSERT INTO invoice (pack_ID, user_ID, check_in_date, Fname, Email, phone, car_Number, policy, payment_status)
-   VALUES ($packId, $userId, '$check_in_date', '$fName', '$email', '$phone', '$card_number', '$policy','1');
-    ";
+    // Insert invoice data into the database
+    $insertInvoiceQuery = "INSERT INTO invoice (pack_ID, user_ID, check_in_date, Fname, Email, phone, car_Number, policy, payment_status)
+                           VALUES ($packId, $userId, '$check_in_date', '$fName', '$email', '$phone', '$card_number', $policy, 1)";
 
-    $updateBookingQuery = " UPDATE packages SET status = '1' WHERE pack_ID = $packId  ";
-    mysqli_query($mysqli, $updateBookingQuery);
-
-   $deletecartQuery = " DELETE FROM cart WHERE pack_ID = $packId AND user_ID = $userId ";
-    mysqli_query($mysqli, $deletecartQuery);
-    
+    // Execute the invoice insertion query
     if (mysqli_query($mysqli, $insertInvoiceQuery)) {
+        // Invoice insertion successful, proceed with notification creation
         
-        echo "<script>
-        window.location.href = 'confirmation.php?user_id=' + $userId + '&pack_id=' + $packId
-        </script>";
-
+        // Compose the notification message
+        $notificationMessage = "New booking by User ID: $userId for Package ID: $packId";
+        
+        // Insert notification data into the database
+        $insertNotificationQuery = "INSERT INTO notification (message, timestamp, is_read)
+                                    VALUES ('$notificationMessage', NOW(), 0)";
+        
+        // Execute the notification insertion query
+        if (mysqli_query($mysqli, $insertNotificationQuery)) {
+            // Notification insertion successful
+            // Redirect to the confirmation page
+            header("Location: confirmation.php?user_id=$userId&pack_id=$packId");
+            exit();
+        } else {
+            echo "Error creating notification: " . mysqli_error($mysqli);
+        }
     } else {
-        echo "Error: " . mysqli_error($mysqli);
+        echo "Error creating invoice: " . mysqli_error($mysqli);
     }
-
-
-
 }
 ?>
