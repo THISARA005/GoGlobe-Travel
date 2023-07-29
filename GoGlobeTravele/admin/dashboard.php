@@ -127,13 +127,13 @@ ob_end_clean();
                             <li><a><i class="fas fa-user"></i>Users</a>
                                 <ul>
                                     <li>
-                                        <a href="user.html">User</a>
+                                        <a href="user.php">User</a>
                                     </li>
                                     <li>
-                                        <a href="user-edit.html">User edit</a>
+                                        <a href="user-edit.php">User edit</a>
                                     </li>
                                     <li>
-                                        <a href="new-user.html">New user</a>
+                                        <a href="new-user.php">New user</a>
                                     </li>
                                 </ul>
                             </li>
@@ -146,9 +146,8 @@ ob_end_clean();
                                     <li><a href="db-package-change.php">Change package details</a></li>
                                 </ul>   
                             </li>
-                            <li><a href="db-booking.html"><i class="fas fa-ticket-alt"></i> Booking & Enquiry</a></li>
-                            <li><a href="db-wishlist.html"><i class="far fa-heart"></i>Wishlist</a></li>
-                            <li><a href="db-comment.html"><i class="fas fa-comments"></i>Comments</a></li>
+                            <li><a href="db-booking.php"><i class="fas fa-ticket-alt"></i> Booking  </a></li>
+                            <li><a href="db-Enquiry.php"><i class="fas fa-ticket-alt"></i> Enquiry  </a></li>
                             <li><a href="login.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
                         </ul>
                     </div>
