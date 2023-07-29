@@ -111,7 +111,6 @@ ob_end_clean();
                         <ul>
                             <li><a href="#"><i class="fas fa-cog"></i>Settings</a></li>
                             <li><a href="#"><i class="fas fa-user-tie"></i>Profile</a></li>
-                            <li><a href="#"><i class="fas fa-key"></i>Password</a></li>
                             <li><a href="#"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
                         </ul>
                     </div>
@@ -148,7 +147,6 @@ ob_end_clean();
                             </li>
                             <li><a href="db-booking.php"><i class="fas fa-ticket-alt"></i> Booking  </a></li>
                             <li><a href="db-Enquiry.php"><i class="fas fa-ticket-alt"></i> Enquiry  </a></li>
-                            <li><a href="login.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
                         </ul>
                     </div>
                 </div>

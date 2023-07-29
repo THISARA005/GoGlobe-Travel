@@ -183,6 +183,7 @@
                     </ul>
                 </div>
             </div>
+            <form action='admin_registration.php' method="POST">
             <div class="db-info-wrap">
                 <div class="row">
                     <div class="col-lg-12">
@@ -209,49 +210,15 @@
                                         </div>  
                                     </div>
                                     <div class="col-sm-6">
-                                        <label>Date of Birth</label>
-                                        <div class="row">
-                                            <div class="col-sm-4">
-                                                <div class="form-group">
-                                                    <select>
-                                                        <option value="1">Day</option>
-                                                        <option value="0">Sunday</option>
-                                                        <option value="0">Monday</option>
-                                                        <option value="0">Tuesday</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <div class="form-group">
-                                                    <select>
-                                                        <option value="1">Month</option>
-                                                        <option value="0">January</option>
-                                                        <option value="0">February</option>
-                                                        <option value="0">March</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <div class="form-group">
-                                                    <select>
-                                                        <option value="1">Years</option>
-                                                        <option value="0">1990</option>
-                                                        <option value="0">1992</option>
-                                                        <option value="0">1993</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>  
+                                        <div class="form-group">
+                                            <label>Password</label>
+                                            <input name="password" class="form-control" type="password" required>
+                                        </div>
                                     </div>
                                     <div class="col-sm-6">
+                                        <label>Date of Birth</label>
                                         <div class="form-group">
-                                            <label>Country Code</label>
-                                            <select>
-                                                <option value="1">+97701</option>
-                                                <option value="0">1990</option>
-                                                <option value="0">1992</option>
-                                                <option value="0">1993</option>
-                                            </select>
+                                            <input type="date" name="dob">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
@@ -261,59 +228,14 @@
                                         </div>
                                     </div>
                                     <div class="col-12">
-                                        <h4>Contact Details</h4>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label>Country</label>
-                                            <select>
-                                                <option value="0">Italy</option>
-                                                <option value="1">Japan</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label>State</label>
-                                            <select >
-                                                <option value="0">New York</option>
-                                                <option value="1">Mexico</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label>City</label>
-                                            <select>
-                                                <option value="0">Tokyo</option>
-                                                <option value="1">Paris</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label>Address</label>
-                                            <input name="address" class="form-control" type="text">
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
                                         <h4>Upload Profile Photo</h4>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="upload-input">
-                                            <div class="form-group">
-                                              <span class="upload-btn">Upload a image</span>
-                                              <input type="file" name="myfile">
+                                        <div class="col-sm-6">
+                                            <div class="upload-input">
+                                                <div class="form-group">
+                                                    <span class="upload-btn">Upload a Image</span>
+                                                    <input type="file" name="profile_photo" accept="image/">
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <h4>Describe Yourself</h4>
-                                    </div>
-                                    <div class="col-sm-12">
-                                        <div class="form-group">
-                                            <label>Please Tell Us About You</label>
-                                            <textarea class="form-control" id="message" name="message" placeholder="" required=""></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -323,6 +245,7 @@
                     </div>  
                 </div>
             </div>
+</form>
             <!-- Content / End -->
             <!-- Copyrights -->
             <div class="copyrights">
