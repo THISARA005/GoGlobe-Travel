@@ -43,6 +43,7 @@ if ($result && mysqli_num_rows($result) > 0) {
         $ratings = $row['ratings'];
         $review=$row['reviews'];
         $description = $row['pack_description'];
+        $location = $row['location'];
         
 
         echo "<div class='col-lg-8'>
@@ -62,7 +63,7 @@ if ($result && mysqli_num_rows($result) > 0) {
                     </li>
                     <li>
                        <i class='fas fa-map-marked-alt'></i>
-                       Norway
+                       $location
                     </li>
                  </ul>
               </div>
@@ -207,12 +208,13 @@ if ($result && mysqli_num_rows($result) > 0) {
                                     $result3 = mysqli_query($mysqli, $query3);
                                     $row3 = mysqli_fetch_assoc($result3);
                                     $fName=$row3['fName'];
+                                    $profile_pic=$row3['profile_pic'];
 
                                     
                                     
                                     echo "<li>
                                     <figure class='comment-thumb'>
-                                    <img src='assets/images/img21.jpg' alt=''>
+                                    <img src='uploadss/$profile_pic' alt=''>
                                     </figure>
                                     <div class='comment-content'>
                                        <div class='comment-header'>
@@ -271,7 +273,6 @@ if ($result && mysqli_num_rows($result) > 0) {
                              <p>
                                 <input type='text' name='review' placeholder='Add your review' >
                              </p>
-
                              <p>
                                 <input type='submit' name='submit' value='Submit'>
                              </p>
@@ -279,12 +280,13 @@ if ($result && mysqli_num_rows($result) > 0) {
                        </div>
                     </div>
                  </div>
-                 <div class='tab-pane' id='map' role='tabpanel' aria-labelledby='map-tab'>
-                    <div class='map-area'>
-                       <iframe src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d60998820.06503915!2d95.3386452160086!3d-21.069765827214972!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2b2bfd076787c5df%3A0x538267a1955b1352!2sAustralia!5e0!3m2!1sen!2snp!4v1579777829477!5m2!1sen!2snp' height='450' allowfullscreen=''></iframe>
-                    </div>
+                 <div class='tab-pane' id='map' role='tabpanel' aria-labelledby='map-tab'>";
+                 echo "<iframe src='https://maps.google.com/maps?q=" . urlencode($location) . "&output=embed' height='450' allowfullscreen=''></iframe>";
+echo "
                  </div>
-              </div>
+                 
+             </div>
+             
            </div>
            <div class='single-tour-gallery'>
               <h3>GALLERY / PHOTOS</h3>
