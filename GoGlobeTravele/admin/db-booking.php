@@ -235,9 +235,10 @@ if(mysqli_num_rows($result) > 0) {
                
                 <td><span class='badge badge-success'>$grpSize</span></td>
                 <td>
-            
-                    <button class='badge badge-danger delete-btn' data-bookingid='$bookingID'><i class='far fa-trash-alt'></i></button>
-               
+                <form action='' method='post' class='delete-form'>
+                <input type='hidden' name='bookingID' value='$bookingID'>
+                <button type='submit' name='deleteBooking' class='badge badge-danger delete-btn' data-bookingid='$bookingID'><i class='far fa-trash-alt'></i></button>
+            </form>
                 </td>
             </tr>
         ";
@@ -276,6 +277,37 @@ if(mysqli_num_rows($result) > 0) {
 <script src="https://cdn.jsdelivr.net/npm/tableexport@5.2.2/dist/js/tableexport.min.js"></script>
 
     
+<!-- Add this script after including jQuery -->
+<script>
+    $(document).ready(function() {
+        // Attach a click event handler to the delete buttons
+        $('.delete-btn').click(function(e) {
+            e.preventDefault();
+            var bookingID = $(this).data('bookingid');
+
+            // Show a confirmation dialog before proceeding with the delete
+            if (confirm('Are you sure you want to delete this booking?')) {
+                // Submit the delete form via AJAX
+                $.ajax({
+                    type: 'POST',
+                    url: 'delete_booking.php', // Replace with the actual PHP script that handles the delete operation
+                    data: { deleteBooking: true, bookingID: bookingID },
+                    success: function(response) {
+                        // Display the success message from the PHP script
+                        
+
+                        // Remove the deleted row from the table
+                        $('.delete-form input[value="' + bookingID + '"]').closest('tr').remove();
+                    },
+                    error: function(xhr, status, error) {
+                        // Display the error message if deletion fails
+                        alert('Error: ' + error);
+                    }
+                });
+            }
+        });
+    });
+</script>
 
     <!-- end Container Wrapper -->
     <script src="assets/js/jquery-3.2.1.min.js"></script>

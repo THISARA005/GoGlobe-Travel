@@ -17,6 +17,7 @@
       <title>Travele | Travel & Tour HTML5 template </title>
 </head>
 <body>
+
     <!-- start Container Wrapper -->
     <div id="container-wrapper">
         <!-- Dashboard -->
@@ -166,61 +167,93 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="active-menu"><a href="db-add-package.html"><i class="fas fa-umbrella-beach"></i>Add Package</a></li>
+                        <li><a href="db-add-package.html"><i class="fas fa-umbrella-beach"></i>Add Package</a></li>
                         <li>
                             <a><i class="fas fa-hotel"></i></i>packages</a>
                             <ul>
-                                <li><a href="db-package-active.php">Active</a></li>
-                                <li><a href="db-package-pending.php">Pending</a></li>
-                                
+                                <li><a href="db-package-active.html">Active</a></li>
+                                <li><a href="db-package-pending.html">Pending</a></li>
+                                <li><a href="db-package-expired.html">Expired</a></li>
                             </ul>   
                         </li>
-                        <li><a href="db-booking.html"><i class="fas fa-ticket-alt"></i> Booking & Enquiry</a></li>
+                        <li class="active-menu"><a href="db-booking.html"><i class="fas fa-ticket-alt"></i> Booking & Enquiry</a></li>
                         <li><a href="db-wishlist.html"><i class="far fa-heart"></i>Wishlist</a></li>
                         <li><a href="db-comment.html"><i class="fas fa-comments"></i>Comments</a></li>
                         <li><a href="login.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
                     </ul>
                 </div>
             </div>
-            <form action="save_enquiry.php" method="POST" enctype="multipart/form-data" style="width: 1500px;">
-                <div class="db-info-wrap db-add-tour-wrap">
-                    <div class="row">
-                        <!-- Listings -->
-                        <div class="col-lg-8 col-xl-9">
-                            <div class="dashboard-box">
-                                <div class="custom-field-wrap">
-                                    <div class="form-group">
-                                        <label>Title</label>
-                                        <input type="text" name="title">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Description</label>
-                                        <textarea name="pack_description"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            
-                            
-                     
-                            <div class="dashboard-box">
-                                <div class="custom-field-wrap">
-                                    <h4>Send the enquiry</h4>
-                                    
-                                    <div class="publish-action">
-                                        <input type="submit" name="publish" value="Send">
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            
-                        </div>
-                    </div>  
-                     
+            <div class="db-info-wrap db-booking">
+                <div class="dashboard-box table-opp-color-box">
+                    <h3>enquiries</h3>
+                    <p>Airtport Hotels The Right Way To Start A Short Break Holiday</p>
+                    <div class="table-responsive">
+                        <table id="exportTable" class="table">
+                            <thead>
+                                <tr>
+                                    <th>User</th>
+                                    <th>User_Id</th>
+                                    <th>Date</th>
+                                    <th>Subject</th>
+                                  
+                                    <th>action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <?php
+require_once "db_connection.php";
+//select all the enquiries from the database and take the user details who send the enquiry.
+
+$query = "SELECT e.*, u.*
+FROM enquiries e
+JOIN users u ON e.user_id = u.user_ID
+";
+
+$result = mysqli_query($conn, $query);
+//in here i need to show the enquiry details in the table.
+if(mysqli_num_rows($result) > 0) {
+    while($row = mysqli_fetch_array($result)) {
+        $enquiry_id = $row['enq_id'];
+        $user_id = $row['user_id'];
+        $date = $row['date'];
+        $subject = $row['subject'];
+        $message = $row['message'];
+
+
+        echo "
+        <tr>
+            <td>$user_id</td>
+            <td>$date</td>
+            <td>$subject</td>
+            <td>$message</td>
+            <td>
+            <form action='delete_enquiry.php' method='post' class='delete-form'>
+    <input type='hidden' name='enquiry_id' value='$enquiry_id'>
+    <button type='submit' name='deleteEnquiry' class='badge badge-danger delete-btn' data-enquiry_id='$enquiry_id'><i class='far fa-trash-alt'></i></button>
+</form>
+
+        </td>
+            
+        ";
+    }
+} else {
+    echo "<tr><td colspan='8'>No bookings found.</td></tr>";
+}
+?>
+
+                            </tbody>
+                        </table>
+                        <form action="enqdatatoexcel.php" method="POST">
+                        
+        <button  type="submit" name="enqexportToExcel">Export to Excel</button>
+        
+  
+</form>
+                    </div>
                 </div>
+            </div>
+      
 
-
-            </form>
             <!-- Content / End -->
             <!-- Copyrights -->
             <div class="copyrights">
@@ -229,7 +262,45 @@
         </div>
         <!-- Dashboard / End -->
     </div>
-    <!-- end Container Wrapper -->
+        <!-- Include TableExport.js -->
+    <!-- Include jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Include TableExport.js -->
+<script src="https://cdn.jsdelivr.net/npm/tableexport@5.2.2/dist/js/tableexport.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        // Attach a click event handler to the delete buttons
+        $('.delete-btn').onclick(function(e) {
+            e.preventDefault();
+            var enquiryID = $(this).data('enquiry_id');
+
+            // Show a confirmation dialog before proceeding with the delete
+            if (confirm('Are you sure you want to delete this inquiry?')) {
+                // Submit the delete request via AJAX
+                $.ajax({
+                    type: 'POST',
+                    url: 'delete_enquiry.php', // Replace with the actual PHP script that handles the delete operation
+                    data: { deleteEnquiry: true, enquiryID: enquiryID },
+                    success: function(response) {
+                        // Display the success message from the PHP script
+                        alert(response);
+
+                        // Remove the deleted row from the table
+                        $('.delete-form input[value="' + enquiryID + '"]').closest('tr').remove();
+                    },
+                    error: function(xhr, status, error) {
+                        // Display the error message if deletion fails
+                        alert('Error: ' + error);
+                    }
+                });
+            }
+        });
+    });
+</script>
+  
+
     <!-- end Container Wrapper -->
     <script src="assets/js/jquery-3.2.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
@@ -239,6 +310,4 @@
     <script src="assets/js/jquery.slicknav.js"></script>
     <script src="assets/js/dashboard-custom.js"></script>
 </body>
-
-<!-- Mirrored from cyclonethemes.com/demo/html/padhai/dashboard-addtour.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 02 Feb 2020 09:01:50 GMT -->
 </html>

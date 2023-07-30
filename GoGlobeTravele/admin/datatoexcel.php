@@ -10,6 +10,7 @@ LEFT JOIN users u ON pb.user_ID = u.user_ID
 ";
 $result = mysqli_query($conn, $query);
 if(mysqli_num_rows($result) > 0)
+
 {
     $output .='
     <table class="table" bordered="1">
