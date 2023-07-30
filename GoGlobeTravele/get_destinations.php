@@ -5,10 +5,10 @@ require_once "db_connection.php";
 $query = "SELECT * FROM destination";
 
 $result = mysqli_query($conn, $query);
-
+echo '<div class="row">';
 if ($result) {
     $count = 0;
-    echo '<div class="row">';
+   
     while ($row = mysqli_fetch_assoc($result)) {
         $title = $row['title'];
         $dest_id = $row['dest_id'];
@@ -16,10 +16,10 @@ if ($result) {
         $city = $row['city'];
 
         echo '
-        <div class="col-md-6 mb-4">
+        <div class="col-md-12 mb-4">
             <div class="desti-item overlay-desti-item">
                 <figure class="desti-image">
-                    <img src="' . $dest_image . '" alt="" style="width: 100%; height: 200px; object-fit: cover;">
+                    <img src="' . $dest_image . '" alt="" style="width: 100%; height: 300px; object-fit: cover;">
                 </figure>
                 <div class="meta-cat bg-meta-cat">
                     <a href="single-destination.php?dest_id=' . $dest_id . '">' . $city . '</a>
@@ -34,6 +34,7 @@ if ($result) {
                 </div>
             </div>
         </div>';
+    
 
         $count++;
     }

@@ -56,7 +56,7 @@ if ($result && mysqli_num_rows($result) > 0) {
                  <ul>
                     <li>
                        <i class='far fa-clock'></i>
-                       $duration_day'/'$duration_night
+                       $duration_day D/$duration_night N
                     </li>
                     <li>
                        <i class='fas fa-user-friends'></i>
