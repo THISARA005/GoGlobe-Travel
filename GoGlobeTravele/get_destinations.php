@@ -11,7 +11,7 @@ if ($result) {
     while ($row = mysqli_fetch_assoc($result)) {
         
         $title=$row['title'];
-       
+       $dest_id=$row['dest_id'];
         $dest_image=$row['pack_image'];
         $city=$row['city'];
 
@@ -24,7 +24,7 @@ if ($result) {
                     <img src="' . $dest_image . '" alt="" style="width: 100%; height: 200px; object-fit: cover;">
                 </figure>
                 <div class="meta-cat bg-meta-cat">
-                    <a href="single-destination.php">'.$city.'</a>
+                    <a href="single-destination.php?dest_id=' . $dest_id . '">'.$city.'</a>
                 </div>
                 <div class="desti-content">
                     <h3>

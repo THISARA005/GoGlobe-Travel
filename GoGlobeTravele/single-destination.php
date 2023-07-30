@@ -46,27 +46,56 @@
                </div>
                <div class="inner-shape"></div>
             </section>
+            <?php
+require_once "db_connection.php";
+$dest_id=$_GET['dest_id'];
+// Query to get destination data from the "destination" table
+$query = "SELECT * FROM destination WHERE dest_id = $dest_id";
+
+$result = mysqli_query($conn, $query);
+
+if ($result) {
+    // Loop through the fetched data and generate the HTML code for each destination
+    while ($row = mysqli_fetch_assoc($result)) {
+        
+        $title=$row['title'];
+       $pack_description=$row['pack_description'];
+        $dest_image=$row['pack_image'];
+        $city=$row['city'];
+
+        echo '
+        <div class="single-page-section">
+               <div class="container">
+                  <figure class="single-feature-img">
+                     <img src="' . $dest_image . '" alt="">
+                  </figure>
+                  <div class="page-content">
+                     <p>
+                     '.$pack_description.'
+                     </p>
+                     
+           
+                  </div>
+               </div>
+            </div>
+        ';
+
+    }
+   }
+   ?>
             <!-- Inner Banner html end-->
-            <div class="single-page-section">
+            <!-- <div class="single-page-section">
                <div class="container">
                   <figure class="single-feature-img">
                      <img src="assets/images/img31.jpg" alt="">
                   </figure>
                   <div class="page-content">
-                     <p>Amet orci, nibh blanditiis tempor soluta bibendum, omnis dictumst eiusmod felis mollis porta molestiae, laborum fugiat, phasellus minim labore habitasse culpa dignissimos? Distinctio molestias! Incididunt pede nostra mollit quam quaerat voluptas similique accumsan quae accusantium aliqua illum faucibus amet voluptatum natoque sodales. Proident facilisis, atque impedit ullam recusandae ducimus quisquam faucibus dolorum nibh neque libero, laudantium harum labore facilis proident nec doloribus netus. Posuere accusamus nam repudiandae, tincidunt! Id doloribus tempus potenti adipiscing deleniti nemo! Vel, tortor eiusmod omnis molestie sint quisque mollitia molestiae et! Veniam mollitia adipisci, anim eligendi? Turpis laborum leo quisque eos! Suspen sectetuer proident ex nostrud, ratione.</p>
-                     <p>Amet orci, nibh blanditiis tempor soluta bibendum, omnis dictumst eiusmod felis mollis porta molestiae, laborum fugiat, phasellus minim labore habitasse culpa dignissimos? Distinctio molestias! Incididunt pede nostra mollit quam quaerat voluptas similique accumsan quae accusantium aliqua illum faucibus amet voluptatum natoque sodales. Laboris justo dolorem deserunt consectetur ultricies tortor cum tenetur ducimus occaecati imperdiet enim mus ab arcu. Taciti euismod metpus!</p>
-                     <ul>
-                        <li>Purus sequi accusamus? Nibh aut perspiciatis, lorem lorem perspiciatis.</li>
-                        <li>Dictum? Posuere cumque sed illum facilisis leo illum facilisis.</li>
-                        <li>Neque officiis feugiat praesentium qui, aliqua hic commodo praesentium.</li>
-                        <li>Asperiores irure class lobortis veritatis, alias sem lobortis veritatis.</li>
-                        <li>Ipsum eros quaerat deserunt proin porttitor, fugit ultrices.</li>
-                        <li>Volutpat, justo mollit ullamco sagittis duis enim labore, ullamcorper dicta</li>
-                     </ul>
-                     <p>Sequi sociis leo, interdum eos ipsa pharetra, unde fringilla erat vulputate litora nisl adipisicing primis consectetuer erat aliqua reprehenderit unde accusamus earum sollicitudin voluptatum wisi vulputate deleniti, accusamus, animi rutrum. Labore et! Odit, nunc nostra, excepturi dui netus, euismod pariatur? Proin vivamus diamlorem natoque reprehenderit vivamus diamlorem natpo.</p>
+                     <p></p>
+                     
+           
                   </div>
                </div>
-            </div>
+            </div> -->
          </main>
          <?php include 'footer.php'; ?>
 
