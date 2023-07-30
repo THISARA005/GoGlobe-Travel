@@ -50,8 +50,6 @@ ob_end_clean();
                         </div>
                     </form>
                 </div>
-                    
-
                 <?php
                 require_once('db_connection.php');
                 // Fetch count of unread notifications from the database

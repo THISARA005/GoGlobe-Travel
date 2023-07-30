@@ -154,139 +154,67 @@
                                             <th>Phone</th>
                                             <th>Email</th>
                                             <th>Country</th>
-                                            <th>Listings</th>
-                                            <th>View</th>
-                                            <th>Edit</th>
+                                            <th>Enquries</th>
                                             <th>Delete</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td><span class="list-img"><img src="assets/images/comment.jpg" alt=""></span>
-                                            </td>
-                                            <td><a href="#"><span class="list-name">Kathy Brown</span></a>
-                                            </td>
-                                            <td>+01 3214 6522</td>
-                                            <td>chadengle@dummy.com</td>
-                                            <td>Australia</td>
-                                            <td>
-                                                <span class="badge badge-primary">02</span>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-success"><i class="far fa-eye"></i></span>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-success"><i class="far fa-edit"></i></span>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-danger"><i class="far fa-trash-alt"></i></span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><span class="list-img"><img src="assets/images/comment2.jpg" alt=""></span>
-                                            </td>
-                                            <td><a href="#"><span class="list-name">Kathy Brown</span></a>
-                                            </td>
-                                            <td>+01 3214 6522</td>
-                                            <td>chadengle@dummy.com</td>
-                                            <td>Australia</td>
-                                            <td>
-                                                <span class="badge badge-primary">02</span>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-success"><i class="far fa-eye"></i></span>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-success"><i class="far fa-edit"></i></span>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-danger"><i class="far fa-trash-alt"></i></span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><span class="list-img"><img src="assets/images/comment3.jpg" alt=""></span>
-                                            </td>
-                                            <td><a href="#"><span class="list-name">Kathy Brown</span></a>
-                                            </td>
-                                            <td>+01 3214 6522</td>
-                                            <td>chadengle@dummy.com</td>
-                                            <td>Australia</td>
-                                            <td>
-                                                <span class="badge badge-primary">02</span>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-success"><i class="far fa-eye"></i></span>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-success"><i class="far fa-edit"></i></span>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-danger"><i class="far fa-trash-alt"></i></span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><span class="list-img"><img src="assets/images/comment4.jpg" alt=""></span>
-                                            </td>
-                                            <td><a href="#"><span class="list-name">Kathy Brown</span></a>
-                                            </td>
-                                            <td>+01 3214 6522</td>
-                                            <td>chadengle@dummy.com</td>
-                                            <td>Australia</td>
-                                            <td>
-                                                <span class="badge badge-primary">02</span>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-success"><i class="far fa-eye"></i></span>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-success"><i class="far fa-edit"></i></span>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-danger"><i class="far fa-trash-alt"></i></span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><span class="list-img"><img src="assets/images/comment5.jpg" alt=""></span>
-                                            </td>
-                                            <td><a href="#"><span class="list-name">Kathy Brown</span></a>
-                                            </td>
-                                            <td>+01 3214 6522</td>
-                                            <td>chadengle@dummy.com</td>
-                                            <td>Australia</td>
-                                            <td>
-                                                <span class="badge badge-primary">02</span>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-success"><i class="far fa-eye"></i></span>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-success"><i class="far fa-edit"></i></span>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-danger"><i class="far fa-trash-alt"></i></span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><span class="list-img"><img src="assets/images/comment6.jpg" alt=""></span>
-                                            </td>
-                                            <td><a href="#"><span class="list-name">Kathy Brown</span></a>
-                                            </td>
-                                            <td>+01 3214 6522</td>
-                                            <td>chadengle@dummy.com</td>
-                                            <td>Australia</td>
-                                            <td>
-                                                <span class="badge badge-primary">02</span>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-success"><i class="far fa-eye"></i></span>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-success"><i class="far fa-edit"></i></span>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-danger"><i class="far fa-trash-alt"></i></span>
-                                            </td>
-                                        </tr>
+                                        <?php
+
+                                        // Database connection configuration
+                                        $host = 'localhost';     // MySQL server hostname
+                                        $username = 'root';  // MySQL username
+                                        $password = '';  // MySQL password
+                                        $database = 'goglobetravel';  // MySQL database name
+
+                                        // Create a new MySQLi object
+                                        $mysqli = new mysqli($host, $username, $password, $database);
+
+                                        // Check the connection
+                                        if ($mysqli->connect_errno) {
+                                            echo "Failed to connect to MySQL: " . $mysqli->connect_error;
+                                            
+                                            exit();
+                                        }
+
+                                        // SQL query to fetch user data from the database
+                                        $query = "SELECT * FROM users";
+                                        $result = mysqli_query($mysqli, $query);
+
+                                        // Check if there are any rows returned
+                                        if (mysqli_num_rows($result) > 0) {
+                                            // Loop through the results and generate the table rows dynamically
+                                            while ($row = mysqli_fetch_assoc($result)) {
+                                                $profile_pic = $row['profile_pic'];
+                                                $user_ID = $row['user_ID'];
+                                                echo "<tr>";
+                                                echo "<td><span class='list-img'><img src='uploads/$profile_pic  alt=''></span></td>";
+                                                echo "<td><a href='#'><span class='list-name'>" . $row['fName'] ." " . $row['Lname']."</span></a></td>";
+                                                echo "<td>" . $row['mobile'] . "</td>";
+                                                echo "<td>" . $row['email'] . "</td>";
+                                                echo "<td>" . $row['country'] . "</td>";
+                                                echo "<td><span class='badge badge-primary'>02</span></td>";
+                                                // echo "<td><span class='badge badge-success'><i class='far fa-eye'></i></span></td>";
+                                                // echo "<td><span class='badge badge-success'><i class='far fa-edit'></i></span></td>";
+                                                echo "<td>
+                                                <span class='badge badge-danger delete-icon' data-userid=$user_ID>
+                                                  <i class='far fa-trash-alt'></i>
+                                                </span>
+                                              </td>
+                                              
+                                              ";
+
+                                                echo "</tr>";
+                                            }
+                                        } else {
+                                            // No user data found in the database
+                                            echo "<tr><td colspan='9'>No users found.</td></tr>";
+                                        }
+
+                                        // Remember to close the database connection
+                                        mysqli_close($mysqli);
+                                        ?>
+
                                     </tbody>
                                 </table>
                             </div>
@@ -302,6 +230,44 @@
         </div>
         <!-- Dashboard / End -->
     </div>
+    <!-- Include jQuery library -->
+<!-- Include jQuery library -->
+<!-- Include jQuery library -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+$(document).ready(function() {
+  // Attach a click event handler to the delete icons
+  $('.delete-icon').on('click', function() {
+    var row = $(this).closest('tr'); // Get the parent row of the clicked icon
+    var userID = $(this).data('userid'); // Get the user ID from the data attribute
+
+    // Confirm with the user before performing the deletion
+    if (confirm("Are you sure you want to delete this user?")) {
+      // Send an AJAX request to delete the record
+      $.ajax({
+        url: 'delete_user.php',
+        type: 'POST',
+        data: { userID: userID },
+        success: function(data) {
+          if (data === 'success') {
+            // If the deletion was successful, remove the row from the table
+            row.remove();
+          } else {
+            // Handle the error or display a notification if needed
+            alert('Error: Failed to delete user.');
+          }
+        },
+        error: function(xhr, status, error) {
+          console.error(error);
+        }
+      });
+    }
+  });
+});
+</script>
+
+
     <!-- end Container Wrapper -->
     <!-- *Scripts* -->
     <script src="assets/js/jquery-3.2.1.min.js"></script>
