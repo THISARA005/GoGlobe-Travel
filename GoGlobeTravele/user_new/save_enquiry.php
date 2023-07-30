@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Get the form data
     $title = $_POST["title"];
     $pack_description = $_POST["pack_description"];
-    $current_date = date("Y-m-d"); // Get the current date in YYYY-MM-DD format
+    $current_date = date("Y-m-d H:i:s");  // Get the current date in YYYY-MM-DD format
     $user_id = $_GET['user_id'];
     // You might need to fetch the user ID from the user session
     // For demonstration purposes, let's assume the user ID is 1

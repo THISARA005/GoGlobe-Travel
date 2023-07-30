@@ -212,10 +212,10 @@
 
                                 // Query the pack_booking table to get relevant booking details for the user
                                 $query = "SELECT pb.*, p.*, u.*
-          FROM pack_booking pb
-          JOIN packages p ON pb.pack_ID = p.pack_ID
-          JOIN users u ON pb.user_ID = u.user_ID
-          WHERE pb.user_ID = $user_id";
+                                        FROM pack_booking pb
+                                        JOIN packages p ON pb.pack_ID = p.pack_ID
+                                        JOIN users u ON pb.user_ID = u.user_ID
+                                        WHERE pb.user_ID = $user_id";
 
 
                                 $result = mysqli_query($conn, $query);
