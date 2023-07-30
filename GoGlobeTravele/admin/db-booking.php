@@ -188,7 +188,7 @@
                     <h4>Recent Booking</h4>
                     <p>Airtport Hotels The Right Way To Start A Short Break Holiday</p>
                     <div class="table-responsive">
-                        <table class="table">
+                        <table id="exportTable" class="table">
                             <thead>
                                 <tr>
                                     <th>User</th>
@@ -235,7 +235,9 @@ if(mysqli_num_rows($result) > 0) {
                
                 <td><span class='badge badge-success'>$grpSize</span></td>
                 <td>
-                    <span class='badge badge-danger delete-btn' data-bookingid='$bookingID'><i class='far fa-trash-alt'></i></span>
+            
+                    <button class='badge badge-danger delete-btn' data-bookingid='$bookingID'><i class='far fa-trash-alt'></i></button>
+               
                 </td>
             </tr>
         ";
@@ -247,9 +249,17 @@ if(mysqli_num_rows($result) > 0) {
 
                             </tbody>
                         </table>
+                        <form action="datatoexcel.php" method="POST">
+                        
+        <button  type="submit" name="exportToExcel">Export to Excel</button>
+        
+  
+</form>
                     </div>
                 </div>
             </div>
+      
+
             <!-- Content / End -->
             <!-- Copyrights -->
             <div class="copyrights">
@@ -258,6 +268,15 @@ if(mysqli_num_rows($result) > 0) {
         </div>
         <!-- Dashboard / End -->
     </div>
+        <!-- Include TableExport.js -->
+    <!-- Include jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Include TableExport.js -->
+<script src="https://cdn.jsdelivr.net/npm/tableexport@5.2.2/dist/js/tableexport.min.js"></script>
+
+    
+
     <!-- end Container Wrapper -->
     <script src="assets/js/jquery-3.2.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
