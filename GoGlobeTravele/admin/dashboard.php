@@ -152,11 +152,14 @@ ob_end_clean();
                                 <i class="far fa-chart-bar"></i>
                             </div>
                             <div class="dashboard-stat-content">
-                                <h4>Today Views</h4>
-                                <h5>22,520</h5> 
+                                <h4>Today Bookings</h4>
+                                <h5 id="bookingCount">Loading...</h5>
                             </div>
                         </div>
                     </div>
+
+
+
                     <!-- Item -->
                     <div class="col-xl-3 col-sm-6">
                         <div class="db-info-list">
@@ -165,10 +168,12 @@ ob_end_clean();
                             </div>
                             <div class="dashboard-stat-content">
                                 <h4>Earnings</h4>
-                                <h5>16,520</h5> 
+                                <h5 id="totalEarnings">Loading...</h5>
                             </div>
                         </div>
                     </div>
+
+
                     <!-- Item -->
                     <div class="col-xl-3 col-sm-6">
                         <div class="db-info-list">
@@ -177,10 +182,13 @@ ob_end_clean();
                             </div>
                             <div class="dashboard-stat-content">
                                 <h4>Users</h4>
-                                <h5>18,520</h5> 
+                                <h5 id="userCount">Loading...</h5>
                             </div>
                         </div>
                     </div>
+
+
+
                     <div class="col-xl-3 col-sm-6">
                         <div class="db-info-list">
                             <div class="dashboard-stat-icon bg-red">
@@ -188,16 +196,19 @@ ob_end_clean();
                             </div>
                             <div class="dashboard-stat-content">
                                 <h4>Enquiry</h4>
-                                <h5>19,520</h5> 
+                                <h5 id="enquiryCount">Loading...</h5>
                             </div>
                         </div>
                     </div>
+
+
+
                 </div>
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="dashboard-box table-opp-color-box">
                             <h4>Recent Booking</h4>
-                            <p>Last 5 Bokking history.</p>
+                            <p>Last 5 Booking history.</p>
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
@@ -245,7 +256,7 @@ ob_end_clean();
 
                                     $query = "SELECT e.*, u.*
                                     FROM enquiries e
-                                    JOIN users u ON e.user_id = u.user_ID
+                                    JOIN users u ON e.user_id = u.user_ID LIMIT 5
                                     ";
                                     
                                     $result = mysqli_query($conn, $query);
@@ -534,6 +545,98 @@ ob_end_clean();
     </div>
     <!-- end Container Wrapper -->
     <!-- *Scripts* -->
+    <!-- Include jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        // Fetch total earning via AJAX
+        $.ajax({
+            type: 'GET',
+            url: 'get_total_earning.php',
+            dataType: 'json',
+            success: function(data) {
+                // Update the "Earnings" section with the fetched value
+                if (data.total_earning) {
+                    $('#totalEarnings').text(data.total_earning);
+                } else {
+                    $('#totalEarnings').text('Error fetching data');
+                }
+            },
+            error: function(xhr, status, error) {
+                $('#totalEarnings').text('Error fetching data');
+            }
+        });
+    });
+</script>
+
+
+<script>
+    $(document).ready(function() {
+        // Fetch user count via AJAX
+        $.ajax({
+            type: 'GET',
+            url: 'get_user_count.php',
+            dataType: 'json',
+            success: function(data) {
+                // Update the "Users" section with the fetched value
+                if (data.user_count) {
+                    $('#userCount').text(data.user_count);
+                } else {
+                    $('#userCount').text('Error fetching data');
+                }
+            },
+            error: function(xhr, status, error) {
+                $('#userCount').text('Error fetching data');
+            }
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        // Fetch enquiry count via AJAX
+        $.ajax({
+            type: 'GET',
+            url: 'get_enquiry_count.php',
+            dataType: 'json',
+            success: function(data) {
+                // Update the "Enquiry" section with the fetched value
+                if (data.enquiry_count) {
+                    $('#enquiryCount').text(data.enquiry_count);
+                } else {
+                    $('#enquiryCount').text('Error fetching data');
+                }
+            },
+            error: function(xhr, status, error) {
+                $('#enquiryCount').text('Error fetching data');
+            }
+        });
+    });
+</script>
+
+
+<script>
+    $(document).ready(function() {
+        // Fetch booking count via AJAX
+        $.ajax({
+            type: 'GET',
+            url: 'get_booking_count.php',
+            dataType: 'json',
+            success: function(data) {
+                // Update the "Today Views" section with the fetched value
+                if (data.booking_count) {
+                    $('#bookingCount').text(data.booking_count);
+                } else {
+                    $('#bookingCount').text('Error fetching data');
+                }
+            },
+            error: function(xhr, status, error) {
+                $('#bookingCount').text('Error fetching data');
+            }
+        });
+    });
+</script>
     <script src="assets/js/jquery-3.2.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
