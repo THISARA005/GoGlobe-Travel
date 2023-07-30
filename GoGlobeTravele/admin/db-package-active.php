@@ -198,7 +198,52 @@
                                     <th>action</th>
                                 </tr>
                             
-                            <?php include 'active-package-list.php';?>
+                                <?php
+require_once "db_connection.php";
+
+
+
+$query = "SELECT * FROM packages WHERE status = '1' ";
+$result = mysqli_query($conn, $query);
+if(mysqli_num_rows($result) > 0)
+{
+    while($row = mysqli_fetch_array($result))
+    {
+        $packId = $row['pack_ID'];
+        $title = $row['title'];
+
+        $query2=" SELECT * FROM pack_booking WHERE pack_ID=$packId";
+        $result2 = mysqli_query($conn, $query2);
+        //$row2 = mysqli_fetch_assoc($result2);
+        while($row2=mysqli_fetch_array($result2)){
+            $chekin = $row2['check_in_date'];
+            $city = $row['city'];
+
+            echo"
+
+            <tbody><tr id='row_<?php echo $packId; ?>'> <!-- Add a unique identifier for each row -->
+            <td>
+                <span class='package-name'> $title</span>
+            </td>
+            <td>$chekin</td>
+            <td>$city</td>
+            <td><span class='badge badge-success'>Active</span></td>
+            <td>
+                <span class='badge badge-danger delete-btn' data-packid='<?php echo $packId; ?>' onclick='deleteRecord( $packId)' ><i class='far fa-trash-alt'></i></span>
+            </td>
+        </tr>
+        
+                            </tbody>
+
+                          
+            ";
+        }
+
+    }
+}
+
+
+?>
                         </table>
                     </div>
                 </div>
@@ -224,6 +269,43 @@
     </div>
     <!-- end Container Wrapper -->
     <!-- *Scripts* -->
+    <script>
+
+function deleteRecord(packId) {
+    // Use AJAX to send a request to delete_package.php with the pack ID as a parameter
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var response = this.responseText;
+            if (response === 'success') {
+                // On successful deletion, remove the corresponding row from the table
+                var row = document.getElementById('row_' + packId);
+                if (row) {
+                    row.parentNode.removeChild(row);
+                }
+            } else {
+                // Handle deletion failure (optional)
+                alert('Failed to delete the record. Please try again.');
+            }
+        }
+    };
+    xhttp.open('GET', 'delete_package.php?pack_id=' + encodeURIComponent(packId), true);
+    xhttp.send();
+}
+
+
+
+// Add event listeners to delete buttons to call the deleteRecord function with the correct pack ID
+var deleteButtons = document.querySelectorAll('.delete-btn');
+deleteButtons.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+        var packId = this.getAttribute('data-packid');
+        if (confirm('Are you sure you want to delete this package?')) {
+            deleteRecord(packId);
+        }
+    });
+});
+</script>
     <script src="assets/js/jquery-3.2.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
