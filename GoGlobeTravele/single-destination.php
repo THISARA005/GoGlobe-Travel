@@ -36,16 +36,7 @@
       <?php include 'topheader.php'; ?>
          <main id="content" class="site-main">
             <!-- Inner Banner html start-->
-            <section class="inner-banner-wrap">
-               <div class="inner-baner-container" style="background-image: url(assets/images/inner-banner.jpg);">
-                  <div class="container">
-                     <div class="inner-banner-content">
-                        <h1 class="inner-title">Destination ABC</h1>
-                     </div>
-                  </div>
-               </div>
-               <div class="inner-shape"></div>
-            </section>
+            
             <?php
 require_once "db_connection.php";
 $dest_id=$_GET['dest_id'];
@@ -64,6 +55,16 @@ if ($result) {
         $city=$row['city'];
 
         echo '
+        <section class="inner-banner-wrap">
+               <div class="inner-baner-container" style="background-image: url(assets/images/inner-banner.jpg);">
+                  <div class="container">
+                     <div class="inner-banner-content">
+                        <h1 class="inner-title">Destination '.$title.'</h1>
+                     </div>
+                  </div>
+               </div>
+               <div class="inner-shape"></div>
+            </section>
         <div class="single-page-section">
                <div class="container">
                   <figure class="single-feature-img">

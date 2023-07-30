@@ -51,170 +51,60 @@
             <section class="destination-section destination-page">
                <div class="container">
                   <div class="destination-inner destination-three-column">
-                     <div class="row">
-                        <div class="col-lg-7">
-                           <div class="row">
-                              <div class="col-sm-6">
-                                 <div class="desti-item overlay-desti-item">
-                                    <figure class="desti-image">
-                                       <img src="assets/images/img1.jpg" alt="">
-                                    </figure>
-                                    <div class="meta-cat bg-meta-cat">
-                                       <a href="#">THAILAND</a>
+                    <?php
+                    require_once "db_connection.php";
+
+                    // Query to get destination data from the "destination" table
+                    $query = "SELECT * FROM destination";
+
+                    $result = mysqli_query($conn, $query);
+
+                    if ($result) {
+                        $count = 0;
+                        echo '<div class="row">';
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            $title = $row['title'];
+                            $dest_id = $row['dest_id'];
+                            $dest_image = $row['pack_image'];
+                            $city = $row['city'];
+
+                            echo '
+                            <div class="col-lg-7">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="desti-item overlay-desti-item">
+                                            <figure class="desti-image">
+                                                <img src="' . $dest_image . '" alt="" style="width: 100%; height: 200px; object-fit: cover;">
+                                            </figure>
+                                            <div class="meta-cat bg-meta-cat">
+                                                <a href="#">' . $city . '</a>
+                                            </div>
+                                            <div class="desti-content">
+                                                <h3>
+                                                    <a href="#">' . $title . '</a>
+                                                </h3>
+                                                <div class="rating-start" title="Rated 5 out of 4">
+                                                    <span style="width: 53%"></span>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="desti-content">
-                                       <h3>
-                                          <a href="#">Disney Land</a>
-                                       </h3>
-                                       <div class="rating-start" title="Rated 5 out of 4">
-                                          <span style="width: 53%"></span>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                              <div class="col-sm-6">
-                                 <div class="desti-item overlay-desti-item">
-                                    <figure class="desti-image">
-                                       <img src="assets/images/img2.jpg" alt="">
-                                    </figure>
-                                    <div class="meta-cat bg-meta-cat">
-                                       <a href="#">Kandy</a>
-                                    </div>
-                                    <div class="desti-content">
-                                       <h3>
-                                          <a href="#">Alla Rock</a>
-                                       </h3>
-                                       <div class="rating-start" title="Rated 5 out of 5">
-                                          <span style="width: 100%"></span>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="col-lg-5">
-                           <div class="row">
-                              <div class="col-md-6 col-xl-12">
-                                 <div class="desti-item overlay-desti-item">
-                                    <figure class="desti-image">
-                                       <img src="assets/images/img3.jpg" alt="">
-                                    </figure>
-                                    <div class="meta-cat bg-meta-cat">
-                                       <a href="#">Galle</a>
-                                    </div>
-                                    <div class="desti-content">
-                                       <h3>
-                                          <a href="#">Patna</a>
-                                       </h3>
-                                       <div class="rating-start" title="Rated 5 out of 5">
-                                          <span style="width: 100%"></span>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                              <div class="col-md-6 col-xl-12">
-                                 <div class="desti-item overlay-desti-item">
-                                    <figure class="desti-image">
-                                       <img src="assets/images/img4.jpg" alt="">
-                                    </figure>
-                                    <div class="meta-cat bg-meta-cat">
-                                       <a href="#">Mathara</a>
-                                    </div>
-                                    <div class="desti-content">
-                                       <h3>
-                                          <a href="#">Mirissa Beach</a>
-                                       </h3>
-                                       <div class="rating-start" title="Rated 5 out of 4">
-                                          <span style="width: 60%"></span>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="row">
-                        <div class="col-lg-5">
-                           <div class="row">
-                              <div class="col-md-6 col-xl-12">
-                                 <div class="desti-item overlay-desti-item">
-                                    <figure class="desti-image">
-                                       <img src="assets/images/img3.jpg" alt="">
-                                    </figure>
-                                    <div class="meta-cat bg-meta-cat">
-                                       <a href="#">Galle</a>
-                                    </div>
-                                    <div class="desti-content">
-                                       <h3>
-                                          <a href="#">Mihiripanna Beach</a>
-                                       </h3>
-                                       <div class="rating-start" title="Rated 5 out of 5">
-                                          <span style="width: 100%"></span>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                              <div class="col-md-6 col-xl-12">
-                                 <div class="desti-item overlay-desti-item">
-                                    <figure class="desti-image">
-                                       <img src="assets/images/img4.jpg" alt="">
-                                    </figure>
-                                    <div class="meta-cat bg-meta-cat">
-                                       <a href="#">Hambanthota</a>
-                                    </div>
-                                    <div class="desti-content">
-                                       <h3>
-                                          <a href="#">Yaala Park</a>
-                                       </h3>
-                                       <div class="rating-start" title="Rated 5 out of 4">
-                                          <span style="width: 60%"></span>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="col-lg-7">
-                           <div class="row">
-                              <div class="col-sm-6">
-                                 <div class="desti-item overlay-desti-item">
-                                    <figure class="desti-image">
-                                       <img src="assets/images/img1.jpg" alt="">
-                                    </figure>
-                                    <div class="meta-cat bg-meta-cat">
-                                       <a href="#">Galle</a>
-                                    </div>
-                                    <div class="desti-content">
-                                       <h3>
-                                          <a href="#">Unawatuna Beach</a>
-                                       </h3>
-                                       <div class="rating-start" title="Rated 5 out of 4">
-                                          <span style="width: 53%"></span>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                              <div class="col-sm-6">
-                                 <div class="desti-item overlay-desti-item">
-                                    <figure class="desti-image">
-                                       <img src="assets/images/img2.jpg" alt="">
-                                    </figure>
-                                    <div class="meta-cat bg-meta-cat">
-                                       <a href="#">Mathara</a>
-                                    </div>
-                                    <div class="desti-content">
-                                       <h3>
-                                          <a href="#">Dickwella Beach</a>
-                                       </h3>
-                                       <div class="rating-start" title="Rated 5 out of 5">
-                                          <span style="width: 100%"></span>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
+                                </div>
+                            </div>';
+
+                            // If two destination items are already displayed in the row, close the row and start a new one
+                            if ($count % 2 !== 0) {
+                                echo '</div><div class="row">';
+                            }
+
+                            $count++;
+                        }
+                        echo '</div>'; // Close the row if there are any remaining items
+                    } else {
+                        // Error occurred while fetching data
+                        echo "Error: " . mysqli_error($conn);
+                    }
+                    ?>
                   </div>
                </div>
             </section>
