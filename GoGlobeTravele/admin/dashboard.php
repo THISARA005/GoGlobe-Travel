@@ -121,19 +121,13 @@ ob_end_clean();
                     <div id="navigation" class="navigation-container">
                         <ul>
                             <li><a href="dashboard.php"><i class="far fa-chart-bar"></i> Dashboard</a></li>
-                            <li><a><i class="fas fa-user"></i>Users</a>
-                                <ul>
-                                    <li>
-                                        <a href="user.php">User</a>
-                                    </li>
-                                    <li>
-                                        <a href="user-edit.php">User edit</a>
-                                    </li>
-                                    <li>
-                                        <a href="new-user.php">New user</a>
-                                    </li>
-                                </ul>
+                            <li><a href="user.php"><i class="fas fa-user"></i>Users</a>
+                            
                             </li>
+                            <li><a href="admin_list.php"><i class="fas fa-user"></i>Admins</a>
+                            <li><a href="new-user.php">Add admin</a></li>
+                            
+                            <li><a href="db-add-destination.php"><i class="fas fa-umbrella-beach"></i>Add Destination</a></li>
                             <li><a href="db-add-package.php"><i class="fas fa-umbrella-beach"></i>Add Package</a></li>
                             <li class="active-menu">
                                 <a><i class="fas fa-hotel"></i></i>packages</a>

@@ -1,70 +1,57 @@
 <?php
 // Check if the form is submitted
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Retrieve the form data
-    $destinationName = $_POST['destination_name'];
-    $description = $_POST['description'];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Database connection configuration
+    $host = 'localhost';     // MySQL server hostname
+    $username = 'root';  // MySQL username
+    $password = '';  // MySQL password
+    $database = 'goglobetravel';  // MySQL database name
+
+    // Create a new MySQLi object
+    $mysqli = new mysqli($host, $username, $password, $database);
+
+    // Check the connection
+    if ($mysqli->connect_errno) {
+        echo "Failed to connect to MySQL: " . $mysqli->connect_error;
+        exit();
+    }
+
+    // Prepare and bind the form data
+    $title = $_POST['title'];
+    $pack_description = $_POST['pack_description'];
     $location = $_POST['location'];
-    $category = $_POST['category'];
-    $rating = $_POST['rating'];
 
-    // Process and validate the form data
-
-    // File upload handling
-    $uploadDirectory = "uploads/"; // Specify the directory where the image file should be stored
-    $fileName = basename($_FILES["main_img"]["name"]);
-    $targetFilePath = $uploadDirectory . $fileName;
-    $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
-
-    // Check if the file is an actual image
-    $check = getimagesize($_FILES["main_img"]["tmp_name"]);
-    if ($check !== false) {
-        // Check the file size (you can set a limit if desired)
-        if ($_FILES["main_img"]["size"] > 500000) {
-            echo "File is too large.";
+    // File upload for pack_image
+    $pack_image = "";
+    if (isset($_FILES['pack_image']) && $_FILES['pack_image']['error'] === UPLOAD_ERR_OK) {
+        $uploadDir = "uploads/"; // Replace with the actual upload directory path
+        $uploadFile = $uploadDir . basename($_FILES['pack_image']['name']);
+        if (move_uploaded_file($_FILES['pack_image']['tmp_name'], $uploadFile)) {
+            $pack_image = $uploadFile;
         } else {
-            // Allow only specific file formats (you can modify this as per your requirement)
-            $allowedFileTypes = array("jpg", "jpeg", "png");
-            if (in_array($fileType, $allowedFileTypes)) {
-                // Connect to the database (replace "dbconnection.php" with your actual database connection file)
-                include 'db_connection.php';
-
-                // Prepare the SQL statement
-                $stmt = $conn->prepare("INSERT INTO destinations (destination_name, description, location, category, rating, main_img) VALUES (?, ?, ?, ?, ?, ?)");
-                $stmt->bind_param("ssssds", $destinationName, $description, $location, $category, $rating, $targetFilePath);
-
-                // Move the uploaded file to the destination directory
-                if (move_uploaded_file($_FILES["main_img"]["tmp_name"], $targetFilePath)) {
-                    // Execute the SQL statement
-                    if ($stmt->execute()) {
-                        // Destination data saved successfully
-                        echo "<script>alert('Destination data saved successfully');</script>";
-    echo "<script>window.location.href = 'dashboard.html';</script>";
-
-                    } else {
-                        // Error in saving destination data
-                        echo "Error in saving destination data: " . $stmt->error;
-                    }
-                } else {
-                    // Failed to move the uploaded file
-                    echo "Error in uploading the file.";
-                }
-
-                // Close the database connection
-                $stmt->close();
-                $conn->close();
-            } else {
-                // Invalid file format
-                echo "Invalid file format.";
-            }
+            echo "Failed to upload pack_image.";
+            exit();
         }
     } else {
-        // Invalid image file
-        echo "Invalid image file.";
+        echo "Error uploading pack_image.";
+        exit();
     }
-} else {
-    // Redirect to the form page if the form is not submitted
-    header("Location: destination_form.php");
-    exit;
+
+    // SQL query to insert data into the destination table
+    $query = "INSERT INTO destination (title, pack_description, location, pack_image) VALUES (?, ?, ?, ?)";
+    $stmt = $mysqli->prepare($query);
+    $stmt->bind_param("ssss", $title, $pack_description, $location, $pack_image);
+
+    // Execute the prepared statement
+    if ($stmt->execute()) {
+        echo '<script>alert("Destination added successfully!"); window.location.href = "dashboard.php";</script>';
+        exit();
+    } else {
+        echo "Error in saving data.";
+    }
+
+    // Close the prepared statement and database connection
+    $stmt->close();
+    $mysqli->close();
 }
 ?>

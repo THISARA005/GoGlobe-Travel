@@ -148,20 +148,7 @@
 
                            </div>
 
-                           <!-- <script>
-                              const acceptCheckbox = document.getElementById("acceptCheckbox");
-                              const payNowButton = document.getElementById("payNowButton");
-
-                              acceptCheckbox.addEventListener("change", function() {
-                                 payNowButton.disabled = !acceptCheckbox.checked;
-                                 if (acceptCheckbox.checked) {
-                                    payNowButton.classList.remove("disabled");
-                                 } else {
-                                    payNowButton.classList.add("disabled");
-                                 }
-                              });
-                           </script> -->
-
+                        
                         </div>
 
                         </form>

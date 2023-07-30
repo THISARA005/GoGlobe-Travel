@@ -1,9 +1,9 @@
 <?php
-// Database connection configuration
-$host = 'localhost';       // MySQL server hostname
-$username = 'root';        // MySQL username
-$password = '';            // MySQL password
-$database = 'goglobetravel';  // MySQL database name
+
+$host = 'localhost';       
+$username = 'root';        
+$password = '';            
+$database = 'goglobetravel';  
 
 // Create a new MySQLi object
 $mysqli = new mysqli($host, $username, $password, $database);
@@ -11,7 +11,7 @@ $mysqli = new mysqli($host, $username, $password, $database);
 // Check the connection
 if ($mysqli->connect_errno) {
     echo "Failed to connect to MySQL: " . $mysqli->connect_error;
-    // You can handle the connection error gracefully based on your requirements
+    
     exit();
 }
 
@@ -53,8 +53,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         // Execute the notification insertion query
         if (mysqli_query($mysqli, $insertNotificationQuery)) {
-            // Notification insertion successful
-            // Redirect to the confirmation page
+           
+            $query="UPDATE packages
+            SET status = '1'
+            WHERE pack_ID = $packId
+            ";
+            $result = mysqli_query($mysqli, $query);
+            
             header("Location: confirmation.php?user_id=$userId&pack_id=$packId");
             exit();
         } else {

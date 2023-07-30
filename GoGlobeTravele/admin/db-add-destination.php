@@ -10,14 +10,13 @@
       <link rel="stylesheet" href="assets/css/bootstrap.min.css" media="all">
       <!-- Fonts Awesome CSS -->
       <link rel="stylesheet" type="text/css" href="assets/css/all.min.css">
-        <!-- google fonts -->
+      <!-- google fonts -->
       <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
       <!-- Custom CSS -->
       <link rel="stylesheet" type="text/css" href="style.css">
       <title>Travele | Travel & Tour HTML5 template </title>
 </head>
 <body>
-
     <!-- start Container Wrapper -->
     <div id="container-wrapper">
         <!-- Dashboard -->
@@ -153,7 +152,7 @@
                 <div id="dashboard-Navigation" class="slick-nav"></div>
                 <div id="navigation" class="navigation-container">
                     <ul>
-                        <li><a href="dashboard.php"><i class="far fa-chart-bar"></i> Dashboard</a></li>
+                        <li><a href="dashboard.html"><i class="far fa-chart-bar"></i> Dashboard</a></li>
                         <li><a><i class="fas fa-user"></i>Users</a>
                             <ul>
                                 <li>
@@ -167,13 +166,13 @@
                                 </li>
                             </ul>
                         </li>
-                        <li><a href="db-add-package.html"><i class="fas fa-umbrella-beach"></i>Add Package</a></li>
-                        <li class="active-menu">
+                        <li class="active-menu"><a href="db-add-package.html"><i class="fas fa-umbrella-beach"></i>Add Package</a></li>
+                        <li>
                             <a><i class="fas fa-hotel"></i></i>packages</a>
                             <ul>
                                 <li><a href="db-package-active.php">Active</a></li>
-                                <li><a href="db-package-pending.html">Pending</a></li>
-                                <li><a href="db-package-expired.html">Expired</a></li>
+                                <li><a href="db-package-pending.php">Pending</a></li>
+                                
                             </ul>   
                         </li>
                         <li><a href="db-booking.html"><i class="fas fa-ticket-alt"></i> Booking & Enquiry</a></li>
@@ -183,37 +182,87 @@
                     </ul>
                 </div>
             </div>
-            <div class="db-info-wrap db-package-wrap">
-                <div class="dashboard-box table-opp-color-box">
-                    <h4>Packages List</h4>
-                    <p>Nonummy hac atque adipisicing donec placeat pariatur quia ornare nisl.</p>
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Date</th>
-                                    <th>Destination</th>
-                                    <th>status</th>
-                                    <th>action</th>
-                                </tr>
-                            
-                            <?php include 'active-package-list.php';?>
-                        </table>
+            <form action="save_destination_data.php" method="POST" enctype="multipart/form-data" style="width: 1500px;">
+                <div class="db-info-wrap db-add-tour-wrap">
+                    <div class="row">
+                        <!-- Listings -->
+                        <div class="col-lg-8 col-xl-9">
+                            <div class="dashboard-box">
+                                <div class="custom-field-wrap">
+                                    <div class="form-group">
+                                        <label>Title</label>
+                                        <input type="text" name="title" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Description</label>
+                                        <textarea name="pack_description" required></textarea>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                           
+                            <div class="dashboard-box">
+                           <h4>Gallery</h4>
+                           <div class="custom-field-wrap">
+                              <div class="dragable-field">
+                                 <div class="dragable-field-inner">
+                                    <p class="drag-drop-info" >Drop Files To Upload</p>
+                                    <p>or</p>
+                                    <div class="upload-input">
+                                       <div class="form-group">
+                                          <span class="upload-btn">Upload Images</span>
+                                          <input type="file" name="pack_img_gallery[]" multiple >
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                           
+                        </div>
+                        <div class="col-lg-4 col-xl-3">
+                            <div class="dashboard-box">
+                                <div class="custom-field-wrap">
+                                    <h4>Publish</h4>
+                                    
+                                    <div class="publish-action">
+                                        <input type="submit" name="publish" value="Publish">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dashboard-box">
+                                
+                                
+                                <div class="custom-field-wrap db-media-field-wrap">
+                                    <h4>Add image</h4>
+                                    <div class="upload-input">
+                                        <div class="form-group">
+                                          <span class="upload-btn">Upload a image</span>
+                                          <input type="file" name="pack_image" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
+                    <!-- ... Rest of your HTML code ... -->
+                    <div class="custom-field-wrap">
+                        <h4>Location</h4>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Select Map</label>
+                                    <!-- Change the <select> element to a <input> element with type="text" -->
+                                    <input type="text" name="location" placeholder="Enter Location" required>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+<!-- ... Rest of your HTML code ... -->
+
                 </div>
-                <!-- pagination html -->
-                <div class="pagination-wrap">
-                    <nav class="pagination-inner">
-                        <ul class="pagination disabled">
-                            <li class="page-item"><span class="page-link"><i class="fas fa-chevron-left"></i></span></li>
-                            <li class="page-item"><a href="#" class="page-link active">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a></li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
+
+            </form>
             <!-- Content / End -->
             <!-- Copyrights -->
             <div class="copyrights">
@@ -222,8 +271,10 @@
         </div>
         <!-- Dashboard / End -->
     </div>
+
+ 
     <!-- end Container Wrapper -->
-    <!-- *Scripts* -->
+    <!-- end Container Wrapper -->
     <script src="assets/js/jquery-3.2.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
@@ -232,4 +283,6 @@
     <script src="assets/js/jquery.slicknav.js"></script>
     <script src="assets/js/dashboard-custom.js"></script>
 </body>
+
+<!-- Mirrored from cyclonethemes.com/demo/html/padhai/dashboard-addtour.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 02 Feb 2020 09:01:50 GMT -->
 </html>
