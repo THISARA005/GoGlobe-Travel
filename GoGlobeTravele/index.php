@@ -119,7 +119,7 @@
                   </div>
                   <div class="destination-inner destination-three-column">
                      <div class="row">
-                        
+                        <!-- 
                         <div class="col-lg-7">
                            <div class="row">
                               <div class="col-sm-6">
@@ -199,8 +199,9 @@
                                  </div>
                               </div>
                            </div>
-                        </div>
-                     </div>
+                        </div>-->
+                        <?php include 'get_destinations.php'; ?>
+                     </div> 
                      <div class="btn-wrap text-center">
                         <a href="destination.php" class="button-primary">MORE DESTINATION</a>
                      </div>
