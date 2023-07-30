@@ -199,7 +199,60 @@
                                 </tr>
                             </thead>
                            
-                            <?php include 'pending-package-list.php'; ?>
+                            <?php
+                            require_once "db_connection.php";
+
+                            $query = "SELECT * FROM packages WHERE status = '0' ";
+
+                            $result = mysqli_query($conn, $query);
+                            if (mysqli_num_rows($result) > 0) {
+                                
+                                while ($row = mysqli_fetch_array($result)) {
+                                    
+                                    $packId = $row['pack_ID'];
+                                    $title = $row['title'];
+                                    $query2 = "SELECT * FROM pack_booking WHERE pack_ID= '$packId'";
+                                    $result2 = mysqli_query($conn, $query2);
+
+                                    // Prepare the URL for the delete operation (delete_package.php)
+                                    $deleteUrl = "delete_package.php?pack_id=" . urlencode($packId);
+
+                            
+                            // ... Your existing PHP code to fetch and display pending packages ...
+
+                            // Add the pack ID as a data attribute to each row
+                            while ($row2 = mysqli_fetch_array($result2)) {
+                            
+                                $packId = $row['pack_ID'];
+                                $title = $row['title'];
+                                $chekin = $row2['check_in_date'];
+                                $city = $row['location'];
+
+                                echo "
+                                    <tbody>
+                                        <tr id='row_$packId'> <!-- Add a unique identifier for each row -->
+                                            <td>
+                                                </span><span class='package-name'>$title</span>
+                                            </td>
+                                            <td>$chekin</td>
+                                            <td>$city</td>
+                                            <td><span class='badge badge-primary'>Pending</span></td>
+                                            <td>
+                                                <span class='badge badge-success'><i class='far fa-edit'></i></span>
+                                                <!-- Call the JavaScript function deleteRecord() with the pack ID as a parameter -->
+                                                <span class='badge badge-danger delete-btn' data-packid='$packId'><i class='far fa-trash-alt'></i></span>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                ";
+                            }
+
+
+                                }
+                            }
+                        ?>
+
                         </table>
                     </div>
                 </div>
@@ -224,7 +277,7 @@
         <!-- Dashboard / End -->
     </div>
     <!-- ... Rest of the HTML content ... -->
-
+<!-- 
     <script>
     function deleteRecord(packId) {
         if (confirm("Are you sure you want to delete this record?")) {
@@ -252,7 +305,43 @@
             });
         }
     }
+</script> -->
+<!-- Place this script either in your PHP file or a separate .js file -->
+<script>
+function deleteRecord(packId) {
+    // Use AJAX to send a request to delete_package.php with the pack ID as a parameter
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var response = this.responseText;
+            if (response === 'success') {
+                // On successful deletion, remove the corresponding row from the table
+                var row = document.getElementById('row_' + packId);
+                if (row) {
+                    row.parentNode.removeChild(row);
+                }
+            } else {
+                // Handle deletion failure (optional)
+                alert('Failed to delete the package. Please try again.');
+            }
+        }
+    };
+    xhttp.open('GET', 'delete_package.php?pack_id=' + encodeURIComponent(packId), true);
+    xhttp.send();
+}
+
+// Add event listeners to delete buttons to call the deleteRecord function with the correct pack ID
+var deleteButtons = document.querySelectorAll('.delete-btn');
+deleteButtons.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+        var packId = this.getAttribute('data-packid');
+        if (confirm('Are you sure you want to delete this package?')) {
+            deleteRecord(packId);
+        }
+    });
+});
 </script>
+
 
 
     <!-- end Container Wrapper -->

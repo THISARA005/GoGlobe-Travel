@@ -1,30 +1,30 @@
 <?php
 // delete_package.php
 
-include_once 'db_connection.php';
-
 if (isset($_GET['pack_id'])) {
     $packId = $_GET['pack_id'];
 
-    // Use prepared statements to prevent SQL injection
-    $query = "DELETE FROM packages WHERE pack_id = ?";
+    // Database connection configuration (include db_connection.php)
+    require_once "db_connection.php";
+
+    // SQL query to delete the package record from the database
+    $query = "DELETE FROM packages WHERE pack_ID = ?";
     $stmt = mysqli_prepare($conn, $query);
-    mysqli_stmt_bind_param($stmt, "s", $packId);
+    mysqli_stmt_bind_param($stmt, "i", $packId);
 
     if (mysqli_stmt_execute($stmt)) {
-        // Package deleted successfully
-        $response = array('success' => true);
+        // Deletion was successful
+        echo 'success';
     } else {
-        // Failed to delete the package
-        $response = array('success' => false, 'message' => 'Failed to delete the package');
+        // Deletion failed
+        echo 'error';
     }
 
+    // Close the prepared statement and database connection
     mysqli_stmt_close($stmt);
+    mysqli_close($conn);
 } else {
-    // Invalid request, pack_id not provided
-    
-    $response = array('success' => false, 'message' => 'Invalid request');
+    // Invalid or missing pack_id parameter
+    echo 'errorrr';
 }
-
-header('Content-Type: application/json');
-echo json_encode($response);
+?>
