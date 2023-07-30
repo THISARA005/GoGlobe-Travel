@@ -138,7 +138,7 @@ ob_end_clean();
                                 </ul>   
                             </li>
                             <li><a href="db-booking.php"><i class="fas fa-ticket-alt"></i> Booking  </a></li>
-                            <li><a href="db-Enquiry.php"><i class="fas fa-ticket-alt"></i> Enquiry  </a></li>
+                            <li><a href="db-Enquiry-list.php"><i class="fas fa-ticket-alt"></i> Enquiry  </a></li>
                         </ul>
                     </div>
                 </div>

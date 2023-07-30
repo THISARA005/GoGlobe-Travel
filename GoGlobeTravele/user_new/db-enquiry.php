@@ -182,7 +182,7 @@
                     </ul>
                 </div>
             </div>
-            <form action="save_pack_data.php" method="POST" enctype="multipart/form-data">
+            <form action="save_enquiry.php?user_id=<?php echo $_GET['user_id']; ?>" method="POST" enctype="multipart/form-data" style="width: 1500px;">
                 <div class="db-info-wrap db-add-tour-wrap">
                     <div class="row">
                         <!-- Listings -->
@@ -201,194 +201,16 @@
                             </div>
                             <div class="dashboard-box">
                                 <div class="custom-field-wrap">
-                                    <h4>Dates and Prices</h4>
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label>Group Size</label>
-                                                <input type="number" name="grpSize" placeholder="No of Peoples">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <label>Trip Duration</label>
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <div class="form-group">
-                                                        <input type="number" placeholder="Days" name="duration_days">
-                                                    </div>
-                                                </div>
-                                                <div class="col-6">
-                                                    <div class="form-group">
-                                                        <input type="number" placeholder="Nights" name="duration_nights">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="form-group">
-                                                <label>Category</label>
-                                                <select name="pack_category">
-                                                    <option>Vacation package</option>
-                                                    <option>Honeymoon package</option>
-                                                    <option>Holiday package</option>
-                                                    <option>Weekend package</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <div class="form-group">
-                                                <label>Sale Price</label>
-                                                <input type="text" name="sale_price">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <div class="form-group">
-                                                <label>Regular Price</label>
-                                                <input type="text" name="reg_price">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <div class="form-group">
-                                                <label>Discount</label>
-                                                <input type="text" name="discount">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="dashboard-box">
-                                <h4>Gallery</h4>
-                                <div class="custom-field-wrap">
-                                    <div class="dragable-field">
-                                        <div class="dragable-field-inner">
-                                            <p class="drag-drop-info">Drop Files To Upload</p>
-                                            <p>or</p>
-                                            <div class="upload-input">
-                                                <div class="form-group">
-                                                  <span class="upload-btn">Upload a image</span>
-                                                  <input type="file" name="pack_img_gallery">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--<div class="dashboard-box">
-                                <h4>Location</h4>
-                                <div class="custom-field-wrap">
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label>Select Map</label>
-                                                <select>
-                                                    <option>Google Map</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label>API key</label>
-                                                <input type="text" name="apikey">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>-->
-                        </div>
-                        <div class="col-lg-4 col-xl-3">
-                            <div class="dashboard-box">
-                                <div class="custom-field-wrap">
-                                    <h4>Publish</h4>
-                                    <div class="publish-btn">
-                                        <div class="form-group">
-                                            <input type="submit" name="draft" value="Save Draft">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="submit" name="preview" value="Preview">
-                                        </div>
-                                    </div>
-                                    <div class="publish-status">
-                                        <span>
-                                            <strong>Status:</strong>
-                                            Draft
-                                        </span>
-                                        <a href="#">Edit</a>
-                                    </div>
-                                    <div class="publish-status">
-                                        <span>
-                                            <strong>Visibility:</strong>
-                                            Public
-                                        </span>
-                                        <a href="#">Edit</a>
-                                    </div>
-                                    <div class="publish-status">
-                                        <span>
-                                            <strong>Visibility:</strong>
-                                            Public
-                                        </span>
-                                        <a href="#">Edit</a>
-                                    </div>
-                                    <div class="publish-action">
-                                        <input type="submit" name="publish" value="Publish">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="dashboard-box">
-                                <div class="custom-field-wrap db-pop-field-wrap">
-                                 
-                                    <div class="form-group">
-                                        <label class="custom-input">
-                                            <input type="checkbox" name="active_status" value="1">
-                                            <span class="custom-input-field"></span>
-                                            Active Status
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="custom-field-wrap db-pop-field-wrap">
-                                    <h4>Keywords</h4>
-                                    <div class="form-group">
-                                        <input type="text" name="keyword" placeholder="Keywords">
-                                    </div>
-                                </div>
-                                <div class="custom-field-wrap db-pop-field-wrap">
+                                    <h4>Send the enquiry</h4>
                                     
-                                    <div class="form-group">
-                                      
-                                            <label for="rating">Rating:</label>
-                                            <input type="number" id="rating" name="rating" min="0" max="5" step="0.1">
-                                                    
+                                    <div class="publish-action">
+                                        <input type="submit" name="publish" value="Send">
                                     </div>
                                 </div>
-                                
-                                <div class="custom-field-wrap db-media-field-wrap">
-                                    <h4>Add image</h4>
-                                    <div class="upload-input">
-                                        <div class="form-group">
-                                          <span class="upload-btn">Upload a image</span>
-                                          <input type="file" name="pack_image">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            </div>  
                         </div>
                     </div>  
-                    <div class="dashboard-box">
-                        <h4>Location</h4>
-                        <div class="custom-field-wrap">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>Select Map</label>
-                                        <select>
-                                            <option>Google Map</option>
-                                            <option> Map</option>
-                                        </select>
-                                    </div>
-                                </div>
-                               
-                            </div>
-                        </div>
-                    </div>    
+                     
                 </div>
 
 
