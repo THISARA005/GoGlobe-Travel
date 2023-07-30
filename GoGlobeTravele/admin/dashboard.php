@@ -39,7 +39,7 @@ ob_end_clean();
     <div id="dashboard" class="dashboard-container">
         <div class="dashboard-header sticky-header">
             <div class="content-left  logo-section pull-left">
-                <h1><a href="../index.html"><img src="assets/images/logo.png" alt=""></a></h1>
+                <h1><a href="#"><img src="assets/images/logo.png" alt=""></a></h1>
             </div>
             <div class="heaer-content-right pull-right">
                 <div class="search-field">
@@ -95,24 +95,33 @@ ob_end_clean();
                 </div>
                     
 
-
-
-                <div class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown">
-                        <div class="dropdown-item profile-sec">
-                            <img src="assets/images/comment.jpg" alt="">
+                <?php
+                require_once('db_connection.php');
+                // Fetch count of unread notifications from the database
+                $unreadNotificationsQuery = "SELECT * FROM admin WHERE id = 1";
+                $unreadNotificationsResult = mysqli_query($conn, $unreadNotificationsQuery);
+                while($row = mysqli_fetch_array($unreadNotificationsResult)){
+                    $profile_pic = $row['profile_photo'];
+                }
+                    
+                echo"
+                <div class='dropdown'>
+                    <a class='dropdown-toggle' data-toggle='dropdown'>
+                        <div class='dropdown-item profile-sec'>
+                            <img src='uploads/$profile_pic' alt=''>
                             <span>My Account </span>
-                            <i class="fas fa-caret-down"></i>
+                            <i class='fas fa-caret-down'></i>
                         </div>
                     </a>
-                    <div class="dropdown-menu account-menu">
+                    <div class='dropdown-menu account-menu'>
                         <ul>
-                            <li><a href="#"><i class="fas fa-cog"></i>Settings</a></li>
-                            <li><a href="#"><i class="fas fa-user-tie"></i>Profile</a></li>
-                            <li><a href="#"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
+                            <li><a href='#'><i class='fas fa-cog'></i>Settings</a></li>
+                            <li><a href='#'><i class='fas fa-user-tie'></i>Profile</a></li>
+                            <li><a href='#'><i class='fas fa-sign-out-alt'></i>Logout</a></li>
                         </ul>
                     </div>
-                </div>
+                </div>";
+                ?>
             </div>
         </div>  
             <div class="dashboard-navigation">
