@@ -24,7 +24,7 @@
         <div id="dashboard" class="dashboard-container">
         <div class="dashboard-header sticky-header">
             <div class="content-left  logo-section pull-left">
-                <h1><a href="../index.html"><img src="assets/images/logo.png" alt=""></a></h1>
+                <h1><a href="#"><img src="assets/images/logo.png" alt=""></a></h1>
             </div>
             <div class="heaer-content-right pull-right">
                 <div class="search-field">
@@ -35,8 +35,6 @@
                         </div>
                     </form>
                 </div>
-                    
-
                 <?php
                 require_once('db_connection.php');
                 // Fetch count of unread notifications from the database
@@ -82,25 +80,33 @@
                 </div>
                     
 
-
-
-                <div class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown">
-                        <div class="dropdown-item profile-sec">
-                            <img src="assets/images/comment.jpg" alt="">
+                <?php
+                require_once('db_connection.php');
+                // Fetch count of unread notifications from the database
+                $unreadNotificationsQuery = "SELECT * FROM admin WHERE id = 1";
+                $unreadNotificationsResult = mysqli_query($conn, $unreadNotificationsQuery);
+                while($row = mysqli_fetch_array($unreadNotificationsResult)){
+                    $profile_pic = $row['profile_photo'];
+                }
+                    
+                echo"
+                <div class='dropdown'>
+                    <a class='dropdown-toggle' data-toggle='dropdown'>
+                        <div class='dropdown-item profile-sec'>
+                            <img src='uploads/$profile_pic' alt=''>
                             <span>My Account </span>
-                            <i class="fas fa-caret-down"></i>
+                            <i class='fas fa-caret-down'></i>
                         </div>
                     </a>
-                    <div class="dropdown-menu account-menu">
+                    <div class='dropdown-menu account-menu'>
                         <ul>
-                            <li><a href="#"><i class="fas fa-cog"></i>Settings</a></li>
-                            <li><a href="#"><i class="fas fa-user-tie"></i>Profile</a></li>
-                            <li><a href="#"><i class="fas fa-key"></i>Password</a></li>
-                            <li><a href="#"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
+                            <li><a href='#'><i class='fas fa-cog'></i>Settings</a></li>
+                            <li><a href='#'><i class='fas fa-user-tie'></i>Profile</a></li>
+                            <li><a href='#'><i class='fas fa-sign-out-alt'></i>Logout</a></li>
                         </ul>
                     </div>
-                </div>
+                </div>";
+                ?>
             </div>
         </div>  
             <div class="dashboard-navigation">
@@ -109,17 +115,13 @@
                     <div id="navigation" class="navigation-container">
                         <ul>
                             <li><a href="dashboard.php"><i class="far fa-chart-bar"></i> Dashboard</a></li>
-                            <li><a><i class="fas fa-user"></i>Users</a>
-                                <ul>
-                                    <li>
-                                        <a href="user.php">User</a>
-                                    </li>
-                                    
-                                    <li>
-                                        <a href="new-user.php">New user</a>
-                                    </li>
-                                </ul>
+                            <li><a href="user.php"><i class="fas fa-user"></i>Users</a>
+                            
                             </li>
+                            <li><a href="admin_list.php"><i class="fas fa-user"></i>Admins</a>
+                            <li><a href="new-user.php">Add admin</a></li>
+                            
+                            <li><a href="db-add-destination.php"><i class="fas fa-umbrella-beach"></i>Add Destination</a></li>
                             <li><a href="db-add-package.php"><i class="fas fa-umbrella-beach"></i>Add Package</a></li>
                             <li class="active-menu">
                                 <a><i class="fas fa-hotel"></i></i>packages</a>
@@ -130,12 +132,10 @@
                                 </ul>   
                             </li>
                             <li><a href="db-booking.php"><i class="fas fa-ticket-alt"></i> Booking  </a></li>
-                            <li><a href="db-Enquiry.php"><i class="fas fa-ticket-alt"></i> Enquiry  </a></li>
-                            <li><a href="login.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                            <li><a href="db-Enquiry-list.php"><i class="fas fa-ticket-alt"></i> Enquiry  </a></li>
                         </ul>
                     </div>
                 </div>
-            </div>
             </div>
             <div class="db-info-wrap">
                 <div class="row">
