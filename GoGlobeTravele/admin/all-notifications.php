@@ -15,13 +15,13 @@ if ($mysqli->connect_errno) {
     exit();
 }
 
-// Mark all notifications as read when admin views all notifications
-$markAllReadQuery = "UPDATE notification SET is_read = 1";
-mysqli_query($mysqli, $markAllReadQuery);
+
 
 // Fetch all notifications from the database
-$allNotificationsQuery = "SELECT * FROM notification ORDER BY timestamp DESC";
+$allNotificationsQuery = "SELECT * FROM notification WHERE is_read = 0 ORDER BY timestamp DESC ";
 $allNotificationsResult = mysqli_query($mysqli, $allNotificationsQuery);
+
+
 ?>
 
 <!doctype html>
@@ -56,6 +56,9 @@ $allNotificationsResult = mysqli_query($mysqli, $allNotificationsQuery);
                 echo '</div>';
                 echo '</li>';
             }
+            // Mark all notifications as read when admin views all notifications
+$markAllReadQuery = "UPDATE notification SET is_read = 1";
+mysqli_query($mysqli, $markAllReadQuery);
             ?>
         </ul>
     </div>

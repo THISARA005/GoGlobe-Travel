@@ -210,23 +210,7 @@ ob_end_clean();
                                             <th>Enquiry</th>
                                         </tr>
                                     </thead>
-                                    <!-- <tbody>
-                                        <tr>
-                                            <td>
-                                                <label class="custom-input"><input type="checkbox" checked="checked">
-                                                <span class="custom-input-field"></span></label>
-                                            </td>
-                                            <td><span class="list-img"><img src="assets/images/comment.jpg" alt=""></span>
-                                            </td>
-                                            <td><span class="list-enq-name">John Doe</span>
-                                            </td>
-                                            <td>12 may</td>
-                                            <td>Japan</td>
-                                            <td>
-                                                <span class="badge badge-success">15</span>
-                                            </td>
-                                        </tr>
-                                    </tbody> -->
+                                   
                                     <?php include 'recent_bookings.php'; ?>
                                 </table>
                             </div>
@@ -240,90 +224,61 @@ ob_end_clean();
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th>Select</th>
-                                            <th>User</th>
-                                            <th>Name</th>
+                                            <th>User ID</th>
                                             <th>Date</th>
-                                            <th>City</th>
-                                            <th>Enquiry</th>
+                                            <th>Subject</th>
+                                            <th>Message</th>
+                                            
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>
-                                                <label class="custom-input"><input type="checkbox">
-                                                <span class="custom-input-field"></span></label>
+                                    <?php
+                                     $servername = "localhost";
+                                     $username = "root";
+                                     $password = "";
+                                     $dbname = "goglobetravel";
+         
+                                     $conn = new mysqli($servername, $username, $password, $dbname);
+                                     if ($conn->connect_error) {
+                                         die("Connection failed: " . $conn->connect_error);
+                                     }
+
+                                    $query = "SELECT e.*, u.*
+                                    FROM enquiries e
+                                    JOIN users u ON e.user_id = u.user_ID
+                                    ";
+                                    
+                                    $result = mysqli_query($conn, $query);
+                                    //in here i need to show the enquiry details in the table.
+                                    if(mysqli_num_rows($result) > 0) {
+                                        while($row = mysqli_fetch_array($result)) {
+                                            $enquiry_id = $row['enq_id'];
+                                            $user_id = $row['user_id'];
+                                            $date = $row['date'];
+                                            $subject = $row['subject'];
+                                            $message = $row['message'];
+                                    
+                                    
+                                            echo "
+                                            <tr>
+                                                <td>$user_id</td>
+                                                <td>$date</td>
+                                                <td>$subject</td>
+                                                <td>$message</td>
+                                                <td>
+                                                <form action='delete_enquiry.php' method='post' class='delete-form'>
+                                        <input type='hidden' name='enquiry_id' value='$enquiry_id'>
+                                        <button type='submit' name='deleteEnquiry' class='badge badge-danger delete-btn' data-enquiry_id='$enquiry_id'><i class='far fa-trash-alt'></i></button>
+                                    </form>
+                                    
                                             </td>
-                                            <td><span class="list-img"><img src="assets/images/comment.jpg" alt=""></span>
-                                            </td>
-                                            <td><span class="list-enq-name">John Doe</span>
-                                            </td>
-                                            <td>12 may</td>
-                                            <td>Japan</td>
-                                            <td>
-                                                <span class="badge badge-success">15</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <label class="custom-input"><input type="checkbox">
-                                                <span class="custom-input-field"></span></label>
-                                            </td>
-                                            <td><span class="list-img"><img src="assets/images/comment2.jpg" alt=""></span>
-                                            </td>
-                                            <td><span class="list-enq-name">John Doe</span>
-                                            </td>
-                                            <td>12 may</td>
-                                            <td>Japan</td>
-                                            <td>
-                                                <span class="badge badge-success">15</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <label class="custom-input"><input type="checkbox">
-                                                <span class="custom-input-field"></span></label>
-                                            </td>
-                                            <td><span class="list-img"><img src="assets/images/comment3.jpg" alt=""></span>
-                                            </td>
-                                            <td><span class="list-enq-name">John Doe</span>
-                                            </td>
-                                            <td>12 may</td>
-                                            <td>Japan</td>
-                                            <td>
-                                                <span class="badge badge-success">15</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <label class="custom-input"><input type="checkbox">
-                                                <span class="custom-input-field"></span></label>
-                                            </td>
-                                            <td><span class="list-img"><img src="assets/images/comment4.jpg" alt=""></span>
-                                            </td>
-                                            <td><span class="list-enq-name">John Doe</span>
-                                            </td>
-                                            <td>12 may</td>
-                                            <td>Japan</td>
-                                            <td>
-                                                <span class="badge badge-success">15</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <label class="custom-input"><input type="checkbox">
-                                                <span class="custom-input-field"></span></label>
-                                            </td>
-                                            <td><span class="list-img"><img src="assets/images/comment5.jpg" alt=""></span>
-                                            </td>
-                                            <td><span class="list-enq-name">John Doe</span>
-                                            </td>
-                                            <td>12 may</td>
-                                            <td>Japan</td>
-                                            <td>
-                                                <span class="badge badge-success">15</span>
-                                            </td>
-                                        </tr>
+                                                
+                                            ";
+                                        }
+                                    } else {
+                                        echo "<tr><td colspan='8'>No bookings found.</td></tr>";
+                                    }
+                                    ?>
                                     </tbody>
                                 </table>
                             </div>
