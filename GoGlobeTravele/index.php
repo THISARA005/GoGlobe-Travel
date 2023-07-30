@@ -537,76 +537,73 @@
             </section>
             <!-- subscribe html end -->
             <!-- Home blog section html start -->
-            <section class="blog-section">
-               
-                  
-            
-   <div class="container">
-      <div class="section-heading text-center">
-         <div class="row">
-            <div class="col-lg-8 offset-lg-2">
-               <h5 class="dash-style">FROM OUR BLOG</h5>
-               <h2>OUR RECENT POSTS</h2>
-               <p>"Dive into the captivating world of travel through our blog, where we share our recent posts filled with inspiration, insights, and expert tips. From hidden gems and must-visit destinations to immersive experiences and cultural discoveries, our blog is your go-to resource for all things travel. Stay updated with the latest trends, wanderlust-inducing stories, and practical advice that will enhance your journey. Join us as we explore the world one blog post at a time."</p>
-            </div>
-         </div>
-      </div>
-      <div class="row">
-         <?php
-         // Include the database connection file
-         require_once "db_connection.php";
-
-         // Query to get blog post data from the "user_blog" table
-         $query = "SELECT ub.*, u.*
-         FROM user_blog ub
-         LEFT JOIN users u ON ub.user_ID = u.user_ID";
-
-
-         $result = mysqli_query($conn, $query);
-
-         if ($result) {
-            // Loop through the fetched data and generate the HTML code for each blog post
-            while ($row = mysqli_fetch_assoc($result)) {
-               $post_title = $row['title'];
-               $post_image = $row['thumb_image'];
-               $post_author = $row['fName'] . ' ' . $row['Lname'];
-               $post_date = $row['Posteddate'];
-
-               echo '
-               <div class="col-md-6 col-lg-4">
-                  <article class="post">
-                     <figure class="feature-image">
-                        <a href="#">
-                           <img src="uploads/' . $post_image . '" alt="">
-                        </a>
-                     </figure>
-                     <div class="entry-content">
-                        <h3>
-                           <a href="#">' . $post_title . '</a>
-                        </h3>
-                        <div class="entry-meta">
-                           <span class="byline">
-                              <a href="#">' . $post_author . '</a>
-                           </span>
-                           <span class="posted-on">
-                              <a href="#">' . $post_date . '</a>
-                           </span>
-                           <span class="comments-link">
-                              <a href="#">No Comments</a>
-                           </span>
+            <section class="blog-section">   
+               <div class="container">
+                  <div class="section-heading text-center">
+                     <div class="row">
+                        <div class="col-lg-8 offset-lg-2">
+                           <h5 class="dash-style">FROM OUR BLOG</h5>
+                           <h2>OUR RECENT POSTS</h2>
+                           <p>"Dive into the captivating world of travel through our blog, where we share our recent posts filled with inspiration, insights, and expert tips. From hidden gems and must-visit destinations to immersive experiences and cultural discoveries, our blog is your go-to resource for all things travel. Stay updated with the latest trends, wanderlust-inducing stories, and practical advice that will enhance your journey. Join us as we explore the world one blog post at a time."</p>
                         </div>
                      </div>
-                  </article>
-               </div>';
-            }
-         } else {
-            // Error occurred while fetching data
-            echo "Error: " . mysqli_error($conn);
-         }
-         ?>
-      </div>
-   </div>
-</section>
+                  </div>
+                  <div class="row">
+                     <?php
+                     // Include the database connection file
+                     require_once "db_connection.php";
+
+                     // Query to get blog post data from the "user_blog" table
+                     $query = "SELECT ub.*, u.*
+                     FROM user_blog ub
+                     LEFT JOIN users u ON ub.user_ID = u.user_ID";
+
+
+                     $result = mysqli_query($conn, $query);
+
+                     if ($result) {
+                        // Loop through the fetched data and generate the HTML code for each blog post
+                        while ($row = mysqli_fetch_assoc($result)) {
+                           $post_title = $row['title'];
+                           $post_image = $row['thumb_image'];
+                           $post_author = $row['fName'] . ' ' . $row['Lname'];
+                           $post_date = $row['Posteddate'];
+
+                           echo '
+                           <div class="col-md-6 col-lg-4">
+                              <article class="post">
+                                 <figure class="feature-image">
+                                    <a href="#">
+                                       <img src="uploads/' . $post_image . '" alt="">
+                                    </a>
+                                 </figure>
+                                 <div class="entry-content">
+                                    <h3>
+                                       <a href="#">' . $post_title . '</a>
+                                    </h3>
+                                    <div class="entry-meta">
+                                       <span class="byline">
+                                          <a href="#">' . $post_author . '</a>
+                                       </span>
+                                       <span class="posted-on">
+                                          <a href="#">' . $post_date . '</a>
+                                       </span>
+                                       <span class="comments-link">
+                                          <a href="#">No Comments</a>
+                                       </span>
+                                    </div>
+                                 </div>
+                              </article>
+                           </div>';
+                        }
+                     } else {
+                        // Error occurred while fetching data
+                        echo "Error: " . mysqli_error($conn);
+                     }
+                     ?>
+                  </div>
+               </div>
+            </section>
 
                   </div>
                </div>
@@ -614,52 +611,52 @@
              <!-- blog html end -->
              <!-- Home testimonial section html start -->
              <div class="testimonial-section" style="background-image: url(assets/images/img23.jpg);">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-10 offset-lg-1">
-                <div class="testimonial-inner testimonial-slider">
-                    <?php
-                    require_once "db_connection.php";
+               <div class="container">
+                  <div class="row">
+                        <div class="col-lg-10 offset-lg-1">
+                           <div class="testimonial-inner testimonial-slider">
+                              <?php
+                              require_once "db_connection.php";
 
-                    // Query to get testimonials from the "user_blog" table and join with "users" table
-                    $query = "SELECT ub.personal_about, u.username, u.profile_pic FROM user_blog ub
-                              INNER JOIN users u ON ub.user_ID = u.user_ID";
+                              // Query to get testimonials from the "user_blog" table and join with "users" table
+                              $query = "SELECT ub.personal_about, u.username, u.profile_pic FROM user_blog ub
+                                          INNER JOIN users u ON ub.user_ID = u.user_ID";
 
-                    $result = mysqli_query($conn, $query);
+                              $result = mysqli_query($conn, $query);
 
-                    if ($result) {
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            $personal_about = $row['personal_about'];
-                            $username = $row['username'];
-                            $profile_pic = $row['profile_pic'];
+                              if ($result) {
+                                    while ($row = mysqli_fetch_assoc($result)) {
+                                       $personal_about = $row['personal_about'];
+                                       $username = $row['username'];
+                                       $profile_pic = $row['profile_pic'];
 
-                            echo '
-                            <div class="testimonial-item text-center">
-                                <figure class="testimonial-img">
-                                    <img src="uploads/' . $profile_pic . '" alt="">
-                                </figure>
-                                <div class="testimonial-content">
-                                    <p>"' . $personal_about . '"</p>
-                                    <cite>
-                                        — ' . $username . '
-                                        <span class="company">Traveler</span>
-                                    </cite>
-                                </div>
-                            </div>';
-                        }
-                    } else {
-                        // Error occurred while fetching data
-                        echo "Error: " . mysqli_error($conn);
-                    }
+                                       echo '
+                                       <div class="testimonial-item text-center">
+                                          <figure class="testimonial-img">
+                                                <img src="uploads/' . $profile_pic . '" alt="">
+                                          </figure>
+                                          <div class="testimonial-content">
+                                                <p>"' . $personal_about . '"</p>
+                                                <cite>
+                                                   — ' . $username . '
+                                                   <span class="company">Traveler</span>
+                                                </cite>
+                                          </div>
+                                       </div>';
+                                    }
+                              } else {
+                                    // Error occurred while fetching data
+                                    echo "Error: " . mysqli_error($conn);
+                              }
 
-                    // Close the database connection
-                    mysqli_close($conn);
-                    ?>
-                </div>
+                              // Close the database connection
+                              mysqli_close($conn);
+                              ?>
+                           </div>
+                        </div>
+                  </div>
+               </div>
             </div>
-        </div>
-    </div>
-</div>
 
             <!-- testimonial html end -->
             <!-- Home contact details section html start -->
