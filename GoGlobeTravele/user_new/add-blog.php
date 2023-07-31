@@ -26,6 +26,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (move_uploaded_file($thumb_image_tmp, $thumb_image_path)) {
             // Image uploaded successfully, continue with the blog insertion
             // You may want to perform additional validation and checks on the uploaded image here
+            header("blog-archive.php?user_id=$userId");
+        exit;
         } else {
             // Handle image upload failure if necessary
             echo "Failed to upload thumbnail image.";
@@ -48,6 +50,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if (move_uploaded_file($img_tmp, $img_path)) {
                 // Append the image filename to the gallery string for database insertion
+                header("blog-archive.php?user_id=$userId");
+        exit;
                 $gallery .= $img_name . ",";
             }
         }

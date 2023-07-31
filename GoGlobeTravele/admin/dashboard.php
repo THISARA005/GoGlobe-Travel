@@ -144,6 +144,7 @@ ob_end_clean();
                                     <li><a href="db-package-active.php">Active</a></li>
                                     <li><a href="db-package-pending.php">Pending</a></li>
                                     <li><a href="db-package-change.php">Change package details</a></li>
+                                    <li><a href="db-package-change-details.php">Price change History</a></li>
                                 </ul>   
                             </li>
                             <li><a href="db-booking.php"><i class="fas fa-ticket-alt"></i> Booking  </a></li>
@@ -526,24 +527,28 @@ ob_end_clean();
 
                 </div>
                 <div class="row">
-                    <!-- site traffic -->
-                    
-
-                        
-              
-
-                    <div class="col-lg-4 ">        
+                    <div class="col-lg-4 " style="height: 290px; width: 600px; margin-bottom: 20px">        
                         <?php include 'country_analysis.php'; ?>
-                           <div id="piechart" style="height: 290px; width: 300px; margin-top: 50px; margin-left: 100px;"></div>
+                           <div id="piechart" style="height: 290px; width: 400px; margin-top: 50px; margin-left: 50px;"></div>
                         </div>
                     </div>
-                <!-- Show the chart of last 3 months revenue generated. Chart is generated in the chart_salary-line-chart.php file.-->
-                <div class="col-lg-4 ">        
-                        <?php include 'chart_salary-line-chart.php'; ?>
-                           <div id="piechart" style="height: 290px; width: 300px; margin-top: 50px; margin-left: 100px;"></div>
+                    <!-- Show the chart of last 3 months revenue generated. Chart is generated in the chart_salary-line-chart.php file.-->
+                    <div class="col-lg-5 " style="padding-top: 50px;">        
+                            <?php include 'chart_salary-line-chart.php'; ?>
+                            <div id="piechart" style="height: 290px; width: 300px; margin-top: 50px; margin-left: 100px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 " style="margin-top: 2200px; margin-left: 345px;">        
+                            <?php include 'bar-chart.php'; ?>
+                            <div id="piechart" style="height: 290px; width: 300px; margin-top: 3500px; margin-left: 100px;"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
+                
+                <!-- Draw the 3 charts seperatly in the dashboard with proper gaps between each other and size of the graphs should be the same -->
+
             <!-- Content / End -->
             <!-- Copyrights -->
             <div class="copyrights">
@@ -552,6 +557,7 @@ ob_end_clean();
         </div>
         <!-- Dashboard / End -->
     </div>
+                            </div>
     <!-- end Container Wrapper -->
     <!-- *Scripts* -->
     <!-- Include jQuery -->

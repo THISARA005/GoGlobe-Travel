@@ -552,26 +552,26 @@ session_start();
                            <p>"Step into our captivating tour gallery and witness the world through the lens of fellow travelers. Immerse yourself in a visual feast of breathtaking landscapes, vibrant cultures, and unforgettable moments captured by the best. These shared photos embody the essence of wanderlust, inspiring your own travel aspirations. Get ready to embark on a journey of awe and wonder as you explore our curated collection of the world's most captivating destinations."</p>
                         </div>
                         <figure class="gallery-img">
-                           <img src="assets/images/img12.jpg" alt="">
+                           <img src="uploads/nature1.jpg" alt="">
                         </figure>
                      </div>
                      <div class="col-lg-7">
                         <div class="row">
                            <div class="col-sm-6">
                               <figure class="gallery-img">
-                                 <img src="assets/images/img13.jpg" alt="">
+                                 <img src="uploads/nature1.jpg" alt="">
                               </figure>
                            </div>
                            <div class="col-sm-6">
                               <figure class="gallery-img">
-                                 <img src="assets/images/img14.jpg" alt="">
+                                 <img src="uploads/nature2.jpg" alt="">
                               </figure>
                            </div>
                         </div>
                         <div class="row">
                            <div class="col-12">
                               <figure class="gallery-img">
-                                 <img src="assets/images/img15.jpg" alt="">
+                                 <img src="uploads/nature3.jpg" alt="">
                               </figure>
                            </div>
                         </div>

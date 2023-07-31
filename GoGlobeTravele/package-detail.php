@@ -131,32 +131,7 @@
                                  </div>
                               </form>
                            </div>
-                           <div class="widget-bg information-content text-center">
-                              <h5>TRAVEL TIPS</h5>
-                              <h3>NEED TRAVEL RELATED TIPS & INFORMATION</h3>
-                              <p>Mollit voluptatem perspiciatis convallis elementum corporis quo veritatis aliquid blandit, blandit torquent, odit placeat. </p>
-                              <a href="#" class="button-primary">GET A QUOTE</a>
-                           </div>
-                           <div class="travel-package-content text-center" style="background-image: url(assets/images/img11.jpg);">
-                          
-                              <h3>OTHER TRAVEL PACKAGES</h3>
-                              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus.</p>
-                              <ul>
-                                 <li>
-                                    <a href="#"><i class="far fa-arrow-alt-circle-right"></i>Vacation packages</a>
-                                 </li>
-                                 <li>
-                                    <a href="#"><i class="far fa-arrow-alt-circle-right"></i>Honeymoon packages</a>
-                                 </li>
-                                 <li>
-                                    <a href="#"><i class="far fa-arrow-alt-circle-right"></i>New year packages</a>
-                                 </li>
-                                 <li>
-                                    <a href="#"><i class="far fa-arrow-alt-circle-right"></i>Weekend packages</a>
-                                 </li>
-                              </ul>
-                           
-                           </div>
+
                         </div>
                      </div>
                   </div>
