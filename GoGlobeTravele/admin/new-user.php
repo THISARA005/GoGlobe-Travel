@@ -143,7 +143,7 @@
                         <div class="dashboard-box">
                             <h4>Add New User</h4>
                             <p>Add new user as administrator.</p>
-                            <form class="form-horizontal" method="post">
+                            <form class="form-horizontal" method="post" action="admin_registration.php">
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
@@ -175,12 +175,7 @@
                                             <input name="city" class="form-control" type="text">
                                         </div>
                                     </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label>Country</label>
-                                            <input name="country" class="form-control" type="text">
-                                        </div>
-                                    </div>
+                                   
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label>password</label>
@@ -201,9 +196,15 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label>Confirm Email</label>
-                                            <input name="email" class="form-control" type="email">
+                                            <label>Date of birth</label>
+                                            <input type="date" name="dob" class="form-control" type="email">
                                         </div>  
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Profile Picture</label>
+                                            <input name="profile_photo" class="form-control"  type="file">
+                                        </div>
                                     </div>
                                 </div>
                                 <br>

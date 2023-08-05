@@ -45,9 +45,9 @@
     function drawCombinedChart() {
       var data = new google.visualization.DataTable();
       data.addColumn('number', 'Day');
-      data.addColumn('number', 'Total Revenue (May)');
       data.addColumn('number', 'Total Revenue (June)');
       data.addColumn('number', 'Total Revenue (July)');
+      data.addColumn('number', 'Total Revenue (August)');
 
       var jsonData = <?php echo $dataJson; ?>;
       var mayData = [];
@@ -59,11 +59,11 @@
         var day = row.Day;
         var revenue = row['Total Revenue'];
 
-        if (row.Month === 7) {
+        if (row.Month === 6) {
           mayData.push([day, revenue, null, null]);
-        } else if (row.Month === 8) {
+        } else if (row.Month === 7) {
           juneData.push([day, null, revenue, null]);
-        } else if (row.Month === 9) {
+        } else if (row.Month === 8) {
           julyData.push([day, null, null, revenue]);
         }
       });
@@ -73,7 +73,7 @@
 
       var options = {
         chart: {
-          title: 'Daily Revenue for May, June, and July',
+          title: 'Daily Revenue for June, July and august',
           subtitle: 'Total revenue in USD',
         },
         width: 900,

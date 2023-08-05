@@ -93,7 +93,7 @@
                 <div class='dropdown'>
                     <a class='dropdown-toggle' data-toggle='dropdown'>
                         <div class='dropdown-item profile-sec'>
-                            <img src='uploads/$profile_pic' alt=''>
+                            <img src='uploads/$profile_pic'  alt=''>
                             <span>My Account </span>
                             <i class='fas fa-caret-down'></i>
                         </div>

@@ -23,8 +23,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <table style='width: 100%; border-collapse: collapse;'>
             <thead>
                 <tr style='border: 1px solid #000;'>
-                    <th style='border: 1px solid #000;'>ID</th>
-                    <th style='border: 1px solid #000;'>Name</th>
+                    <th style='border: 1px solid #000;'>Package ID</th>
+                    <th style='border: 1px solid #000;'>billing_date</th>
                     <th style='border: 1px solid #000;'>Amount</th>
                 </tr>
             </thead>
@@ -35,17 +35,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $totalRevenue = $totalRevenue + $paid_amount;
             $pack_id = $row['pack_ID'];
             $user_id = $row['user_ID'];
+            $billing_date = $row['billing_date'];
 
-            $query1 = "SELECT * FROM packages WHERE pack_ID=$pack_id";
+            $query1 = "SELECT * FROM packages WHERE pack_ID=$pack_id
+            ";
             $result1 = mysqli_query($conn, $query1);
             $row1 = mysqli_fetch_assoc($result1);
-            $pack_name = $row1['title'];
+            //$pack_name = $row1['title'];
 
             echo "
                 <tr style='border: 1px solid #000;'>
                     <td style='border: 1px solid #000;'>$user_id</td>
-                    <td style='border: 1px solid #000;'>$pack_name</td>
+                    <td style='border: 1px solid #000;'>$billing_date</td>
                     <td style='border: 1px solid #000;'>$paid_amount</td>
+                    
                 </tr>";
         }
 

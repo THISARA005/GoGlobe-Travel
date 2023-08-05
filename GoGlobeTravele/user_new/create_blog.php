@@ -109,10 +109,7 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label>Select location</label>  
-                                            <select name="location"  required>
-                                                <option value="udawalawa" >Select a location</option>
-                                                <option value="galle" >Galle</option>
-                                            </select>  
+                                            <input type="text" name="location">
                                         </div>
                                     </div>  
                                 </div>
